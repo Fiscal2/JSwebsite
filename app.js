@@ -28,12 +28,14 @@ button.addEventListener('click', function() {
     console.log('current class name: ' + className);
 });
 
-const text = document.getElementById("inp").value;
-
-function Pressed()
-
+function Pressed(){
+    const text = document.getElementById("inp").value;
+    
     if(text === "morty smith"){
         image.setAttribute('src', mortySmith)
-}   else {
+    }else if(text === "pickle rick") {
         image.setAttribute('src', pickleRick)
+    }else{
+        console.log(text)
+    }
 }
