@@ -27,3 +27,13 @@ button.addEventListener('click', function() {
 
     console.log('current class name: ' + className);
 });
+
+const text = document.getElementById("inp").value;
+
+function Pressed()
+
+    if(text === "morty smith"){
+        image.setAttribute('src', mortySmith)
+}   else {
+        image.setAttribute('src', pickleRick)
+}
