@@ -1,3 +1,10 @@
+:root {
+  --lightGreen: #00FF00;
+  --darkGreen: #009500;
+  --white: #FFFFFF;
+  --black: #000000;
+}
+
 body {
     background: var(--bg);
     color: var(--fontColor);
@@ -10,12 +17,6 @@ li {
   
   .list {
     list-style: square;
-  }
-
-  :root {
-    --green: #00FF00;
-    --white: #FFFFFF;
-    --black: #000000;
   }
 
   .btn {
@@ -31,7 +32,7 @@ li {
   }
   
   .light-theme {
-    --bg: var(--green);
+    --bg: var(--lightGreen);
     --fontColor: var(--black);
     --btnBg: var(--black);
     --btnFontColor: var(--white);
@@ -39,7 +40,7 @@ li {
   
   .dark-theme {
     --bg: var(--black);
-    --fontColor: var(--green);
+    --fontColor: var(--darkGreen);
     --btnBg: var(--white);
     --btnFontColor: var(--black);
   }
