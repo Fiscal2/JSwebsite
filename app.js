@@ -31,7 +31,7 @@ button.addEventListener('click', function() {
 function Pressed(){
     const text = document.getElementById("inp").value.toLowerCase();
     
-    if(text === "morty smith"){
+    if(text.includes("morty smith")){
         image.setAttribute('src', mortySmith)
     }else if(text === "pickle rick") {
         image.setAttribute('src', pickleRick)
