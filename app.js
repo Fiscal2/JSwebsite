@@ -29,7 +29,7 @@ button.addEventListener('click', function() {
 });
 
 function Pressed(){
-    const text = document.getElementById("inp").value;
+    const text = document.getElementById("inp").value.toLowerCase();
     
     if(text === "morty smith"){
         image.setAttribute('src', mortySmith)
