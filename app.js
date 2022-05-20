@@ -11,29 +11,30 @@ button.addEventListener('click', function() {
     document.body.classList.toggle('dark-theme');
 
     const className = document.body.className;
+
+    const imageSRC = image.getAttribute('src')
+
     if(className == "light-theme") {
         this.textContent = "Dark";
     } else {
         this.textContent = "Light";
     }
 
-    const imageSRC = image.getAttribute('src')
-
     if(imageSRC === pickleRick){
         image.setAttribute('src', mortySmith)
     } else{
         image.setAttribute('src', pickleRick)
     }
-
-    console.log('current class name: ' + className);
 });
 
 function Pressed(){
     const text = document.getElementById("inp").value.toLowerCase();
-    
-    if(text.includes("morty smith")){
+    const mortyText = "morty smith"
+    const pickleRickText = "pickle rick"
+
+    if(text.length > 3 && mortyText.includes(text)){
         image.setAttribute('src', mortySmith)
-    }else if(text === "pickle rick") {
+    }else if(pickleRickText.includes(text)) {
         image.setAttribute('src', pickleRick)
     }else{
         console.log(text)
