@@ -1,12 +1,19 @@
 :root {
-  --lightGreen: #00FF00;
+  --lightBlue: #00d9ff;
   --darkGreen: #009500;
   --white: #FFFFFF;
   --black: #000000;
 }
 
+html {
+  margin: 0;
+  height: 100%;
+}
+
 body {
     background: var(--bg);
+    background-image: linear-gradient(to bottom right, var(--bg), rgba(219, 219, 219, 0.513));
+    background-repeat: no-repeat;
     color: var(--fontColor);
     font-family: helvetica;
   }
@@ -14,15 +21,11 @@ body {
 li {
     list-style: circle;
   }
-  
-  .list {
-    list-style: square;
-  }
 
   .btn {
     position: absolute;
     top: 20px;
-    left: 250px;
+    left: 850px;
     height: 50px;
     width: 50px;
     border-radius: 50%;
@@ -32,7 +35,7 @@ li {
   }
   
   .light-theme {
-    --bg: var(--lightGreen);
+    --bg: var(--lightBlue);
     --fontColor: var(--black);
     --btnBg: var(--black);
     --btnFontColor: var(--white);
