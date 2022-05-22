@@ -58,6 +58,7 @@ fetch(rickAndMortyUrl)
         let picture = document.createElement('img');
         picture.setAttribute("height", 100);
         picture.setAttribute("width", 100);
+        picture.alt = `image of ${data.name}`
 
         let status = document.createElement('span');
 
