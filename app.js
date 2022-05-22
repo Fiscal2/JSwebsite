@@ -52,7 +52,7 @@ fetch(rickAndMortyUrl)
     .then((data) => {
 
         console.log(data)
-        console.log(data.name)
+
         let name = document.createElement('h2');
 
         let picture = document.createElement('img');
