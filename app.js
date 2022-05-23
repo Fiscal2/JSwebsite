@@ -3,8 +3,8 @@
 const button = document.querySelector('.btn');
 const image = document.querySelector('img')
 
-const pickleRick = "https://static.wikia.nocookie.net/be-like-bro/images/7/7b/Picklerick.jpg/revision/latest/top-crop/width/360/height/450?cb=20171118185327"
-const mortySmith = "https://static.tvtropes.org/pmwiki/pub/images/morty_smith_2.png"
+const pickleRick = "https://rickandmortyapi.com/api/character/avatar/265.jpeg"
+const mortySmith = "https://rickandmortyapi.com/api/character/avatar/2.jpeg"
 
 button.addEventListener('click', function () {
     document.body.classList.toggle('light-theme');
@@ -53,22 +53,28 @@ fetch(rickAndMortyUrl)
 
         console.log(data)
 
-        let name = document.createElement('h2');
+        let name = document.createElement('h1');
 
         let picture = document.createElement('img');
         picture.setAttribute("height", 100);
         picture.setAttribute("width", 100);
         picture.alt = `image of ${data.name}`
 
-        let status = document.createElement('span');
+        let status = document.createElement('p');
+        let species = document.createElement('p');
+        let gender = document.createElement('p');
 
         picture.src = `${data.image}`;
-        name.innerHTML = `Name: ${data.name}`;
+        name.innerHTML = `${data.name}`;
         status.innerHTML = `Status: ${data.status}`;
+        species.innerHTML = `Species: ${data.species}`;
+        gender.innerHTML = `Gender: ${data.gender}`;
 
         div.appendChild(picture);
         div.appendChild(name);
         div.appendChild(status);
+        div.appendChild(species);
+        div.appendChild(gender);
 
     })
     .catch((error) => {

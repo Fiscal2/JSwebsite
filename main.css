@@ -5,9 +5,10 @@
   --black: #000000;
 }
 
-html {
+html, body {
   margin: 0;
   height: 100%;
+  overflow-x: hidden;
 }
 
 body {
@@ -46,4 +47,23 @@ li {
     --fontColor: var(--darkGreen);
     --btnBg: var(--white);
     --btnFontColor: var(--black);
+  }
+
+  .rickBanner{
+    background-color: rgba(0, 0, 0, 0.5); 
+    padding: 1em; 
+    margin-top: 0.5em;
+    margin-bottom: 0; 
+    color: white;
+    text-shadow: 2px 2px 4px #000000;
+  }
+
+  .rickCard{
+    /* background-image: rgba(255, 255, 255, 0.4);  */
+    width: 100%;
+    margin: 1em;
+  }
+
+  .rickCard img{
+    padding: 0.5em;
   }
