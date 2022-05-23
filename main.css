@@ -19,17 +19,13 @@ body {
     font-family: helvetica;
   }
 
-li {
-    list-style: circle;
-  }
-
   .btn {
     position: absolute;
-    top: 20px;
-    left: 900px;
+    top: 10px;
+    right: 10px;;
     height: 50px;
-    width: 50px;
-    border-radius: 50%;
+    width: 80px;
+    border-radius: 20%;
     border: none;
     color: var(--btnFontColor);
     background-color: var(--btnBg);
@@ -52,8 +48,8 @@ li {
   .rickBanner{
     background-color: rgba(0, 0, 0, 0.5); 
     padding: 1em; 
-    margin-top: 0.5em;
-    margin-bottom: 0; 
+    margin-bottom: 0.5em;
+    margin-top: 0;
     color: white;
     text-shadow: 2px 2px 4px #000000;
   }
@@ -61,7 +57,7 @@ li {
   .rickCard{
     /* background-image: rgba(255, 255, 255, 0.4);  */
     width: 100%;
-    margin: 1em;
+    margin-top: 0.5em;
   }
 
   .rickCard img{
