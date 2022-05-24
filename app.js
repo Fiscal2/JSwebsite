@@ -52,7 +52,6 @@ fetch(rickAndMortyUrl)
     .then((data) => {
 
         console.log(data)
-
         let name = document.createElement('h1');
 
         let picture = document.createElement('img');
@@ -63,18 +62,21 @@ fetch(rickAndMortyUrl)
         let status = document.createElement('p');
         let species = document.createElement('p');
         let gender = document.createElement('p');
+        let origin = document.createElement('p');
 
         picture.src = `${data.image}`;
         name.innerHTML = `${data.name}`;
         status.innerHTML = `Status: ${data.status}`;
         species.innerHTML = `Species: ${data.species}`;
         gender.innerHTML = `Gender: ${data.gender}`;
+        origin.innerHTML = `Origin: ${data.origin['name']}`;
 
         div.appendChild(picture);
         div.appendChild(name);
         div.appendChild(status);
         div.appendChild(species);
         div.appendChild(gender);
+        div.appendChild(origin);
 
     })
     .catch((error) => {
