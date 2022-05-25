@@ -60,5 +60,7 @@ body {
   }
 
   .rickCard img{
-    padding: 0.5em;
+    max-width: 300px;
+    border: 4px solid #fff;
+    border-radius: 150px;
   }
