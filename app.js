@@ -71,13 +71,7 @@ fetch(rickAndMortyUrl)
         gender.innerHTML = `Gender: ${data.gender}`;
         origin.innerHTML = `Origin: ${data.origin['name']}`;
 
-        div.appendChild(picture);
-        div.appendChild(name);
-        div.appendChild(status);
-        div.appendChild(species);
-        div.appendChild(gender);
-        div.appendChild(origin);
-
+        div.append(picture, name, status, species, gender, origin);
     })
     .catch((error) => {
         console.log(error);
