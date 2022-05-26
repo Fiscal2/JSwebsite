@@ -5,69 +5,93 @@
   --black: #000000;
 }
 
-html, body {
+html,
+body {
   margin: 0;
   height: 100%;
   overflow-x: hidden;
 }
 
 body {
-    background: var(--bg);
-    background-image: linear-gradient(to bottom right, var(--bg), rgba(219, 219, 219, 0.513));
-    background-repeat: no-repeat;
-    color: var(--fontColor);
-    font-family: helvetica;
-  }
+  background: var(--bg);
+  background-image: linear-gradient(to bottom right, var(--bg), rgba(219, 219, 219, 0.513));
+  background-repeat: no-repeat;
+  color: var(--fontColor);
+  font-family: helvetica;
+}
 
-  .btn {
-    position: absolute;
-    top: 10px;
-    right: 10px;;
-    height: 50px;
-    width: 80px;
-    border-radius: 20%;
-    border: none;
-    color: var(--btnFontColor);
-    background-color: var(--btnBg);
-  }
-  
-  .light-theme {
-    --bg: var(--lightBlue);
-    --fontColor: var(--black);
-    --btnBg: var(--black);
-    --btnFontColor: var(--white);
-  }
-  
-  .dark-theme {
-    --bg: var(--black);
-    --fontColor: var(--darkGreen);
-    --btnBg: var(--white);
-    --btnFontColor: var(--black);
-  }
+.btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  ;
+  height: 50px;
+  width: 80px;
+  border-radius: 20%;
+  border: none;
+  color: var(--btnFontColor);
+  background-color: var(--btnBg);
+}
 
-  .rickBanner{
-    background-color: rgba(0, 0, 0, 0.5); 
-    padding: 1em; 
-    margin-bottom: 0.5em;
-    margin-top: 0;
-    color: white;
-    text-shadow: 2px 2px 4px #000000;
-  }
+.light-theme {
+  --bg: var(--lightBlue);
+  --fontColor: var(--black);
+  --btnBg: var(--black);
+  --btnFontColor: var(--white);
+}
 
-  .rickCard{
-    width: 100%;
-    margin-top: 0.5em;
-  }
+.dark-theme {
+  --bg: var(--black);
+  --fontColor: var(--darkGreen);
+  --btnBg: var(--white);
+  --btnFontColor: var(--black);
+}
 
-  .rickCard img{
-    max-width: 300px;
-    border: 4px solid #fff;
-    border-radius: 150px;
-  }
+.rickBanner {
+  background-color: rgba(0, 0, 0, 0.5);
+  padding: 1em;
+  margin-bottom: 0.5em;
+  margin-top: 0;
+  color: white;
+  text-shadow: 2px 2px 4px #000000;
+}
 
-  .mortyPickleImg{
-    border: 4px solid rgb(0, 0, 0);
-    border-radius: 150px;
-    height: 100px;
-    width: 100px;
-  }
+.rickCard {
+  width: 100%;
+  margin-top: 0.5em;
+}
+
+.rickCard img {
+  max-width: 300px;
+  border: 4px solid #fff;
+  border-radius: 150px;
+}
+
+.mortyPickleImg {
+  border: 4px solid rgb(0, 0, 0);
+  border-radius: 150px;
+  height: 100px;
+  width: 100px;
+}
+
+.rickStyleButton {
+  background-color: #c2fbd7;
+  border-radius: 10px;
+  box-shadow: rgba(44, 187, 99, .2) 0 -25px 18px -14px inset, rgba(44, 187, 99, .15) 0 1px 2px, rgba(44, 187, 99, .15) 0 2px 4px, rgba(44, 187, 99, .15) 0 4px 8px, rgba(44, 187, 99, .15) 0 8px 16px, rgba(44, 187, 99, .15) 0 16px 32px;
+  color: green;
+  cursor: pointer;
+  display: inline-block;
+  padding: 7px 20px;
+  text-align: center;
+  text-decoration: none;
+  transition: all 250ms;
+  border: 0;
+  font-size: 16px;
+  user-select: none;
+  touch-action: manipulation;
+}
+
+.rickStyleButton:hover {
+  box-shadow: rgba(44, 187, 99, .35) 0 -25px 18px -14px inset, rgba(44, 187, 99, .25) 0 1px 2px, rgba(44, 187, 99, .25) 0 2px 4px, rgba(44, 187, 99, .25) 0 4px 8px, rgba(44, 187, 99, .25) 0 8px 16px, rgba(44, 187, 99, .25) 0 16px 32px;
+  transform: scale(1.05);
+}
