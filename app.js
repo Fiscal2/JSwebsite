@@ -59,10 +59,10 @@ fetch(rickAndMortyUrl)
         stats.innerHTML =
             `
             <h1>${data.name}</h1>
-            <p>Status: ${data.status}</p> 
-            <p>Species: ${data.species}</p>
-            <p>Gender: ${data.gender}</p>
-            <p>Origin: ${data.origin['name']}</p>
+            <h4>Status: ${data.status}</h4> 
+            <h4>Species: ${data.species}</h4>
+            <h4>Gender: ${data.gender}</h4>
+            <h4>Origin: ${data.origin['name']}</h4>
             `
         cardContainer.append(stats);
     })
