@@ -57,17 +57,12 @@ fetch(rickAndMortyUrl)
 
         let rickPicture = document.getElementById('cardimg')
         rickPicture.setAttribute('src', data.image)
-        // let picture = document.createElement('img');
-        // picture.setAttribute("height", 100);
-        // picture.setAttribute("width", 100);
-        // picture.alt = `image of ${data.name}`
 
         let status = document.createElement('p');
         let species = document.createElement('p');
         let gender = document.createElement('p');
         let origin = document.createElement('p');
 
-        // picture.src = `${data.image}`;
         name.innerHTML = `${data.name}`;
         status.innerHTML = `Status: ${data.status}`;
         species.innerHTML = `Species: ${data.species}`;
