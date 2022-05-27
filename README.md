@@ -1,5 +1,9 @@
 # JSwebsite: Microsoft JS Lesson!
 
+## Good JS resources:
+- [W3](https://www.w3schools.com/js/default.asp)
+- [JavaScript.com](https://www.javascript.com/resources)
+
 ## Exercises:
 - Break up app.js file into functions. You will make 1 for the fetching and 1 for the dark/light button.
 - Function 1: that takes an array `[1, 2, 3, 4, 5]` and adds all the numbers and console logs the output.
