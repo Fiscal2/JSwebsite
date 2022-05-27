@@ -42,9 +42,7 @@ function Pressed() {
 }
 
 const rickAndMortyUrl = "https://rickandmortyapi.com/api/character/1"
-const div = document.getElementById('rickAndMorty');
 const cardContainer = document.getElementById('cardbody')
-const list = document.createDocumentFragment();
 
 fetch(rickAndMortyUrl)
     .then((response) => {
@@ -53,23 +51,20 @@ fetch(rickAndMortyUrl)
     .then((data) => {
 
         console.log(data)
-        let name = document.createElement('h1');
 
-        let rickPicture = document.getElementById('cardimg')
+        const rickPicture = document.getElementById('cardimg')
         rickPicture.setAttribute('src', data.image)
+        const stats = document.createElement('div');
 
-        let status = document.createElement('p');
-        let species = document.createElement('p');
-        let gender = document.createElement('p');
-        let origin = document.createElement('p');
-
-        name.innerHTML = `${data.name}`;
-        status.innerHTML = `Status: ${data.status}`;
-        species.innerHTML = `Species: ${data.species}`;
-        gender.innerHTML = `Gender: ${data.gender}`;
-        origin.innerHTML = `Origin: ${data.origin['name']}`;
-
-        cardContainer.append(name, status, species, gender, origin);
+        stats.innerHTML =
+            `
+            <h1>${data.name}</h1>
+            <p>Status: ${data.status}</p> 
+            <p>Species: ${data.species}</p>
+            <p>Gender: ${data.gender}</p>
+            <p>Origin: ${data.origin['name']}</p>
+            `
+        cardContainer.append(stats);
     })
     .catch((error) => {
         console.log(error);
