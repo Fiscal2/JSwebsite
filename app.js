@@ -42,17 +42,17 @@ function Pressed() {
 }
 
 const rickAndMortyUrl = "https://rickandmortyapi.com/api/character/1"
-const cardContainer = document.getElementById('cardbody')
 
-function fetchCharacter() {
-    fetch(rickAndMortyUrl)
+
+function fetchCharacter(url) {
+    fetch(url)
     .then((response) => {
         return response.json();
     })
     .then((data) => {
 
         console.log(data)
-
+        const cardContainer = document.getElementById('cardbody')
         const rickPicture = document.getElementById('cardimg')
         rickPicture.setAttribute('src', data.image)
         const stats = document.createElement('div');
@@ -71,3 +71,5 @@ function fetchCharacter() {
         console.log(error);
     });
 }
+
+fetchCharacter(rickAndMortyUrl);
