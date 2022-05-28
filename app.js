@@ -72,4 +72,4 @@ function fetchCharacter(url) {
         });
 }
 
-
+fetchCharacter(rickAndMortyUrl);

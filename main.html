@@ -10,14 +10,34 @@
     integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
 </head>
 
-<body class="light-theme">
+<body class="light-theme bg-info bg-gradient">
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand mx-5" href="#">Rick and Morty!</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+  
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mb-auto">
+        <li class="nav-item active">
+          <a class="nav-link" href="#">Home <span class="sr-only"></span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link mx-2" href="#">Page 2</a>
+        </li>
+      </ul>
+      <form class="form-inline my-2 my-lg-0">
+        <input class="form-control mr-sm-2 mx-2" type="search" placeholder="Search Character" aria-label="Search">
+      </form>
+    </div>
+  </nav>
   <div class="text-center">
-    <h1 class="rickBanner">Rick & Morty!</h1>
+    <h1 class="rickBanner my-4">Rick & Morty!</h1>
 
-    <img class="mortyPickleImg" src="https://rickandmortyapi.com/api/character/avatar/265.jpeg" />
-    <div><input type="text" id="inp" placeholder="Search for a character!" /></div>
+    <img class="mortyPickleImg shadow-lg p-0 mb-5 my-3 bg-body rounded" src="https://rickandmortyapi.com/api/character/avatar/265.jpeg" />
+    <div><input class="shadow p-0 bg-body" roundedtype="text" id="inp" placeholder="Search for a character!" /></div>
     <br>
-    <div><button class="rickStyleButton" onclick="Pressed()">Search</button></div>
+    <div><button class="shadow p-0 bg-body rounded rickStyleButton" onclick="Pressed()">Search</button></div>
     <div><button class="btn">Dark</button></div>
 
     <div class="d-flex justify-content-center my-2">
