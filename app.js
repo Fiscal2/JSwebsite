@@ -46,30 +46,30 @@ const rickAndMortyUrl = "https://rickandmortyapi.com/api/character/1"
 
 function fetchCharacter(url) {
     fetch(url)
-    .then((response) => {
-        return response.json();
-    })
-    .then((data) => {
+        .then((response) => {
+            return response.json();
+        })
+        .then((data) => {
 
-        console.log(data)
-        const cardContainer = document.getElementById('cardbody')
-        const rickPicture = document.getElementById('cardimg')
-        rickPicture.setAttribute('src', data.image)
-        const stats = document.createElement('div');
+            console.log(data)
+            const cardContainer = document.getElementById('cardbody')
+            const rickPicture = document.getElementById('cardimg')
+            rickPicture.setAttribute('src', data.image)
+            const stats = document.createElement('div');
 
-        stats.innerHTML =
-            `
+            stats.innerHTML =
+                `
             <h1>${data.name}</h1>
             <h4>Status: ${data.status}</h4> 
             <h4>Species: ${data.species}</h4>
             <h4>Gender: ${data.gender}</h4>
             <h4>Origin: ${data.origin['name']}</h4>
             `
-        cardContainer.append(stats);
-    })
-    .catch((error) => {
-        console.log(error);
-    });
+            cardContainer.append(stats);
+        })
+        .catch((error) => {
+            console.log(error);
+        });
 }
 
 fetchCharacter(rickAndMortyUrl);
