@@ -44,7 +44,8 @@ function Pressed() {
 const rickAndMortyUrl = "https://rickandmortyapi.com/api/character/1"
 const cardContainer = document.getElementById('cardbody')
 
-fetch(rickAndMortyUrl)
+function fetchCharacter() {
+    fetch(rickAndMortyUrl)
     .then((response) => {
         return response.json();
     })
@@ -69,4 +70,4 @@ fetch(rickAndMortyUrl)
     .catch((error) => {
         console.log(error);
     });
-
+}
