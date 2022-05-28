@@ -72,19 +72,4 @@ function fetchCharacter(url) {
         });
 }
 
-fetchCharacter(rickAndMortyUrl);
 
-function enterListener(e) {
-    document.querySelector('#txtSearch').addEventListener('keypress', function () {
-        if (e.key === 'Enter') {
-          image.setAttribute('src', mortySmith)
-        } else if (pickleRickText.includes(text)) {
-            image.setAttribute('src', pickleRick)
-        } else {
-            console.log(text)
-        }
-        
-    });
-}
-
-enterListener();
