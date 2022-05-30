@@ -43,7 +43,6 @@ function Pressed() {
 
 const rickAndMortyUrl = "https://rickandmortyapi.com/api/character/1"
 
-
 function fetchCharacter(url) {
     fetch(url)
         .then((response) => {
@@ -59,11 +58,11 @@ function fetchCharacter(url) {
 
             stats.innerHTML =
                 `
-            <h1>${data.name}</h1>
-            <h4>Status: ${data.status}</h4> 
-            <h4>Species: ${data.species}</h4>
-            <h4>Gender: ${data.gender}</h4>
-            <h4>Origin: ${data.origin['name']}</h4>
+            <h4 class="card-title text-center">${data.name}</h4>
+            <p>Status: ${data.status}</p> 
+            <p>Species: ${data.species}</p>
+            <p>Gender: ${data.gender}</p>
+            <p>Origin: ${data.origin['name']}</p>
             `
             cardContainer.append(stats);
         })
