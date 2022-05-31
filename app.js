@@ -27,7 +27,13 @@ const rickAndMortyUrl = "https://rickandmortyapi.com/api/character/1"
 function switchTheme() {
     console.log(document.body.classList)
     const currentBackground = document.body.classList[0]
+    const text = document.body.text
     console.log(currentBackground)
+    document.body.classList.replace(currentBackground, "bg-dark")
+    if (currentBackground == "bg-dark"){
+        document.body.classList.replace(currentBackground, "bg-info")
+
+    }
     document.body.classList.replace(currentBackground, "bg-dark")
 }
 
