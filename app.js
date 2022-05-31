@@ -72,3 +72,7 @@ function fetchCharacter(url) {
 }
 
 fetchCharacter(rickAndMortyUrl);
+
+function switchTheme() {
+
+}
