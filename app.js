@@ -25,7 +25,9 @@ const rickAndMortyUrl = "https://rickandmortyapi.com/api/character/1"
 //     }
 // });
 function switchTheme() {
-
+    console.log(document.body.classList)
+    const currentBackground = document.body.classList[0]
+    console.log(currentBackground)
 }
 
 function Pressed() {
@@ -71,3 +73,4 @@ function fetchCharacter(url) {
 }
 
 fetchCharacter(rickAndMortyUrl);
+switchTheme()
