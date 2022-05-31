@@ -28,13 +28,15 @@ function switchTheme() {
     console.log(document.body.classList)
     const currentBackground = document.body.classList[0]
     const text = document.body.text
-    console.log(currentBackground)
-    document.body.classList.replace(currentBackground, "bg-dark")
-    if (currentBackground == "bg-dark"){
-        document.body.classList.replace(currentBackground, "bg-info")
+    const themeButton = document.getElementById("themebutton")
 
+    if (currentBackground == "bg-dark") {
+        themeButton.innerHTML = "Dark"
+        document.body.classList.replace(currentBackground, "bg-info")
+    } else {
+        themeButton.innerHTML = "Light"
+        document.body.classList.replace(currentBackground, "bg-dark")
     }
-    document.body.classList.replace(currentBackground, "bg-dark")
 }
 
 function Pressed() {
