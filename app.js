@@ -28,6 +28,7 @@ function switchTheme() {
     console.log(document.body.classList)
     const currentBackground = document.body.classList[0]
     console.log(currentBackground)
+    document.body.classList.replace(currentBackground, "bg-dark")
 }
 
 function Pressed() {
