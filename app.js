@@ -27,16 +27,18 @@ const rickAndMortyUrl = "https://rickandmortyapi.com/api/character/1"
 function switchTheme() {
     console.log(document.body.classList)
     const currentBackground = document.body.classList[0]
-    const title = document.getElementById("Title").classList[0]
+    const titleElement = document.getElementById("Title")
+    const titleTextColor = titleElement.classList[0]
     const themeButton = document.getElementById("themebutton")
 
     if (currentBackground == "bg-dark") {
         themeButton.innerHTML = "Dark"
         document.body.classList.replace(currentBackground, "bg-info")
-        document.body.classList.replace(title, "text-white")
+        titleElement.classList.replace(titleTextColor, "text-black")
     } else {
         themeButton.innerHTML = "Light"
         document.body.classList.replace(currentBackground, "bg-dark")
+        titleElement.classList.replace(titleTextColor, "text-white")
     }
 }
 
