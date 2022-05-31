@@ -4,26 +4,6 @@ const pickleRick = "https://rickandmortyapi.com/api/character/avatar/265.jpeg"
 const mortySmith = "https://rickandmortyapi.com/api/character/avatar/2.jpeg"
 const rickAndMortyUrl = "https://rickandmortyapi.com/api/character/1"
 
-// button.addEventListener('click', function () {
-//     document.body.classList.toggle('light-theme');
-//     document.body.classList.toggle('dark-theme');
-
-//     const className = document.body.className;
-
-//     const imageSRC = image.getAttribute('src')
-
-//     if (className == "light-theme") {
-//         this.textContent = "Dark";
-//     } else {
-//         this.textContent = "Light";
-//     }
-
-//     if (imageSRC === pickleRick) {
-//         image.setAttribute('src', mortySmith)
-//     } else {
-//         image.setAttribute('src', pickleRick)
-//     }
-// });
 function switchTheme() {
     console.log(document.body.classList)
     const currentBackground = document.body.classList[0]
@@ -85,4 +65,3 @@ function fetchCharacter(url) {
 }
 
 fetchCharacter(rickAndMortyUrl);
-switchTheme()
