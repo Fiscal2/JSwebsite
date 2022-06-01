@@ -37,8 +37,8 @@ function Pressed() {
     }
 }
 
-function dynamicCarousel(randomUrl) {
-    fetch(randomUrl)
+function dynamicCarousel(url) {
+    fetch(url)
         .then((response) => {
             return response.json();
         })
@@ -68,6 +68,7 @@ function dynamicCarousel(randomUrl) {
             console.log(error);
         });
 }
+// Hint: this function needs something... 
 dynamicCarousel();
 
 function fetchCharacter(url) {
@@ -98,11 +99,9 @@ function fetchCharacter(url) {
 
 fetchCharacter(rickAndMortyUrl);
 
-function RandomUrlConstructor(randomUrl) {
-    // You will need to make an array with 3 random numbers in it...
-    const randomNumArray = Array.from({length: 3}, () => Math.floor(Math.random() * 40));
+function RandomUrlConstructor() {
+    const randomNumArray = Array.from({ length: 3 }, () => Math.floor(Math.random() * 40));
     const randomUrl = `https://rickandmortyapi.com/api/character/${randomNumArray}`
     console.log(randomUrl);
     return randomUrl;
-    
 }
