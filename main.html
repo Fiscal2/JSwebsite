@@ -12,7 +12,7 @@
 
 <body class="bg-info bg-gradient">
   <nav class="navbar navbar-expand-lg" style="background-color: #4b2fff">
-    <a class="navbar-brand mx-3" href="#">Rick and Morty!</a>
+    <a class="navbar-brand mx-3 text-white" href="#">Rick & Morty API</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
       aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -21,16 +21,16 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav mb-auto">
         <li class="nav-item active">
-          <a class="nav-link mx-sm-2" href="#">Home</a>
+          <a class="nav-link mx-sm-2 text-white" href="#">Home</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link mx-sm-2" href="#">Page 2</a>
+          <a class="nav-link mx-sm-2 text-white" href="#">The Portal</a>
         </li>
       </ul>
       <form class="d-flex d-sm-inline-flex my-2 my-lg-0">
         <input class="form-control mr-sm-2 mx-2" type="search" placeholder="Search Character" aria-label="Search">
       </form>
-      <button class="btn btn-primary ms-auto me-2" id="themebutton" onclick="switchTheme()">Dark</button>
+      <button class="btn btn-success bg-gradient ms-auto me-3" id="themebutton" onclick="switchTheme()">Dark</button>
     </div>
   </nav>
 
@@ -60,11 +60,11 @@
           <button type="button" data-bs-target="#carouselIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
           <button type="button" data-bs-target="#carouselIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
         </div>
-        <div class="carousel-inner">
+        <div class="carousel-inner" id="carouselInner">
           <div class="carousel-item active">
             <img src="https://rickandmortyapi.com/api/character/avatar/425.jpeg" class="d-block mx-auto img-fluid">
           </div>
-          <div class=" carousel-item">
+          <div class="carousel-item">
             <img src="https://rickandmortyapi.com/api/character/avatar/30.jpeg" class="d-block mx-auto img-fluid">
           </div>
           <div class="carousel-item">

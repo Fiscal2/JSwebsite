@@ -45,15 +45,35 @@ function dynamicCarousel(randomizedCharacters) {
         .then((data) => {
             console.log(data);
 
-            const carouselInner = document.getElementById('carousel-inner');
+            const carouselInner = document.getElementById('carouselInner');
+
+            // Method 1:
             for (let i = 0; i < data.length; i++) {
-                console.log(data[i].image)
+                console.log(`Method 1: ${data[i].image}`)
             }
+            // Method 2:
+            for (let character of data) {
+                console.log(`Method 2:${character.image}`)
+
+                // Hint: 
+                // carouselImage.setAttribute('src', character.image);
+            }
+
+            // You will use these inside your FOR loop
+            // Check the Console to see what they are doing
+            // You also will need to add the classes to the div and img
+            // Hint: carouselItem.classList.add("carousel-item")
+            // The img needs class="d-block mx-auto img-fluid"   
             const carouselItem = document.createElement('div');
             const carouselImage = document.createElement('img');
-            // Img.setAttribute('src', data.image);
+            carouselImage.setAttribute('src', data[0].image);
+
             carouselItem.append(carouselImage);
-            carouselInner.append(carouselItem);
+
+            // You will also need to remove(or comment out) the HTML between line 63-75(this function is replacing all that)
+            // Uncomment below line when you are ready to use it.. breaks the current carousel
+
+            //carouselInner.append(carouselItem);
         })
         .catch((error) => {
             console.log(error);
@@ -67,8 +87,6 @@ function fetchCharacter(url) {
             return response.json();
         })
         .then((data) => {
-
-            console.log(data)
             const cardContainer = document.getElementById('cardbody')
             const rickPicture = document.getElementById('cardimg')
             rickPicture.setAttribute('src', data.image)
