@@ -97,3 +97,10 @@ function fetchCharacter(url) {
 }
 
 fetchCharacter(rickAndMortyUrl);
+
+function RandomUrlConstructor() {
+    // You will need to make an array with 3 random numbers in it...
+    const randomNumArray = [5, 18, 55]
+    const randomUrl = `https://rickandmortyapi.com/api/character/${randomNumArray}`
+    return randomUrl;
+}
