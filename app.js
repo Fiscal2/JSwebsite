@@ -73,17 +73,15 @@ function fetchCharacter(url) {
             const cardContainer = document.getElementById('cardbody')
             const rickPicture = document.getElementById('cardimg')
             rickPicture.setAttribute('src', data.image)
-            const stats = document.createElement('div');
 
-            stats.innerHTML =
+            cardContainer.innerHTML =
                 `
-            <h4 class="card-title text-center">${data.name}</h4>
-            <p>Status: ${data.status}</p> 
-            <p>Species: ${data.species}</p>
-            <p>Gender: ${data.gender}</p>
-            <p>Origin: ${data.origin['name']}</p>
+            <h2 class="card-title">${data.name}</h2>
+            <p class="card-text mb-1">Status: ${data.status}</p> 
+            <p class="card-text mb-1">Species: ${data.species}</p>
+            <p class="card-text mb-1">Gender: ${data.gender}</p>
+            <p class="card-text mb-1">Origin: ${data.origin['name']}</p>
             `
-            cardContainer.append(stats);
         })
         .catch((error) => {
             console.log(error);
