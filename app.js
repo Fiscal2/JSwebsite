@@ -1,8 +1,5 @@
 'use strict';
 
-const rickAndMortyUrl = "https://rickandmortyapi.com/api/character/1"
-const randomizedCharacters = RandomUrlConstructor();
-
 function switchTheme() {
     console.log(document.body.classList)
     const currentBackground = document.body.classList[0]
@@ -22,7 +19,7 @@ function switchTheme() {
 }
 
 function Pressed() {
-    const text = document.getElementById("inp").value.toLowerCase();
+    const text = document.getElementById("navsearch").value.toLowerCase();
     const mortyText = "morty smith"
     const pickleRickText = "pickle rick"
     const pickleRick = "https://rickandmortyapi.com/api/character/avatar/265.jpeg"
@@ -43,14 +40,12 @@ function dynamicCarousel(url) {
             return response.json();
         })
         .then((data) => {
-            console.log(data);
-
             const carouselInner = document.getElementById('carouselInner');
 
             for (let character of data) {
                 const carouselImage = document.createElement('img');
                 carouselImage.setAttribute('src', character.image);
-                carouselImage.classList.add("d-block", "mx-auto", "img-fluid");
+                carouselImage.classList.add("d-block", "mx-auto", "img-fluid", "rounded");
                 const carouselItem = document.createElement('div');
 
                 if (data.indexOf(character) == 0) {
@@ -68,8 +63,6 @@ function dynamicCarousel(url) {
             console.log(error);
         });
 }
-// Hint: this function needs something... 
-dynamicCarousel(randomizedCharacters);
 
 function fetchCharacter(url) {
     fetch(url)
@@ -97,11 +90,14 @@ function fetchCharacter(url) {
         });
 }
 
-fetchCharacter(rickAndMortyUrl);
-
 function RandomUrlConstructor() {
-    const randomNumArray = Array.from({ length: 3 }, () => Math.floor(Math.random() * (826 - 0 + 1)) + 1);
+    const randomNumArray = Array.from({ length: 3 }, () => Math.floor(Math.random() * 826) + 1);
     const randomUrl = `https://rickandmortyapi.com/api/character/${randomNumArray}`
-    console.log(randomUrl);
     return randomUrl;
 }
+
+const rickAndMortyUrl = "https://rickandmortyapi.com/api/character/1"
+const randomizedCharacters = RandomUrlConstructor();
+
+fetchCharacter(rickAndMortyUrl);
+dynamicCarousel(randomizedCharacters);
