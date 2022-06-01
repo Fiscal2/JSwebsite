@@ -50,17 +50,18 @@ function dynamicCarousel(randomizedCharacters) {
             for (let character of data) {
                 const carouselImage = document.createElement('img');
                 carouselImage.setAttribute('src', character.image);
+                carouselImage.classList.add("d-block", "mx-auto", "img-fluid");
                 const carouselItem = document.createElement('div');
-                if(carouselItem === [0]) {
-                    carouselItem.classList.add("carousel-item active")
-                    carouselImage.classList.add("d-block", "mx-auto", "img-fluid")
+
+                if (data.indexOf(character) == 0) {
+                    carouselItem.classList.add("carousel-item", "active");
+
                 } else {
-                    carouselItem.classList.add("carousel-item")
-                    carouselImage.classList.add("d-block", "mx-auto", "img-fluid")
-                    carouselItem.appendChild(carouselImage);
-                    carouselInner.appendChild(carouselItem);
+                    carouselItem.classList.add("carousel-item");
                 }
-                
+
+                carouselItem.appendChild(carouselImage);
+                carouselInner.appendChild(carouselItem);
             }
         })
         .catch((error) => {
