@@ -51,11 +51,16 @@ function dynamicCarousel(randomizedCharacters) {
                 const carouselImage = document.createElement('img');
                 carouselImage.setAttribute('src', character.image);
                 const carouselItem = document.createElement('div');
-
-                carouselItem.classList.add("carousel-item")
-                carouselImage.classList.add("d-block", "mx-auto", "img-fluid")
-                carouselItem.appendChild(carouselImage);
-                carouselInner.appendChild(carouselItem);
+                if(carouselItem === [0]) {
+                    carouselItem.classList.add("carousel-item active")
+                    carouselImage.classList.add("d-block", "mx-auto", "img-fluid")
+                } else {
+                    carouselItem.classList.add("carousel-item")
+                    carouselImage.classList.add("d-block", "mx-auto", "img-fluid")
+                    carouselItem.appendChild(carouselImage);
+                    carouselInner.appendChild(carouselItem);
+                }
+                
             }
         })
         .catch((error) => {
