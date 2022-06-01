@@ -14,22 +14,6 @@ function switchTheme() {
     }
 }
 
-function Pressed() {
-    const text = document.getElementById("navsearch").value.toLowerCase();
-    const mortyText = "morty smith"
-    const pickleRickText = "pickle rick"
-    const pickleRick = "https://rickandmortyapi.com/api/character/avatar/265.jpeg"
-    const mortySmith = "https://rickandmortyapi.com/api/character/avatar/2.jpeg"
-
-    if (text.length > 3 && mortyText.includes(text)) {
-        image.setAttribute('src', mortySmith)
-    } else if (pickleRickText.includes(text)) {
-        image.setAttribute('src', pickleRick)
-    } else {
-        console.log(text)
-    }
-}
-
 function dynamicCarousel(url) {
     fetch(url)
         .then((response) => {
@@ -84,14 +68,14 @@ function fetchCharacter(url) {
         });
 }
 
-function RandomUrlConstructor() {
-    const randomNumArray = Array.from({ length: 3 }, () => Math.floor(Math.random() * 826) + 1);
+function RandomUrlConstructor(length) {
+    const randomNumArray = Array.from({ length: length }, () => Math.floor(Math.random() * 826) + 1);
     const randomUrl = `https://rickandmortyapi.com/api/character/${randomNumArray}`
     return randomUrl;
 }
 
 const rickAndMortyUrl = "https://rickandmortyapi.com/api/character/1"
-const randomizedCharacters = RandomUrlConstructor();
+const randomizedCharacters = RandomUrlConstructor(3);
 
 fetchCharacter(rickAndMortyUrl);
 dynamicCarousel(randomizedCharacters);
