@@ -44,9 +44,11 @@ function dynamicCarousel(randomizedCharacters) {
         })
         .then((data) => {
             console.log(data);
-            console.log(data.length);
-            console.log(data[0].image);
+
             const carouselInner = document.getElementById('carousel-inner');
+            for (let i = 0; i < data.length; i++) {
+                console.log(data[i].image)
+            }
             const carouselItem = document.createElement('div');
             const carouselImage = document.createElement('img');
             // Img.setAttribute('src', data.image);
