@@ -100,7 +100,7 @@ function fetchCharacter(url) {
 fetchCharacter(rickAndMortyUrl);
 
 function RandomUrlConstructor() {
-    const randomNumArray = Array.from({ length: 3 }, () => Math.floor(Math.random() * 40));
+    const randomNumArray = Array.from({ length: 3 }, () => Math.floor(Math.random() * (826 - 0 + 1)) + 1);
     const randomUrl = `https://rickandmortyapi.com/api/character/${randomNumArray}`
     console.log(randomUrl);
     return randomUrl;
