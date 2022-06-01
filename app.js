@@ -3,6 +3,7 @@
 const pickleRick = "https://rickandmortyapi.com/api/character/avatar/265.jpeg"
 const mortySmith = "https://rickandmortyapi.com/api/character/avatar/2.jpeg"
 const rickAndMortyUrl = "https://rickandmortyapi.com/api/character/1"
+const randomizedCharacters = "https://rickandmortyapi.com/api/character/[1,2,3]"
 
 function switchTheme() {
     console.log(document.body.classList)
@@ -35,6 +36,28 @@ function Pressed() {
         console.log(text)
     }
 }
+
+function dynamicCarousel(randomizedCharacters) {
+    fetch(randomizedCharacters)
+        .then((response) => {
+            return response.json();
+        })
+    .then((data) => {
+        const carousel = document.getElementById('carousel-inner')
+        const characterPicture = document.getElementById('carousel-item')
+        characterPicture.setAttribute('src', data.image)
+        const carouselItem = document.createElement('div');
+        const Img = document.createElement('img');
+        Img.setAttribute('src', data.image)
+
+
+        carousel.append(Img);
+    })
+    .catch((error) => {
+        console.log(error);
+    });
+}
+    dynamicCarousel(randomizedCharacters);
 
 function fetchCharacter(url) {
     fetch(url)
