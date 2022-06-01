@@ -69,7 +69,7 @@ function dynamicCarousel(url) {
         });
 }
 // Hint: this function needs something... 
-dynamicCarousel();
+dynamicCarousel(randomizedCharacters);
 
 function fetchCharacter(url) {
     fetch(url)
