@@ -47,35 +47,16 @@ function dynamicCarousel(randomizedCharacters) {
 
             const carouselInner = document.getElementById('carouselInner');
 
-            // Method 1:
-            for (let i = 0; i < data.length; i++) {
-                console.log(`Method 1: ${data[i].image}`)
-            }
-            // Method 2:
             for (let character of data) {
-                console.log(`Method 2:${character.image}`)
+                const carouselImage = document.createElement('img');
                 carouselImage.setAttribute('src', character.image);
+                const carouselItem = document.createElement('div');
+
                 carouselItem.classList.add("carousel-item")
-                carouselItem.className = "d-block mx-auto img-fluid";
-                // Hint: 
-                // carouselImage.setAttribute('src', character.image);
+                carouselImage.classList.add("d-block", "mx-auto", "img-fluid")
+                carouselItem.appendChild(carouselImage);
+                carouselInner.appendChild(carouselItem);
             }
-
-            // You will use these inside your FOR loop
-            // Check the Console to see what they are doing
-            // You also will need to add the classes to the div and img
-            // Hint: carouselItem.classList.add("carousel-item")
-            // The img needs class="d-block mx-auto img-fluid"   
-            const carouselImage = document.createElement('img');
-            const carouselItem = document.createElement('div');
-            carouselImage.setAttribute('src', data[0].image);
-
-            carouselItem.append(carouselImage);
-
-            // You will also need to remove(or comment out) the HTML between line 63-75(this function is replacing all that)
-            // Uncomment below line when you are ready to use it.. breaks the current carousel
-
-            carouselInner.append(carouselItem);
         })
         .catch((error) => {
             console.log(error);
