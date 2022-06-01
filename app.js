@@ -1,7 +1,5 @@
 'use strict';
 
-const pickleRick = "https://rickandmortyapi.com/api/character/avatar/265.jpeg"
-const mortySmith = "https://rickandmortyapi.com/api/character/avatar/2.jpeg"
 const rickAndMortyUrl = "https://rickandmortyapi.com/api/character/1"
 const randomizedCharacters = "https://rickandmortyapi.com/api/character/[1,2,3]"
 
@@ -27,6 +25,8 @@ function Pressed() {
     const text = document.getElementById("inp").value.toLowerCase();
     const mortyText = "morty smith"
     const pickleRickText = "pickle rick"
+    const pickleRick = "https://rickandmortyapi.com/api/character/avatar/265.jpeg"
+    const mortySmith = "https://rickandmortyapi.com/api/character/avatar/2.jpeg"
 
     if (text.length > 3 && mortyText.includes(text)) {
         image.setAttribute('src', mortySmith)
@@ -42,22 +42,22 @@ function dynamicCarousel(randomizedCharacters) {
         .then((response) => {
             return response.json();
         })
-    .then((data) => {
-        const carousel = document.getElementById('carousel-inner')
-        const characterPicture = document.getElementById('carousel-item')
-        characterPicture.setAttribute('src', data.image)
-        const carouselItem = document.createElement('div');
-        const Img = document.createElement('img');
-        Img.setAttribute('src', data.image)
-
-
-        carousel.append(Img);
-    })
-    .catch((error) => {
-        console.log(error);
-    });
+        .then((data) => {
+            console.log(data);
+            console.log(data.length);
+            console.log(data[0].image);
+            const carouselInner = document.getElementById('carousel-inner');
+            const carouselItem = document.createElement('div');
+            const carouselImage = document.createElement('img');
+            // Img.setAttribute('src', data.image);
+            carouselItem.append(carouselImage);
+            carouselInner.append(carouselItem);
+        })
+        .catch((error) => {
+            console.log(error);
+        });
 }
-    dynamicCarousel(randomizedCharacters);
+dynamicCarousel(randomizedCharacters);
 
 function fetchCharacter(url) {
     fetch(url)
