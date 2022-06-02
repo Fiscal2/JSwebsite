@@ -11,8 +11,8 @@ async function FetchAllLocations(url) {
     }
 }
 
-async function LocationCardConstructor(url) {
-    const locationData = await FetchAllLocations(url)
+async function LocationCardConstructor(locationUrl) {
+    const locationData = await FetchAllLocations(locationUrl);
     const cardRow = document.getElementById("cardrow");
 
     for (let location of locationData.results) {
