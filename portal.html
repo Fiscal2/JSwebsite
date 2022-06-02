@@ -42,11 +42,28 @@
     </nav>
 
     <div class="container mt-2">
-        <div class="row" id="cardrow">
-
-        </div>
+        <div class="row" id="cardrow"></div>
     </div>
 
+
+    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#locationModal">
+        Modal
+    </button>
+
+    <div class="modal fade" id="locationModal" data-bs-keyboard="false" tabindex="-1" aria-labelledby="locationModal"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="locationModalTitle">Modal title</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    ...
+                </div>
+            </div>
+        </div>
+    </div>
 
 </body>
 
