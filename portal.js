@@ -11,7 +11,7 @@ function GetAllLocations(url) {
 
             for (let location of data.results) {
                 const columnSmall = document.createElement("div");
-                columnSmall.classList.add("col-sm-6")
+                columnSmall.classList.add("col-sm-4")
                 const card = document.createElement("div");
                 card.classList.add("card", "mb-3", "bg-transparent", "text-white");
                 card.innerHTML =
