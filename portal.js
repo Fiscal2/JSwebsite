@@ -13,7 +13,7 @@ function GetAllLocations(url) {
                 const columnSmall = document.createElement("div");
                 columnSmall.classList.add("col-sm-4")
                 const card = document.createElement("div");
-                card.classList.add("card", "mb-3", "bg-transparent", "text-white");
+                card.classList.add("card", "my-2", "bg-transparent", "text-white");
                 card.innerHTML =
                     `
                     <h5 class="card-header bg-success">${location.name}</h5>
