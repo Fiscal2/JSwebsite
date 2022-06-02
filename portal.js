@@ -11,17 +11,17 @@ async function FetchAllLocations(url) {
     }
 }
 
-function LocationCardConstructor(locationPromise) {
-    locationPromise.then(locationData => {
-        const cardRow = document.getElementById("cardrow");
+async function LocationCardConstructor(url) {
+    const locationData = await FetchAllLocations(url)
+    const cardRow = document.getElementById("cardrow");
 
-        for (let location of locationData.results) {
-            const columnSmall = document.createElement("div");
-            columnSmall.classList.add("col-sm-4")
-            const card = document.createElement("div");
-            card.classList.add("card", "my-2", "bg-transparent", "text-white");
-            card.innerHTML =
-                `
+    for (let location of locationData.results) {
+        const columnSmall = document.createElement("div");
+        columnSmall.classList.add("col-sm-4")
+        const card = document.createElement("div");
+        card.classList.add("card", "my-2", "bg-transparent", "text-white");
+        card.innerHTML =
+            `
             <h5 class="card-header bg-success">${location.name}</h5>
             <div class="card-body bg-success bg-opacity-75">
                 <h5 class="card-title">${location.dimension}</h5>
@@ -29,13 +29,9 @@ function LocationCardConstructor(locationPromise) {
                 <p class="card-text">Number of residents: ${location.residents.length}</p>
             </div>
         `
-            columnSmall.appendChild(card);
-            cardRow.appendChild(columnSmall);
-        }
-    }).catch(error => {
-        console.log(error);
-    });
-
+        columnSmall.appendChild(card);
+        cardRow.appendChild(columnSmall);
+    }
 }
 
-LocationCardConstructor(FetchAllLocations(locationBaseUrl));
+LocationCardConstructor(locationBaseUrl);
