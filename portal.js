@@ -17,7 +17,7 @@ function GetAllLocations(url) {
                 card.innerHTML =
                     `
                     <h5 class="card-header bg-success">${location.name}</h5>
-                    <div class="card-body bg-success bg-opacity-50">
+                    <div class="card-body bg-success bg-opacity-75">
                         <h5 class="card-title">${location.dimension}</h5>
                         <h6 class="card-subtitle mb-2">Type: ${location.type}</h6>
                         <p class="card-text">Number of residents: ${location.residents.length}</p>
