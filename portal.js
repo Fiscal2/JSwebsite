@@ -13,7 +13,9 @@ async function FetchAllLocations(url) {
 
 async function LocationCardConstructor(locationUrl) {
     const locationData = await FetchAllLocations(locationUrl);
+    console.log(locationData)
     const cardRow = document.getElementById("cardrow");
+    const modalDiv = document.getElementById("modalDiv");
 
     for (let location of locationData.results) {
         const columnSmall = document.createElement("div");
@@ -32,6 +34,23 @@ async function LocationCardConstructor(locationUrl) {
                 </button>
             </div>
         `
+        const modal = document.createElement('div')
+        modal.innerHTML =
+            `
+            <div class="modal fade" id="locationModal${location.id}" data-bs-keyboard="false" tabindex="-1"
+                aria-labelledby="locationModal" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">${location.name}</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">${location.residents}</div>
+                    </div>
+                </div>
+            </div>
+        `
+        modalDiv.appendChild(modal)
         columnSmall.appendChild(card);
         cardRow.appendChild(columnSmall);
     }
