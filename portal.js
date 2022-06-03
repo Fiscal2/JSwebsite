@@ -83,14 +83,11 @@ async function LocationCardConstructor() {
             modalBodyDiv.append(characterInfoText);
         }
 
-
         modalHeaderDiv.append(modalTitleH5, modalCloseButton);
         modalContentDiv.append(modalHeaderDiv, modalBodyDiv);
         modalDialogDiv.appendChild(modalContentDiv);
         modalContainer.appendChild(modalDialogDiv);
         modalDiv.appendChild(modalContainer);
-
-        console.log(modalDiv)
 
         columnSmall.appendChild(card);
         cardRow.appendChild(columnSmall);
