@@ -17,19 +17,6 @@ async function LocationCardConstructor() {
     const modalDiv = document.getElementById("modalDiv");
 
     for (let location of locationData.results) {
-        // This needs some work... displaying names
-        const characterInfo = await ResidentsToCharacterObjects(locationBaseUrl, (location.id - 1));
-        console.log(characterInfo);
-        let characterNameList = [];
-        if (characterInfo.length > 1) {
-            for (character of characterInfo) {
-                characterNameList.push(character.name)
-            }
-        } else {
-            characterNameList.push(characterInfo.name)
-        }
-
-
         const columnSmall = document.createElement("div");
         columnSmall.classList.add("col-sm-4");
         const card = document.createElement("div");
@@ -47,7 +34,24 @@ async function LocationCardConstructor() {
                 </button>
             </div>
         `
+
+        // This needs some work... displaying names
+        const characterInfo = await ResidentsToCharacterObjects(locationBaseUrl, (location.id - 1));
+        console.log(characterInfo);
+
         const modal = document.createElement('div');
+
+        let characterNameList = [];
+
+        if (Array.isArray(characterInfo)) {
+            for (character of characterInfo) {
+                characterNameList.push(character.name)
+
+            }
+        } else {
+            characterNameList.push(characterInfo.name)
+
+        }
 
         modal.innerHTML =
             `
@@ -59,11 +63,12 @@ async function LocationCardConstructor() {
                             <h5 class="modal-title">${location.name}</h5>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
-                        <div class="modal-body">${characterNameList}</div>
+                        <div class="modal-body" id="modalbody">${characterNameList}</div>
                     </div>
                 </div>
             </div>
         `
+
         modalDiv.appendChild(modal)
         columnSmall.appendChild(card);
         cardRow.appendChild(columnSmall);
