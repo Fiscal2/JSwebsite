@@ -70,17 +70,12 @@ async function LocationCardConstructor() {
         modalBodyDiv.classList.add("modal-body");
 
         const characterInfo = await ResidentsToCharacterObjects(locationBaseUrl, (location.id - 1));
-        console.log(characterInfo)
+
         // Need to clean this up...
         if (Array.isArray(characterInfo)) {
             for (character of characterInfo) {
-                characterInfoText = document.createElement('p');
-                characterInfoText.classList.add("text-center")
-                characterInfoImage = document.createElement('img');
-                characterInfoImage.setAttribute('src', character.image);
-                characterInfoImage.classList.add("img-thumbnail", "mx-auto", "d-block");
-                characterInfoText.innerHTML = character.name;
-                modalBodyDiv.append(characterInfoImage, characterInfoText);
+                const info = ModalBodyElementsConstructor(character)
+                modalBodyDiv.append(info.characterInfoImage, info.characterInfoText);
             }
         } else if (typeof characterInfo == "string") {
             characterInfoText = document.createElement('p');
@@ -88,13 +83,8 @@ async function LocationCardConstructor() {
             characterInfoText.innerHTML = characterInfo;
             modalBodyDiv.append(characterInfoText);
         } else {
-            characterInfoText = document.createElement('p');
-            characterInfoText.classList.add("text-center")
-            characterInfoImage = document.createElement('img');
-            characterInfoImage.setAttribute('src', characterInfo.image);
-            characterInfoImage.classList.add("img-thumbnail", "mx-auto", "d-block");
-            characterInfoText.innerHTML = characterInfo.name;
-            modalBodyDiv.append(characterInfoImage, characterInfoText);
+            const info = ModalBodyElementsConstructor(characterInfo)
+            modalBodyDiv.append(info.characterInfoImage, info.characterInfoText);
         }
 
         modalHeaderDiv.append(modalTitleH5, modalCloseButton);
@@ -131,6 +121,18 @@ function setElementAttributes(element, attributes) {
         element.setAttribute(key, attributes[key]);
     }
     return element;
+}
+
+function ModalBodyElementsConstructor(character) {
+    if (character) {
+        const characterInfoText = document.createElement('p');
+        characterInfoText.classList.add("text-center")
+        const characterInfoImage = document.createElement('img');
+        characterInfoImage.setAttribute('src', character.image);
+        characterInfoImage.classList.add("img-thumbnail", "mx-auto", "d-block");
+        characterInfoText.innerHTML = character.name;
+        return { characterInfoImage, characterInfoText };
+    }
 }
 
 LocationCardConstructor();
