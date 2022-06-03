@@ -71,7 +71,6 @@ async function LocationCardConstructor() {
 
         const characterInfo = await ResidentsToCharacterObjects(locationBaseUrl, (location.id - 1));
 
-        // Need to clean this up...
         if (Array.isArray(characterInfo)) {
             for (character of characterInfo) {
                 const info = ModalBodyElementsConstructor(character)
@@ -136,4 +135,5 @@ function ModalBodyElementsConstructor(character) {
 }
 
 LocationCardConstructor();
+
 ResidentsToCharacterObjects("https://rickandmortyapi.com/api/location/", 4);
