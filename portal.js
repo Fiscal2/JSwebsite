@@ -1,21 +1,20 @@
 const locationBaseUrl = "https://rickandmortyapi.com/api/location/"
 
-async function FetchAllLocations(url) {
-    const locationResponseData = await fetch(url);
+async function FetchRickAndMortyData(url) {
+    const responseData = await fetch(url);
 
-    if (locationResponseData.ok) {
-        const locationResponseJson = await locationResponseData.json();
-        return locationResponseJson
+    if (responseData.ok) {
+        const responseJson = await responseData.json();
+        return responseJson
     } else {
-        return alert(`HTTP-Error: ${locationResponseData.status}`);
+        return alert(`HTTP-Error: ${responseData.status}`);
     }
 }
 
 async function LocationCardConstructor(locationUrl) {
-    const locationData = await FetchAllLocations(locationUrl);
+    const locationData = await FetchRickAndMortyData(locationUrl);
     console.log(locationData)
     const cardRow = document.getElementById("cardrow");
-    const modalDiv = document.getElementById("modalDiv");
 
     for (let location of locationData.results) {
         const columnSmall = document.createElement("div");
@@ -34,7 +33,9 @@ async function LocationCardConstructor(locationUrl) {
                 </button>
             </div>
         `
+        const modalDiv = document.getElementById("modalDiv");
         const modal = document.createElement('div')
+
         modal.innerHTML =
             `
             <div class="modal fade" id="locationModal${location.id}" data-bs-keyboard="false" tabindex="-1"
@@ -57,3 +58,24 @@ async function LocationCardConstructor(locationUrl) {
 }
 
 LocationCardConstructor(locationBaseUrl);
+
+async function ResidentsToCharacterObjects(locationUrl, id) {
+    const locationData = await FetchRickAndMortyData(locationUrl);
+    const residentArrayLength = locationData.results[id].residents.length;
+    const characterArray = [];
+    if (residentArrayLength > 0) {
+        for (let resident of locationData.results[id].residents) {
+            const characterUrl = new URL(resident);
+            characterArray.push(characterUrl.pathname.match('[0-9]+$'))
+        }
+    } else {
+        console.log("This location has no residents")
+    }
+
+    const flatCharacterArray = characterArray.flat(1)
+    console.log(flatCharacterArray)
+    const characterObjects = await FetchRickAndMortyData(`https://rickandmortyapi.com/api/character/${flatCharacterArray}`)
+    console.log(characterObjects)
+}
+
+ResidentsToCharacterObjects(locationBaseUrl, 4);
