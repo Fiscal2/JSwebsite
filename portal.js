@@ -2,8 +2,7 @@ async function FetchRickAndMortyData(url) {
     const responseData = await fetch(url);
 
     if (responseData.ok) {
-        const responseJson = await responseData.json();
-        return responseJson
+        return await responseData.json();
     } else {
         return alert(`HTTP-Error: ${responseData.status}`);
     }
@@ -34,22 +33,6 @@ async function LocationCardConstructor() {
                 </button>
             </div>
         `
-
-        // This needs some work... displaying names
-        const characterInfo = await ResidentsToCharacterObjects(locationBaseUrl, (location.id - 1));
-        console.log(characterInfo);
-
-
-        let characterNameList = [];
-
-        if (Array.isArray(characterInfo)) {
-            for (character of characterInfo) {
-                characterNameList.push(character.name)
-            }
-        } else {
-            characterNameList.push(characterInfo.name)
-
-        }
 
         const modalContainerDiv = document.createElement('div');
         modalContainerDiv.classList.add("modal", "fade")
@@ -85,6 +68,20 @@ async function LocationCardConstructor() {
 
         const modalBodyDiv = document.createElement('div');
         modalBodyDiv.classList.add("modal-body");
+
+        const characterInfo = await ResidentsToCharacterObjects(locationBaseUrl, (location.id - 1));
+
+        if (Array.isArray(characterInfo)) {
+            for (character of characterInfo) {
+                characterInfoText = document.createElement('p');
+                characterInfoText.innerHTML = character.name;
+                modalBodyDiv.append(characterInfoText);
+            }
+        } else {
+            characterInfoText = document.createElement('p');
+            characterInfoText.innerHTML = characterInfo.name;
+            modalBodyDiv.append(characterInfoText);
+        }
 
 
         modalHeaderDiv.append(modalTitleH5, modalCloseButton);
