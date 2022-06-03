@@ -70,7 +70,7 @@ async function LocationCardConstructor() {
         modalBodyDiv.classList.add("modal-body");
 
         const characterInfo = await ResidentsToCharacterObjects(locationBaseUrl, (location.id - 1));
-
+        console.log(characterInfo)
         // Need to clean this up...
         if (Array.isArray(characterInfo)) {
             for (character of characterInfo) {
@@ -82,6 +82,11 @@ async function LocationCardConstructor() {
                 characterInfoText.innerHTML = character.name;
                 modalBodyDiv.append(characterInfoImage, characterInfoText);
             }
+        } else if (typeof characterInfo == "string") {
+            characterInfoText = document.createElement('p');
+            characterInfoText.classList.add("text-center");
+            characterInfoText.innerHTML = characterInfo;
+            modalBodyDiv.append(characterInfoText);
         } else {
             characterInfoText = document.createElement('p');
             characterInfoText.classList.add("text-center")
@@ -113,7 +118,7 @@ async function ResidentsToCharacterObjects(locationUrl, id) {
             characterArray.push(characterUrl.pathname.match('[0-9]+$'));
         }
     } else {
-        console.log("This location has no residents");
+        return "This location has no residents";
     }
 
     const flatCharacterArray = characterArray.flat(1);
