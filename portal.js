@@ -70,17 +70,25 @@ async function LocationCardConstructor() {
         modalBodyDiv.classList.add("modal-body");
 
         const characterInfo = await ResidentsToCharacterObjects(locationBaseUrl, (location.id - 1));
-
+        console.log(characterInfo)
         if (Array.isArray(characterInfo)) {
             for (character of characterInfo) {
                 characterInfoText = document.createElement('p');
+                characterInfoText.classList.add("text-center")
+                characterInfoImage = document.createElement('img');
+                characterInfoImage.setAttribute('src', character.image);
+                characterInfoImage.classList.add("img-thumbnail", "mx-auto", "d-block");
                 characterInfoText.innerHTML = character.name;
-                modalBodyDiv.append(characterInfoText);
+                modalBodyDiv.append(characterInfoImage, characterInfoText);
             }
         } else {
             characterInfoText = document.createElement('p');
+            characterInfoText.classList.add("text-center")
+            characterInfoImage = document.createElement('img');
+            characterInfoImage.setAttribute('src', characterInfo.image);
+            characterInfoImage.classList.add("img-thumbnail", "mx-auto", "d-block");
             characterInfoText.innerHTML = characterInfo.name;
-            modalBodyDiv.append(characterInfoText);
+            modalBodyDiv.append(characterInfoImage, characterInfoText);
         }
 
         modalHeaderDiv.append(modalTitleH5, modalCloseButton);
