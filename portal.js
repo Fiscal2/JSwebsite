@@ -70,7 +70,8 @@ async function LocationCardConstructor() {
         modalBodyDiv.classList.add("modal-body");
 
         const characterInfo = await ResidentsToCharacterObjects(locationBaseUrl, (location.id - 1));
-        console.log(characterInfo)
+
+        // Need to clean this up...
         if (Array.isArray(characterInfo)) {
             for (character of characterInfo) {
                 characterInfoText = document.createElement('p');
