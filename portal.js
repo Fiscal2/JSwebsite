@@ -28,7 +28,7 @@ async function LocationCardConstructor() {
                 <h5 class="card-title">${location.dimension}</h5>
                 <h6 class="card-subtitle mb-2">Type: ${location.type}</h6>
                 <p class="card-text">Number of residents: ${location.residents.length}</p>
-                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#locationModal${location.id}">
+                <button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#locationModal${location.id}">
                 Residents
                 </button>
             </div>
