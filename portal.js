@@ -69,12 +69,15 @@ async function LocationCardConstructor() {
         const modalBodyDiv = document.createElement('div');
         modalBodyDiv.classList.add("modal-body");
 
+        const modalBodyRowDiv = document.createElement('div');
+        modalBodyRowDiv.classList.add("row");
+
         const characterInfo = await ResidentsToCharacterObjects(locationBaseUrl, (location.id - 1));
 
         if (Array.isArray(characterInfo)) {
             for (character of characterInfo) {
-                const info = ModalBodyElementsConstructor(character)
-                modalBodyDiv.append(info.characterInfoImage, info.characterInfoText);
+                const info = ModalBodyElementsConstructor(character);
+                modalBodyRowDiv.append(info.characterInfoColumn);
             }
         } else if (typeof characterInfo == "string") {
             characterInfoText = document.createElement('p');
@@ -82,10 +85,12 @@ async function LocationCardConstructor() {
             characterInfoText.innerHTML = characterInfo;
             modalBodyDiv.append(characterInfoText);
         } else {
-            const info = ModalBodyElementsConstructor(characterInfo)
-            modalBodyDiv.append(info.characterInfoImage, info.characterInfoText);
+            const info = ModalBodyElementsConstructor(characterInfo);
+            modalBodyRowDiv.classList.add("justify-content-center");
+            modalBodyRowDiv.append(info.characterInfoColumn);
         }
 
+        modalBodyDiv.append(modalBodyRowDiv);
         modalHeaderDiv.append(modalTitleH5, modalCloseButton);
         modalContentDiv.append(modalHeaderDiv, modalBodyDiv);
         modalDialogDiv.appendChild(modalContentDiv);
@@ -124,13 +129,19 @@ function setElementAttributes(element, attributes) {
 
 function ModalBodyElementsConstructor(character) {
     if (character) {
+        const characterInfoColumn = document.createElement('div');
+        characterInfoColumn.classList.add("col-md-4")
+
         const characterInfoText = document.createElement('p');
         characterInfoText.classList.add("text-center")
+        characterInfoText.innerHTML = character.name;
+
         const characterInfoImage = document.createElement('img');
         characterInfoImage.setAttribute('src', character.image);
         characterInfoImage.classList.add("img-thumbnail", "mx-auto", "d-block");
-        characterInfoText.innerHTML = character.name;
-        return { characterInfoImage, characterInfoText };
+
+        characterInfoColumn.append(characterInfoImage, characterInfoText)
+        return { characterInfoColumn };
     }
 }
 
