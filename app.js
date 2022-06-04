@@ -1,5 +1,15 @@
 'use strict';
 
+async function FetchRickAndMortyData(url) {
+    const responseData = await fetch(url);
+
+    if (responseData.ok) {
+        return await responseData.json();
+    } else {
+        return alert(`HTTP-Error: ${responseData.status}`);
+    }
+}
+
 function switchTheme() {
     console.log(document.body.classList)
     const currentBackground = document.body.classList[0]
@@ -17,73 +27,91 @@ function switchTheme() {
     }
 }
 
-function dynamicCarousel(url) {
-    fetch(url)
-        .then((response) => {
-            return response.json();
-        })
-        .then((data) => {
-            const carouselInner = document.getElementById('carouselInner');
+async function dynamicCarouselConstructor() {
 
-            for (let character of data) {
-                const carouselImage = document.createElement('img');
-                carouselImage.setAttribute('src', character.image);
-                carouselImage.classList.add("d-block", "mx-auto", "img-fluid", "rounded");
+    const randomizedCharacters = RandomUrlConstructor(3);
+    const data = await FetchRickAndMortyData(randomizedCharacters);
 
-                const carouselCaption = document.createElement('div');
-                carouselCaption.classList.add("carousel-caption", "d-none", "d-md-block", "justify-content-center");
+    const carouselInner = document.getElementById('carouselInner');
 
-                const captionTitle = document.createElement('h5');
-                captionTitle.classList.add("fw-bold", "text-light", "bg-dark", "bg-opacity-75");
-                captionTitle.innerHTML = character.name
+    for (let character of data) {
+        const carouselImage = document.createElement('img');
+        carouselImage.setAttribute('src', character.image);
+        carouselImage.classList.add("d-block", "mx-auto", "img-fluid", "rounded");
 
-                const carouselContainer = document.createElement('div');
-                carouselContainer.classList.add("container")
-                carouselContainer.appendChild(captionTitle);
+        const carouselCaption = document.createElement('div');
+        carouselCaption.classList.add("carousel-caption", "d-none", "d-md-block", "justify-content-center");
 
-                carouselCaption.appendChild(carouselContainer);
+        const captionTitle = document.createElement('h5');
+        captionTitle.classList.add("fw-bold", "text-light", "bg-dark", "bg-opacity-75");
+        captionTitle.innerHTML = character.name
 
-                const carouselItem = document.createElement('div');
+        const carouselContainer = document.createElement('div');
+        carouselContainer.classList.add("container")
+        carouselContainer.appendChild(captionTitle);
 
-                if (data.indexOf(character) == 0) {
-                    carouselItem.classList.add("carousel-item", "active");
+        carouselCaption.appendChild(carouselContainer);
 
-                } else {
-                    carouselItem.classList.add("carousel-item");
-                }
+        const carouselItem = document.createElement('div');
 
-                carouselItem.append(carouselImage, carouselCaption);
-                carouselInner.appendChild(carouselItem);
-            }
-        })
-        .catch((error) => {
-            console.log(error);
-        });
+        if (data.indexOf(character) == 0) {
+            carouselItem.classList.add("carousel-item", "active");
+
+        } else {
+            carouselItem.classList.add("carousel-item");
+        }
+
+        carouselItem.append(carouselImage, carouselCaption);
+        carouselInner.appendChild(carouselItem);
+    }
 }
 
-function fetchCharacter(url) {
-    fetch(url)
-        .then((response) => {
-            return response.json();
-        })
-        .then((data) => {
-            const cardContainer = document.getElementById('cardbody')
-            const rickPicture = document.getElementById('cardimg')
-            rickPicture.setAttribute('src', data.image)
+async function CharacterCardConstructor() {
+    const rickAndMortyUrl = "https://rickandmortyapi.com/api/character/?page=2"
+    const data = await FetchRickAndMortyData(rickAndMortyUrl)
+    console.log(data)
+    for (let character of data.results) {
+        const cardRow = document.getElementById('cardrow');
+        const card = document.createElement('div');
+        card.classList.add("card", "bg-secondary", "text-white", "mb-3", "shadow", "ms-3", "p-1");
+        card.setAttribute("style", "max-width: 540px;");
 
-            cardContainer.innerHTML =
-                `
-            <h2 class="card-title">${data.name}</h2>
-            <p class="card-text mb-1">Status: ${data.status}</p> 
-            <p class="card-text mb-1">Species: ${data.species}</p>
-            <p class="card-text mb-1">Gender: ${data.gender}</p>
-            <p class="card-text mb-1">Origin: ${data.origin['name']}</p>
+        const cardInnerRow = document.createElement('div');
+        cardInnerRow.classList.add("row", "g-0");
+
+        const cardImageColumn = document.createElement('div');
+        cardImageColumn.classList.add("col-md-4");
+
+        const cardImage = document.createElement('img');
+        cardImage.classList.add("img-thumbnail","rounded-start");
+        cardImage.setAttribute("src", character.image)
+        // cardImage.setAttribute("style", "width: 150px; height: 175px;")
+
+        const cardBodyColumn = document.createElement('div');
+        cardBodyColumn.classList.add("col-md-8")
+
+        const cardBody = document.createElement('div');
+        cardBody.classList.add("card-body", "p-1", "ms-1");
+
+
+        cardBody.innerHTML =
             `
-        })
-        .catch((error) => {
-            console.log(error);
-        });
+            <h5 class="card-title">${character.name}</h5>
+            <p class="card-text mb-1">Status: ${character.status}</p> 
+            <p class="card-text mb-1">Species: ${character.species}</p>
+            <p class="card-text mb-1">Gender: ${character.gender}</p>
+            <p class="card-text mb-1">Origin: ${character.origin['name']}</p>
+            `
+
+        cardImageColumn.appendChild(cardImage);
+        cardBodyColumn.appendChild(cardBody);
+        cardInnerRow.append(cardImageColumn, cardBodyColumn);
+        card.appendChild(cardInnerRow);
+        cardRow.appendChild(card);
+    }
 }
+
+
 
 function RandomUrlConstructor(length) {
     const randomNumArray = Array.from({ length: length }, () => Math.floor(Math.random() * 826) + 1);
@@ -91,8 +119,5 @@ function RandomUrlConstructor(length) {
     return randomUrl;
 }
 
-const rickAndMortyUrl = "https://rickandmortyapi.com/api/character/1"
-const randomizedCharacters = RandomUrlConstructor(3);
-
-fetchCharacter(rickAndMortyUrl);
-dynamicCarousel(randomizedCharacters);
+dynamicCarouselConstructor();
+CharacterCardConstructor();

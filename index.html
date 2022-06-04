@@ -46,47 +46,40 @@
     </div>
   </nav>
 
-  <img class="img-fluid shadow-lg mb-3"
+  <div class="container m-0 p-0 mb-6">
+    <img class="img-fluid shadow-lg mb-3 position-absolute"
     src="https://cdn.shopify.com/s/files/1/0346/8063/5529/collections/rick-morty-collection-banner_2592x.jpg?v=1590095280" />
 
-  <div class="row justify-content-center">
-    <div class="col-md-4">
-      <div id="carouselIndicators" class="carousel slide" data-bs-ride="true">
-        <div class="carousel-indicators">
-          <button type="button" data-bs-target="#carouselIndicators" data-bs-slide-to="0" class="active"
-            aria-current="true" aria-label="Slide 1"></button>
-          <button type="button" data-bs-target="#carouselIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
-          <button type="button" data-bs-target="#carouselIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
-        </div>
-      
-        <div class="carousel-inner" id="carouselInner"></div>
+    <div class="row position-relative top-50 start-50 me-3">
+      <div class="col-md-4 mt-3 mb-5">
+        <div id="carouselIndicators" class="carousel slide" data-bs-ride="true">
+          <div class="carousel-indicators">
+            <button type="button" data-bs-target="#carouselIndicators" data-bs-slide-to="0" class="active"
+              aria-current="true" aria-label="Slide 1"></button>
+            <button type="button" data-bs-target="#carouselIndicators" data-bs-slide-to="1"
+              aria-label="Slide 2"></button>
+            <button type="button" data-bs-target="#carouselIndicators" data-bs-slide-to="2"
+              aria-label="Slide 3"></button>
+          </div>
 
-        <button class="carousel-control-prev" type="button" data-bs-target="#carouselIndicators" data-bs-slide="prev">
-          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-          <span class="visually-hidden">Previous</span>
-        </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#carouselIndicators" data-bs-slide="next">
-          <span class="carousel-control-next-icon" aria-hidden="true"></span>
-          <span class="visually-hidden">Next</span>
-        </button>
+          <div class="carousel-inner" id="carouselInner"></div>
+
+          <button class="carousel-control-prev" type="button" data-bs-target="#carouselIndicators" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+          </button>
+          <button class="carousel-control-next" type="button" data-bs-target="#carouselIndicators" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+          </button>
+
+        </div>
       </div>
     </div>
   </div>
 
-  <div class="d-flex justify-content-center my-2">
 
-    <div class="card bg-secondary text-white mb-3 shadow" style="max-width: 540px;">
-      <div class="row g-0">
-        <div class="col-md-4">
-          <img id="cardimg" class="img-fluid rounded-start">
-        </div>
-        <div class="col-md-8">
-          <div class="card-body p-1 ms-1" id="cardbody"></div>
-        </div>
-      </div>
-    </div>
-
-  </div>
+  <div class="row my-3 justify-content-center" id="cardrow"></div>
 
 </body>
 
