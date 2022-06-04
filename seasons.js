@@ -9,7 +9,7 @@ async function FetchRickAndMortyData(url) {
 }
 
 async function EpisodeModalConstructor() {
-    const episodeBaseUrl = "https://rickandmortyapi.com/api/episode"
+    // const episodeBaseUrl = "https://rickandmortyapi.com/api/episode"
     const numberOfSeasons = [1, 2, 3, 4, 5]
     const modalDiv = document.getElementById("modalDiv");
 
@@ -59,7 +59,6 @@ async function EpisodeModalConstructor() {
         modalContainer.appendChild(modalDialogDiv);
         modalDiv.appendChild(modalContainer);
     }
-
 }
 
 function setElementAttributes(element, attributes) {
