@@ -73,7 +73,7 @@ async function LocationCardConstructor() {
         modalBodyRowDiv.classList.add("row");
 
         const characterInfo = await ResidentsToCharacterObjects(locationBaseUrl, (location.id - 1));
-    
+
         if (Array.isArray(characterInfo)) {
             for (character of characterInfo) {
                 const info = ModalBodyElementsConstructor(character);
