@@ -4,13 +4,16 @@ function switchTheme() {
     console.log(document.body.classList)
     const currentBackground = document.body.classList[0]
     const themeButton = document.getElementById("themebutton")
+    const navbarStyle = document.getElementById("navbar")
 
     if (currentBackground == "bg-dark") {
         themeButton.innerHTML = "Dark"
         document.body.classList.replace(currentBackground, "bg-info")
+        navbarStyle.classList.remove("bg-dark")
     } else {
         themeButton.innerHTML = "Light"
         document.body.classList.replace(currentBackground, "bg-dark")
+        navbarStyle.classList.add("bg-dark")
     }
 }
 
@@ -26,6 +29,20 @@ function dynamicCarousel(url) {
                 const carouselImage = document.createElement('img');
                 carouselImage.setAttribute('src', character.image);
                 carouselImage.classList.add("d-block", "mx-auto", "img-fluid", "rounded");
+
+                const carouselCaption = document.createElement('div');
+                carouselCaption.classList.add("carousel-caption", "d-none", "d-md-block", "justify-content-center");
+
+                const captionTitle = document.createElement('h5');
+                captionTitle.classList.add("fw-bold", "text-light", "bg-dark", "bg-opacity-75");
+                captionTitle.innerHTML = character.name
+
+                const carouselContainer = document.createElement('div');
+                carouselContainer.classList.add("container")
+                carouselContainer.appendChild(captionTitle);
+
+                carouselCaption.appendChild(carouselContainer);
+
                 const carouselItem = document.createElement('div');
 
                 if (data.indexOf(character) == 0) {
@@ -35,7 +52,7 @@ function dynamicCarousel(url) {
                     carouselItem.classList.add("carousel-item");
                 }
 
-                carouselItem.appendChild(carouselImage);
+                carouselItem.append(carouselImage, carouselCaption);
                 carouselInner.appendChild(carouselItem);
             }
         })
