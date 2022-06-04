@@ -83,7 +83,26 @@ async function FetchAllEpisodes() {
     }
 
     const flatCompleteEpisodeList = completeEpisodeList.flat(1);;
-    return { flatCompleteEpisodeList };
+    return flatCompleteEpisodeList;
 }
 
+async function SeasonsConstructor() {
+    allEpisodes = await FetchAllEpisodes();
+    return groupBySeason(allEpisodes, 'episode')
+}
+
+function groupBySeason(episodeList, property) {
+    return episodeList.reduce(function (seasonObj, episodeObj) {
+        const season = episodeObj[property].substring(2, 3);
+
+        if (!seasonObj[season]) {
+            seasonObj[season] = [];
+        }
+
+        seasonObj[season].push(episodeObj);
+        return seasonObj;
+    }, {});
+}
+
+console.log(SeasonsConstructor());
 EpisodeModalConstructor();
