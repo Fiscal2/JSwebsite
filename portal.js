@@ -23,7 +23,7 @@ async function LocationCardConstructor() {
 
         card.innerHTML =
             `
-            <h5 class="card-header bg-success">${location.name}</h5>
+            <h5 class="card-header bg-success" style="text-shadow: 2px 2px 2px #000000;">${location.name}</h5>
             <div class="card-body bg-success bg-opacity-75">
                 <h5 class="card-title">${location.dimension}</h5>
                 <h6 class="card-subtitle mb-2">Type: ${location.type}</h6>
