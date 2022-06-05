@@ -9,10 +9,10 @@ async function FetchRickAndMortyData(url) {
 }
 
 async function EpisodeModalConstructor() {
-    // const episodeBaseUrl = "https://rickandmortyapi.com/api/episode"
-    const numberOfSeasons = [1, 2, 3, 4, 5]
+    const allEpisodesBySeason = await EpisodesBySeason();
     const modalDiv = document.getElementById("modalDiv");
 
+    const numberOfSeasons = [1, 2, 3, 4, 5]
     for (let season of numberOfSeasons) {
         const modalContainerDiv = document.createElement('div');
         modalContainerDiv.classList.add("modal", "fade")
@@ -48,11 +48,15 @@ async function EpisodeModalConstructor() {
 
         const modalBodyDiv = document.createElement('div');
         modalBodyDiv.classList.add("modal-body");
+        console.log(allEpisodesBySeason[season])
+        for (let episode of allEpisodesBySeason[season]) {
+            const episodeTitle = document.createElement('h5');
+            episodeTitle.innerHTML = episode.name
+            const episodeInfo = document.createElement('p');
+            episodeInfo.innerHTML = `Episode: ${episode.id}, Air Date: ${episode.air_date}`
+            modalBodyDiv.append(episodeTitle, episodeInfo)
+        }
 
-        const modalBodyRowDiv = document.createElement('div');
-        modalBodyRowDiv.classList.add("row");
-
-        modalBodyDiv.append(modalBodyRowDiv);
         modalHeaderDiv.append(modalTitleH5, modalCloseButton);
         modalContentDiv.append(modalHeaderDiv, modalBodyDiv);
         modalDialogDiv.appendChild(modalContentDiv);
@@ -76,23 +80,18 @@ async function FetchAllEpisodes() {
     const numberOfPages = pagesOfEpisodes.info.pages;
 
     for (let i = 2; i <= numberOfPages; i++) {
-        const nextPageUrl = `https://rickandmortyapi.com/api/episode?page=${i}`
+        const nextPageUrl = `${episodeBaseUrl}?page=${i}`
         const episodesOnEachPage = await FetchRickAndMortyData(nextPageUrl);
         completeEpisodeList.push(episodesOnEachPage.results)
     }
 
-    const flatCompleteEpisodeList = completeEpisodeList.flat(1);;
-    return flatCompleteEpisodeList;
+    return completeEpisodeList.flat(1);
 }
 
-async function SeasonsConstructor() {
+async function EpisodesBySeason() {
     allEpisodes = await FetchAllEpisodes();
-    return groupBySeason(allEpisodes, 'episode')
-}
-
-function groupBySeason(episodeList, property) {
-    return episodeList.reduce(function (seasonObj, episodeObj) {
-        const season = episodeObj[property].substring(2, 3);
+    return allEpisodes.reduce(function (seasonObj, episodeObj) {
+        const season = episodeObj['episode'].substring(2, 3);
 
         if (!seasonObj[season]) {
             seasonObj[season] = [];
@@ -103,5 +102,4 @@ function groupBySeason(episodeList, property) {
     }, {});
 }
 
-console.log(SeasonsConstructor());
 EpisodeModalConstructor();
