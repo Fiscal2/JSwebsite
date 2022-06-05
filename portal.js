@@ -146,5 +146,3 @@ function ModalBodyElementsConstructor(character) {
 }
 
 LocationCardConstructor();
-
-ResidentsToCharacterObjects("https://rickandmortyapi.com/api/location/", 4);
