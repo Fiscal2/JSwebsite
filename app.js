@@ -20,12 +20,11 @@ function switchTheme() {
         themeButton.innerHTML = "Dark"
         document.body.classList.replace(currentBackground, "otherBackground")
         themeButton.classList.add("bg-dark")
-        
+
     } else {
         themeButton.innerHTML = "Light"
         document.body.classList.replace(currentBackground, "backgroundImage")
-        themeButton.classList.remove("bg-dark")
-        themeButton.classList.add("bg-warning")
+        themeButton.classList.replace("bg-dark", "bg-warning")
     }
 }
 
@@ -85,7 +84,7 @@ async function CharacterCardConstructor() {
         cardImageColumn.classList.add("col-md-4");
 
         const cardImage = document.createElement('img');
-        cardImage.classList.add("img-thumbnail","rounded-start");
+        cardImage.classList.add("img-thumbnail", "rounded-start");
         cardImage.setAttribute("src", character.image)
         // cardImage.setAttribute("style", "width: 150px; height: 175px;")
 
