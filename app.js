@@ -19,11 +19,13 @@ function switchTheme() {
     if (currentBackground == "backgroundImage") {
         themeButton.innerHTML = "Dark"
         document.body.classList.replace(currentBackground, "otherBackground")
-        // navbarStyle.classList.remove("bg-dark")
+        themeButton.classList.add("bg-dark")
+        
     } else {
         themeButton.innerHTML = "Light"
         document.body.classList.replace(currentBackground, "backgroundImage")
-        // navbarStyle.classList.add("bg-dark")
+        themeButton.classList.remove("bg-dark")
+        themeButton.classList.add("bg-warning")
     }
 }
 
