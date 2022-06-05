@@ -16,14 +16,14 @@ function switchTheme() {
     const themeButton = document.getElementById("themebutton")
     const navbarStyle = document.getElementById("navbar")
 
-    if (currentBackground == "bg-dark") {
+    if (currentBackground == "backgroundImage") {
         themeButton.innerHTML = "Dark"
-        document.body.classList.replace(currentBackground, "bg-info")
-        navbarStyle.classList.remove("bg-dark")
+        document.body.classList.replace(currentBackground, "otherBackground")
+        // navbarStyle.classList.remove("bg-dark")
     } else {
         themeButton.innerHTML = "Light"
-        document.body.classList.replace(currentBackground, "bg-dark")
-        navbarStyle.classList.add("bg-dark")
+        document.body.classList.replace(currentBackground, "backgroundImage")
+        // navbarStyle.classList.add("bg-dark")
     }
 }
 
