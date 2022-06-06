@@ -15,6 +15,7 @@
 - Function 7: use bootstrap Card component and display 3 rick and morty characters. 
 
 ## TODOs: 
+- Programmatically make the season image cards.
 - On Portal page, load in all of the locations.
 - On Home page, load in all of the characters. 
 - Create search function for characters, location, and seasons pages.
