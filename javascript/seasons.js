@@ -103,4 +103,39 @@ async function EpisodesBySeason() {
     }, {});
 }
 
+function seasonThumbnailContructor () {
+    const seasonOne = 'https://upload.wikimedia.org/wikipedia/en/b/b8/Rick_and_Morty_season_1.png'
+    const seasonTwo = 'https://upload.wikimedia.org/wikipedia/en/b/b1/Rick_and_Morty_season_2.png'
+    const seasonThree = 'https://upload.wikimedia.org/wikipedia/en/5/52/Rick_and_Morty_season_3.png'
+    const seasonFour = 'https://upload.wikimedia.org/wikipedia/en/1/17/Rick_and_Morty_season_4.jpg'
+    const seasonFive = 'https://upload.wikimedia.org/wikipedia/en/7/7a/Rick_and_Morty_season_5.jpg'
+    const seasonContainer = document.getElementById("div");
+    
+    seasonContainerRow = document.createElement("div");
+    seasonContainerRow.classList.add("row");
+
+    seasonContainerCol = document.createElement("div");
+    seasonContainerCol.classList.add("col-sm-4");
+
+    seasonContainerCard = document.createElement("div");
+    seasonContainerCard.classList.add("card", "bg-transparent", "border-0", "text-center");
+
+    seasonContainerCol = document.createElement("div");
+    seasonContainerCol.classList.add("col-sm-4");
+
+    seasonContainerImg = document.createElement("img");
+    seasonContainerImg.classList.add("img-thumbnail", "rounded mb-1", "mx-auto d-block");
+
+    seasonContainerBody = document.createElement("div");
+    seasonContainerBody.classList.add("card-body");
+
+    seasonContainerBtn = document.createElement("btn");
+    seasonContainerBtn.classList.add("btn btn-outline-success");
+    seasonContainerBtn.innerHTML = "Episodes";
+    seasonContainerBtn.setAttribute(data-bs-toggle, "modal");
+    seasonContainerBtn.setAttribute(data-bs-target, "#episodeModal");
+
+
+}
+
 EpisodeModalConstructor();
