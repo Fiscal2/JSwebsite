@@ -111,26 +111,23 @@ function seasonThumbnailContructor () {
     const seasonFive = 'https://upload.wikimedia.org/wikipedia/en/7/7a/Rick_and_Morty_season_5.jpg'
     const seasonContainer = document.getElementById("div");
     
-    seasonContainerRow = document.createElement("div");
+    const seasonContainerRow = document.createElement("div");
     seasonContainerRow.classList.add("row");
 
-    seasonContainerCol = document.createElement("div");
+    const seasonContainerCol = document.createElement("div");
     seasonContainerCol.classList.add("col-sm-4");
 
-    seasonContainerCard = document.createElement("div");
+    const seasonContainerCard = document.createElement("div");
     seasonContainerCard.classList.add("card", "bg-transparent", "border-0", "text-center");
 
-    seasonContainerCol = document.createElement("div");
-    seasonContainerCol.classList.add("col-sm-4");
-
-    seasonContainerImg = document.createElement("img");
+    const seasonContainerImg = document.createElement("img");
     seasonContainerImg.classList.add("img-thumbnail", "rounded mb-1", "mx-auto d-block");
 
-    seasonContainerBody = document.createElement("div");
+    const seasonContainerBody = document.createElement("div");
     seasonContainerBody.classList.add("card-body");
 
-    seasonContainerBtn = document.createElement("btn");
-    seasonContainerBtn.classList.add("btn btn-outline-success");
+    const seasonContainerBtn = document.createElement("button");
+    seasonContainerBtn.classList.add("btn", "btn-outline-success");
     seasonContainerBtn.innerHTML = "Episodes";
     seasonContainerBtn.setAttribute(data-bs-toggle, "modal");
     seasonContainerBtn.setAttribute(data-bs-target, "#episodeModal");
