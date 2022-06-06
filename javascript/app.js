@@ -11,19 +11,18 @@ async function FetchRickAndMortyData(url) {
 }
 
 function switchTheme() {
-    console.log(document.body.classList)
     const currentBackground = document.body.classList[0]
     const themeButton = document.getElementById("themebutton")
-    const navbarStyle = document.getElementById("navbar")
 
-    if (currentBackground == "bg-dark") {
-        themeButton.innerHTML = "Dark"
-        document.body.classList.replace(currentBackground, "bg-info")
-        navbarStyle.classList.remove("bg-dark")
-    } else {
+    if (currentBackground == "backgroundImage") {
         themeButton.innerHTML = "Light"
-        document.body.classList.replace(currentBackground, "bg-dark")
-        navbarStyle.classList.add("bg-dark")
+        document.body.classList.replace(currentBackground, "otherBackground")
+        themeButton.classList.replace("btn-dark", "btn-warning")
+
+    } else {
+        themeButton.innerHTML = "Dark"
+        document.body.classList.replace(currentBackground, "backgroundImage")
+        themeButton.classList.replace("btn-warning", "btn-dark")
     }
 }
 
@@ -83,7 +82,7 @@ async function CharacterCardConstructor() {
         cardImageColumn.classList.add("col-md-4");
 
         const cardImage = document.createElement('img');
-        cardImage.classList.add("img-thumbnail","rounded-start");
+        cardImage.classList.add("img-thumbnail", "rounded-start");
         cardImage.setAttribute("src", character.image)
         // cardImage.setAttribute("style", "width: 150px; height: 175px;")
 

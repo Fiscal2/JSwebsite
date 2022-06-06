@@ -5,9 +5,16 @@ body {
 }
 
 body {
-    background-image: url("https://cdn.wallpapersafari.com/96/51/du2E3U.png");
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-position: center;
     background-size: cover;
+}
+
+.backgroundImage {
+    background-image: url("https://cdn.wallpapersafari.com/96/51/du2E3U.png");
+}
+
+.otherBackground {
+    background-image: url("https://c4.wallpaperflare.com/wallpaper/643/54/374/firewatch-gamer-mountains-rick-and-morty-wallpaper-preview.jpg");
 }
