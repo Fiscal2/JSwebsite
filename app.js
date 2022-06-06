@@ -11,21 +11,18 @@ async function FetchRickAndMortyData(url) {
 }
 
 function switchTheme() {
-    console.log(document.body.classList)
     const currentBackground = document.body.classList[0]
     const themeButton = document.getElementById("themebutton")
-    const navbarStyle = document.getElementById("navbar")
 
     if (currentBackground == "backgroundImage") {
-        themeButton.innerHTML = "Dark"
-        themeButton.classList.add("btn-dark")
+        themeButton.innerHTML = "Light"
         document.body.classList.replace(currentBackground, "otherBackground")
+        themeButton.classList.replace("btn-dark", "btn-warning")
 
     } else {
-        themeButton.innerHTML = "Light"
-        themeButton.classList.replace("btn-dark", "btn-warning")
+        themeButton.innerHTML = "Dark"
         document.body.classList.replace(currentBackground, "backgroundImage")
-        
+        themeButton.classList.replace("btn-warning", "btn-dark")
     }
 }
 
