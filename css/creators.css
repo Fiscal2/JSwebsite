@@ -1,3 +1,9 @@
+html,
+body {
+    margin: 0;
+    overflow-x: hidden;
+}
+
 body {
     background-image: url("https://wallpapercave.com/wp/wp1822725.png");
     background-repeat: no-repeat;
