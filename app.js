@@ -14,14 +14,14 @@ function switchTheme() {
     const currentBackground = document.body.classList[0]
     const themeButton = document.getElementById("themebutton")
 
-    if (currentBackground == "backgroundImage") {
+    if (currentBackground == "otherBackground") {
         themeButton.innerHTML = "Light"
-        document.body.classList.replace(currentBackground, "otherBackground")
+        document.body.classList.replace(currentBackground, "backgroundImage")
         themeButton.classList.replace("btn-dark", "btn-warning")
 
     } else {
         themeButton.innerHTML = "Dark"
-        document.body.classList.replace(currentBackground, "backgroundImage")
+        document.body.classList.replace(currentBackground, "otherBackground")
         themeButton.classList.replace("btn-warning", "btn-dark")
     }
 }
