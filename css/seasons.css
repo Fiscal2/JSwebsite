@@ -1,3 +1,9 @@
+html,
+body {
+    margin: 0;
+    overflow-x: hidden;
+}
+
 body {
     background-image: url("https://www.trafoos.com/wp-content/uploads/2020/09/rick-and-morty-wallpaper-2.png");
     background-repeat: no-repeat;
