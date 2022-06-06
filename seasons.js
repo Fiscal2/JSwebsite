@@ -31,11 +31,12 @@ async function EpisodeModalConstructor() {
         modalContentDiv.classList.add("modal-content");
 
         const modalHeaderDiv = document.createElement('div');
-        modalHeaderDiv.classList.add("modal-header");
+        modalHeaderDiv.classList.add("modal-header", "bg-success");
 
-        const modalTitleH5 = document.createElement('h5');
-        modalTitleH5.classList.add("modal-title");
-        modalTitleH5.innerHTML = `Season ${season}`
+        const modalTitleH4 = document.createElement('h4');
+        modalTitleH4.classList.add("modal-title", "text-white");
+        modalTitleH4.setAttribute("style", "text-shadow: 2px 2px 3px #000000;")
+        modalTitleH4.innerHTML = `Season ${season}`
 
         const modalCloseButtonElement = document.createElement('button');
         modalCloseButtonElement.classList.add("btn-close");
@@ -57,7 +58,7 @@ async function EpisodeModalConstructor() {
             modalBodyDiv.append(episodeTitle, episodeInfo)
         }
 
-        modalHeaderDiv.append(modalTitleH5, modalCloseButton);
+        modalHeaderDiv.append(modalTitleH4, modalCloseButton);
         modalContentDiv.append(modalHeaderDiv, modalBodyDiv);
         modalDialogDiv.appendChild(modalContentDiv);
         modalContainer.appendChild(modalDialogDiv);
