@@ -11,6 +11,14 @@ body {
     background-size: cover;
 }
 
+.nav-text {
+    text-shadow: 1px 1px 3px #000000;
+}
+
+.nav-text:hover {
+    text-shadow: 2px 2px 3px #000000;
+}
+
 .backgroundImage {
     background-image: url("https://wallpapercave.com/dwp2x/wp1822739.jpg");
 }
