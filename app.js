@@ -18,13 +18,14 @@ function switchTheme() {
 
     if (currentBackground == "backgroundImage") {
         themeButton.innerHTML = "Dark"
+        themeButton.classList.add("btn-dark")
         document.body.classList.replace(currentBackground, "otherBackground")
-        themeButton.classList.add("bg-dark")
 
     } else {
         themeButton.innerHTML = "Light"
+        themeButton.classList.replace("btn-dark", "btn-warning")
         document.body.classList.replace(currentBackground, "backgroundImage")
-        themeButton.classList.replace("bg-dark", "bg-warning")
+        
     }
 }
 
