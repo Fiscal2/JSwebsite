@@ -118,6 +118,7 @@ function seasonThumbnailContructor() {
 
         console.log(key)
         console.log(value)
+
         const seasonContainerRow = document.createElement("div");
         seasonContainerRow.classList.add("row");
 
@@ -142,8 +143,11 @@ function seasonThumbnailContructor() {
         seasonContainerBody.appendChild(seasonContainerBtn);
         seasonContainerCard.append(seasonContainerImg, seasonContainerBody);
         seasonContainerCol.appendChild(seasonContainerCard);
-        seasonContainerRow.appendChild(seasonContainerCol);
-        seasonContainer.appendChild(seasonContainerRow);
+
+        if (key == 1 || key == 3 || key == 5) {
+            seasonContainerRow.appendChild(seasonContainerCol);
+            seasonContainer.appendChild(seasonContainerRow);
+        }
     }
 
 }
