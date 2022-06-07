@@ -127,7 +127,8 @@ function seasonThumbnailContructor() {
 
         const seasonContainerImg = document.createElement("img");
         seasonContainerImg.classList.add("img-thumbnail", "rounded", "mb-1", "mx-auto", "d-block");
-        seasonContainerImg.setAttribute("src", value)
+        seasonContainerImg.setAttribute("style", "width: 250px; height:350px");
+        seasonContainerImg.setAttribute("src", value);
 
         const seasonContainerBody = document.createElement("div");
         seasonContainerBody.classList.add("card-body");
