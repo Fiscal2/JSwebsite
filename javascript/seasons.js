@@ -147,4 +147,6 @@ function seasonThumbnailContructor() {
 
 }
 
+
+seasonThumbnailContructor();
 EpisodeModalConstructor();
