@@ -114,9 +114,10 @@ function seasonThumbnailContructor() {
         5: 'https://upload.wikimedia.org/wikipedia/en/7/7a/Rick_and_Morty_season_5.jpg'
     }
 
-    for (let season in seasonNumAndImage) {
+    for (const [key, value] of Object.entries(seasonNumAndImage)) {
 
-        console.log(season)
+        console.log(key)
+        console.log(value)
         const seasonContainerRow = document.createElement("div");
         seasonContainerRow.classList.add("row");
 
