@@ -104,16 +104,19 @@ async function EpisodesBySeason() {
 }
 
 function seasonThumbnailContructor() {
-    const seasonOne = 'https://upload.wikimedia.org/wikipedia/en/b/b8/Rick_and_Morty_season_1.png'
-    const seasonTwo = 'https://upload.wikimedia.org/wikipedia/en/b/b1/Rick_and_Morty_season_2.png'
-    const seasonThree = 'https://upload.wikimedia.org/wikipedia/en/5/52/Rick_and_Morty_season_3.png'
-    const seasonFour = 'https://upload.wikimedia.org/wikipedia/en/1/17/Rick_and_Morty_season_4.jpg'
-    const seasonFive = 'https://upload.wikimedia.org/wikipedia/en/7/7a/Rick_and_Morty_season_5.jpg'
-    const seasonContainer = document.getElementById("div");
+    const seasonContainer = document.getElementById("season-container");
 
-    const numberOfSeasons = [1, 2, 3, 4, 5]
-    for (let season of numberOfSeasons) {
+    const seasonNumAndImage = {
+        1: 'https://upload.wikimedia.org/wikipedia/en/b/b8/Rick_and_Morty_season_1.png',
+        2: 'https://upload.wikimedia.org/wikipedia/en/b/b1/Rick_and_Morty_season_2.png',
+        3: 'https://upload.wikimedia.org/wikipedia/en/5/52/Rick_and_Morty_season_3.png',
+        4: 'https://upload.wikimedia.org/wikipedia/en/1/17/Rick_and_Morty_season_4.jpg',
+        5: 'https://upload.wikimedia.org/wikipedia/en/7/7a/Rick_and_Morty_season_5.jpg'
+    }
 
+    for (let season of seasonNumAndImage) {
+
+        console.log(season)
         const seasonContainerRow = document.createElement("div");
         seasonContainerRow.classList.add("row");
 
@@ -133,7 +136,7 @@ function seasonThumbnailContructor() {
         seasonContainerBtn.classList.add("btn", "btn-outline-success");
         seasonContainerBtn.innerHTML = "Episodes";
         seasonContainerBtn.setAttribute("data-bs-toggle", "modal");
-        seasonContainerBtn.setAttribute("data-bs-target", `#episodeModal${season}`);
+        seasonContainerBtn.setAttribute("data-bs-target", '#episodeModal');
 
         seasonContainerBody.appendChild(seasonContainerBtn);
         seasonContainerCard.append(seasonContainerImg, seasonContainerBody);
