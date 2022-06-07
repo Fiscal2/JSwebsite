@@ -145,9 +145,10 @@ function seasonThumbnailContructor() {
         seasonContainerCol.appendChild(seasonContainerCard);
 
         if (key == 1 || key == 3 || key == 5) {
-            seasonContainerRow.appendChild(seasonContainerCol);
             seasonContainer.appendChild(seasonContainerRow);
         }
+
+        seasonContainerRow.appendChild(seasonContainerCol);
     }
 
 }
