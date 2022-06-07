@@ -114,10 +114,17 @@ function seasonThumbnailContructor() {
         5: 'https://upload.wikimedia.org/wikipedia/en/7/7a/Rick_and_Morty_season_5.jpg'
     }
 
-    const seasonContainerRow = document.createElement("div");
-    seasonContainerRow.classList.add("row");
+    let tempRow;
 
     for (const [key, value] of Object.entries(seasonNumAndImage)) {
+
+        if (key % 2 != 0) {
+            const seasonContainerRow = document.createElement("div");
+            seasonContainerRow.classList.add("row");
+            tempRow = seasonContainerRow
+        }
+
+        const seasonContainerRow = tempRow
 
         const seasonContainerCol = document.createElement("div");
         seasonContainerCol.classList.add("col-sm-4");
@@ -143,11 +150,8 @@ function seasonThumbnailContructor() {
         seasonContainerCard.append(seasonContainerImg, seasonContainerBody);
         seasonContainerCol.appendChild(seasonContainerCard);
 
-        if (key == 1 || key == 3 || key == 5) {
-            seasonContainer.appendChild(seasonContainerRow);
-        }
-
         seasonContainerRow.appendChild(seasonContainerCol);
+        seasonContainer.appendChild(seasonContainerRow);
     }
 
 }
