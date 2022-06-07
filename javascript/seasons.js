@@ -116,9 +116,6 @@ function seasonThumbnailContructor() {
 
     for (const [key, value] of Object.entries(seasonNumAndImage)) {
 
-        console.log(key)
-        console.log(value)
-
         const seasonContainerRow = document.createElement("div");
         seasonContainerRow.classList.add("row");
 
@@ -130,6 +127,7 @@ function seasonThumbnailContructor() {
 
         const seasonContainerImg = document.createElement("img");
         seasonContainerImg.classList.add("img-thumbnail", "rounded", "mb-1", "mx-auto", "d-block");
+        seasonContainerImg.setAttribute("src", value)
 
         const seasonContainerBody = document.createElement("div");
         seasonContainerBody.classList.add("card-body");
@@ -138,7 +136,7 @@ function seasonThumbnailContructor() {
         seasonContainerBtn.classList.add("btn", "btn-outline-success");
         seasonContainerBtn.innerHTML = "Episodes";
         seasonContainerBtn.setAttribute("data-bs-toggle", "modal");
-        seasonContainerBtn.setAttribute("data-bs-target", '#episodeModal');
+        seasonContainerBtn.setAttribute("data-bs-target", `#episodeModal${key}`);
 
         seasonContainerBody.appendChild(seasonContainerBtn);
         seasonContainerCard.append(seasonContainerImg, seasonContainerBody);
