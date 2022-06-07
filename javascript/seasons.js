@@ -134,6 +134,12 @@ function seasonThumbnailContructor() {
         seasonContainerBtn.innerHTML = "Episodes";
         seasonContainerBtn.setAttribute("data-bs-toggle", "modal");
         seasonContainerBtn.setAttribute("data-bs-target", `#episodeModal${season}`);
+
+        seasonContainerBody.appendChild(seasonContainerBtn);
+        seasonContainerCard.append(seasonContainerImg, seasonContainerBody);
+        seasonContainerCol.appendChild(seasonContainerCard);
+        seasonContainerRow.appendChild(seasonContainerCol);
+        seasonContainer.appendChild(seasonContainerRow);
     }
 
 }
