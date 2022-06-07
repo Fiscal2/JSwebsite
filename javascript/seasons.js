@@ -114,7 +114,7 @@ function seasonThumbnailContructor() {
         5: 'https://upload.wikimedia.org/wikipedia/en/7/7a/Rick_and_Morty_season_5.jpg'
     }
 
-    for (let season of seasonNumAndImage) {
+    for (let season in seasonNumAndImage) {
 
         console.log(season)
         const seasonContainerRow = document.createElement("div");
@@ -127,7 +127,7 @@ function seasonThumbnailContructor() {
         seasonContainerCard.classList.add("card", "bg-transparent", "border-0", "text-center");
 
         const seasonContainerImg = document.createElement("img");
-        seasonContainerImg.classList.add("img-thumbnail", "rounded mb-1", "mx-auto d-block");
+        seasonContainerImg.classList.add("img-thumbnail", "rounded", "mb-1", "mx-auto", "d-block");
 
         const seasonContainerBody = document.createElement("div");
         seasonContainerBody.classList.add("card-body");
@@ -146,7 +146,6 @@ function seasonThumbnailContructor() {
     }
 
 }
-
 
 seasonThumbnailContructor();
 EpisodeModalConstructor();
