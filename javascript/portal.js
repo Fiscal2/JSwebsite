@@ -13,6 +13,7 @@ async function LocationCardConstructor() {
     const locationData = await FetchRickAndMortyData(locationBaseUrl);
 
     const cardRow = document.getElementById("cardrow");
+
     const modalDiv = document.getElementById("modalDiv");
 
     for (let location of locationData.results) {
@@ -99,6 +100,7 @@ async function LocationCardConstructor() {
 
         columnSmall.appendChild(card);
         cardRow.appendChild(columnSmall);
+        console.log(cardRow.childElementCount)
     }
 }
 
