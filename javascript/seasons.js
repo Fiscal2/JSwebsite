@@ -104,7 +104,7 @@ async function EpisodesBySeason() {
 }
 
 function SeasonThumbnailContructor() {
-    const seasonContainerGrid = document.getElementById("container-grid");
+    const seasonContainer = document.getElementById("card-container");
 
     const seasonNumAndImage = {
         1: 'https://upload.wikimedia.org/wikipedia/en/b/b8/Rick_and_Morty_season_1.png',
@@ -114,14 +114,24 @@ function SeasonThumbnailContructor() {
         5: 'https://upload.wikimedia.org/wikipedia/en/7/7a/Rick_and_Morty_season_5.jpg'
     }
 
+    let tempRow;
 
     for (const [key, value] of Object.entries(seasonNumAndImage)) {
 
+        if (key % 2 != 0) {
+            const seasonContainerRow = document.createElement("div");
+            seasonContainerRow.classList.add("row");
+            tempRow = seasonContainerRow
+        }
+
+        const seasonContainerRow = tempRow
+
         const seasonContainerCol = document.createElement("div");
-        seasonContainerCol.classList.add("g-col-6");
+        seasonContainerCol.classList.add("col-md-4");
 
         const seasonContainerCard = document.createElement("div");
         seasonContainerCard.classList.add("card", "bg-transparent", "border-0", "text-center");
+        seasonContainerCard.style = "width:16rem"
 
         const seasonContainerImg = document.createElement("img");
         seasonContainerImg.classList.add("img-thumbnail", "rounded", "mb-1", "mx-auto", "d-block");
@@ -140,7 +150,8 @@ function SeasonThumbnailContructor() {
         seasonContainerBody.appendChild(seasonContainerBtn);
         seasonContainerCard.append(seasonContainerImg, seasonContainerBody);
         seasonContainerCol.appendChild(seasonContainerCard);
-        seasonContainerGrid.appendChild(seasonContainerCol);
+        seasonContainerRow.appendChild(seasonContainerCol);
+        seasonContainer.appendChild(seasonContainerRow);
     }
 }
 
