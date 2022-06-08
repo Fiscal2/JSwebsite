@@ -5,9 +5,10 @@ body {
 }
 
 body {
+    background-image: url("https://wallpapercave.com/wp/wp1822725.png");
     background-repeat: no-repeat;
     background-attachment: fixed;
-    background-position: center;
+    background-position: top;
     background-size: cover;
 }
 
@@ -17,12 +18,4 @@ body {
 
 .nav-text:hover {
     text-shadow: 2px 2px 3px #000000;
-}
-
-.backgroundImage {
-    background-image: url("https://wallpapercave.com/dwp2x/wp1822739.jpg");
-}
-
-.otherBackground {
-    background-image: url("https://wallpapercave.com/wp/wp1822726.jpg");
 }
