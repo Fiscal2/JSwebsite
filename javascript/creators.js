@@ -14,6 +14,9 @@ async function CreatorCardConstructor() {
         cardBody.classList.add("card-body", "text-center");
         const cardTitle = document.createElement('div');
         cardTitle.classList.add("card-title", "text-decoration-underline");
+        // how do I add an h4 card title? I know it would go somewhere here, but I'm missing something.
+        
+
         const cardInnerRow = document.createElement('div');
         cardInnerRow.classList.add("row", "justify-content-center", "mb-2");
         const cardInnerColDan = document.createElement('div');
@@ -22,11 +25,13 @@ async function CreatorCardConstructor() {
         cardInnerColJustin.classList.add("col-sm-4");
         const cardImageDan = document.createElement('img');
         cardImageDan.classList.add("img-thumbnail");
-        cardImageDan.setAttribute(danImg);
+        cardImageDan.setAttribute("src", danImg);
+        cardImageDan.setAttribute("style", "width: 200px; height:250px;")
 
         const cardImageJustin = document.createElement('img');
         cardImageJustin.classList.add("img-thumbnail");
-        cardImageJustin.setAttribute(justinImg);
+        cardImageJustin.setAttribute("src", justinImg);
+        cardImageJustin.setAttribute("style", "width: 200px; height:250px;")
         
 
         cardInnerColDan.appendChild(cardImageDan);
