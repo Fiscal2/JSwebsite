@@ -1,17 +1,10 @@
 
 
-function CreatorCardConstructor() {
+function CreatorCardInfo() {
     const justinImg = "https://static.wikia.nocookie.net/gravityfalls/images/2/2f/Justin_Roiland.jpg/revision/latest?cb=20200204214613";
     const danImg = "https://m.media-amazon.com/images/M/MV5BMjEzMDY2NzI3MF5BMl5BanBnXkFtZTcwODY5MjI3NA@@._V1_.jpg";
 
     const cardRow = document.getElementById("creatorCards");
-
-    const card = document.createElement('div');
-    card.classList.add("card", "bg-light");
-    card.setAttribute("style", "width: 40rem;");
-
-    const cardBody = document.createElement('div');
-    cardBody.classList.add("card-body", "text-center");
 
     const cardBlockquote = document.createElement('blockquote');
     cardBlockquote.classList.add("blockquote");
@@ -37,10 +30,6 @@ function CreatorCardConstructor() {
     blockquoteCitationLink.setAttribute("target", "_blank")
     blockquoteCitationLink.innerHTML = "Wikipedia";
 
-    const cardTitle = document.createElement('h2');
-    cardTitle.classList.add("card-title", "text-decoration-underline");
-    cardTitle.innerHTML = "The Creators";
-
     const cardInnerRow = document.createElement('div');
     cardInnerRow.classList.add("row", "justify-content-center", "mb-2");
 
@@ -51,8 +40,8 @@ function CreatorCardConstructor() {
     cardBlockquote.appendChild(cardBlockquoteParagraph);
     blockquoteCitation.appendChild(blockquoteCitationLink);
     cardBlockquoteCaption.appendChild(blockquoteCitation);
-    cardBody.append(cardTitle, cardInnerRow, cardBlockquote, cardBlockquoteCaption);
-    card.appendChild(cardBody);
+    // cardBody.append(cardTitle, cardInnerRow, cardBlockquote, cardBlockquoteCaption);
+    // card.appendChild(cardBody);
     cardRow.appendChild(card);
 
 }
