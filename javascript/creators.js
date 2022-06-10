@@ -1,6 +1,6 @@
 
 
-async function CreatorCardConstructor() {
+function CreatorCardConstructor() {
     const justinImg = "https://static.wikia.nocookie.net/gravityfalls/images/2/2f/Justin_Roiland.jpg/revision/latest?cb=20200204214613";
     const danImg = "https://m.media-amazon.com/images/M/MV5BMjEzMDY2NzI3MF5BMl5BanBnXkFtZTcwODY5MjI3NA@@._V1_.jpg";
 
@@ -78,6 +78,29 @@ function imageAndColumnMaker3000(creatorName, imageSource) {
     imageElement.setAttribute("style", "width: 200px; height:250px;");
     imageColumn.append(imageElement, imageText)
     return imageColumn;
+}
+
+function CardCreator(cardBodyData) {
+
+    const cardRow = document.getElementById("ratingCard");
+
+
+    const card = document.createElement("div");
+
+
+    const cardBody = document.createElement('div');
+
+
+    const cardTitle = document.createElement('h2');
+
+
+
+    cardBody.appendChild(cardTitle);
+    card.appendChild(cardBody);
+    cardRow.appendChild(card);
+
+
+
 }
 
 CreatorCardConstructor();
