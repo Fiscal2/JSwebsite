@@ -4,8 +4,6 @@ function CreatorCardInfo() {
     const justinImg = "https://static.wikia.nocookie.net/gravityfalls/images/2/2f/Justin_Roiland.jpg/revision/latest?cb=20200204214613";
     const danImg = "https://m.media-amazon.com/images/M/MV5BMjEzMDY2NzI3MF5BMl5BanBnXkFtZTcwODY5MjI3NA@@._V1_.jpg";
 
-    const cardBodyData = [justinImg, danImg];
-
     const cardRow = document.getElementById("creatorCards");
 
     const cardBlockquote = document.createElement('blockquote');
@@ -38,14 +36,12 @@ function CreatorCardInfo() {
     const cardInnerColDan = imageAndColumnMaker3000("Dan Harmon", danImg);
     const cardInnerColJustin = imageAndColumnMaker3000("Justin Roiland", justinImg);
 
-    const card = GenericCardCreator("The Creators", cardBodyData);
-
     cardInnerRow.append(cardInnerColJustin, cardInnerColDan);
     cardBlockquote.appendChild(cardBlockquoteParagraph);
     blockquoteCitation.appendChild(blockquoteCitationLink);
     cardBlockquoteCaption.appendChild(blockquoteCitation);
-    // cardBody.append(cardTitle, cardInnerRow, cardBlockquote, cardBlockquoteCaption);
-    // card.appendChild(cardBody);
+
+    const card = GenericCardCreator("The Creators", [cardInnerRow, cardBlockquote, cardBlockquoteCaption]);
     cardRow.appendChild(card);
 
 }
@@ -78,7 +74,16 @@ function GenericCardCreator(cardTitleText, cardBodyData) {
     cardTitle.classList.add("card-title", "text-decoration-underline");
     cardTitle.innerHTML = cardTitleText;
 
-    cardBody.appendChild(cardTitle, cardBodyData);
+    cardBody.appendChild(cardTitle);
+
+    if (Array.isArray(cardBodyData)) {
+        for (bodyElement of cardBodyData) {
+            cardBody.append(bodyElement);
+        }
+    } else {
+        cardBody.appendChild(cardBodyData);
+    }
+
     card.appendChild(cardBody);
     return card;
 }
