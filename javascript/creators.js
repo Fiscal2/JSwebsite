@@ -1,10 +1,10 @@
 
-
 function CreatorCardInfo() {
+
     const justinImg = "https://static.wikia.nocookie.net/gravityfalls/images/2/2f/Justin_Roiland.jpg/revision/latest?cb=20200204214613";
     const danImg = "https://m.media-amazon.com/images/M/MV5BMjEzMDY2NzI3MF5BMl5BanBnXkFtZTcwODY5MjI3NA@@._V1_.jpg";
 
-    const cardRow = document.getElementById("creatorCards");
+    const cardRow = document.getElementById("creatorCard");
 
     const cardBlockquote = document.createElement('blockquote');
     cardBlockquote.classList.add("blockquote");
@@ -42,11 +42,13 @@ function CreatorCardInfo() {
     cardBlockquoteCaption.appendChild(blockquoteCitation);
 
     const card = GenericCardCreator("The Creators", [cardInnerRow, cardBlockquote, cardBlockquoteCaption]);
+
     cardRow.appendChild(card);
 
 }
 
 function imageAndColumnMaker3000(creatorName, imageSource) {
+
     const imageColumn = document.createElement('div');
     imageColumn.classList.add("col-sm-4");
     const imageElement = document.createElement('img');
