@@ -5,12 +5,20 @@ async function CreatorCardConstructor() {
     const danImg = "https://m.media-amazon.com/images/M/MV5BMjEzMDY2NzI3MF5BMl5BanBnXkFtZTcwODY5MjI3NA@@._V1_.jpg";
 
     const cardRow = document.getElementById("creatorCards");
+
+
     const card = document.createElement('div');
     card.classList.add("card", "bg-light");
     card.setAttribute("style", "width: 40rem;");
+
+
     const cardBody = document.createElement('div');
+    cardBody.classList.add("card-body", "text-center");
+    
     const cardBlockquote = document.createElement('blockquote');
     cardBlockquote.classList.add("blockquote");
+
+
     const cardBlockquoteParagraph = document.createElement('p');
     cardBlockquoteParagraph.classList.add("text-start");
     cardBlockquoteParagraph.setAttribute("style", "text-indent: 2em;");
@@ -20,18 +28,27 @@ async function CreatorCardConstructor() {
     The series follows the misadventures of cynical mad scientist Rick Sanchez
     and his good-hearted, but fretful grandson Morty Smith,
     who split their time between domestic life and interdimensional adventures.`
+
+
     const cardBlockquoteCaption = document.createElement("figcaption");
     cardBlockquoteCaption.classList.add("blockquote-footer");
+
+    
     const blockquoteCitation = document.createElement("cite");
     blockquoteCitation.setAttribute("title", "Source");
+
+    
     const blockquoteCitationLink = document.createElement("a");
     blockquoteCitationLink.setAttribute("href", "https://en.wikipedia.org/wiki/Rick_and_Morty")
     blockquoteCitationLink.setAttribute("target", "_blank")
     blockquoteCitationLink.innerHTML = "Wikipedia";
-    cardBody.classList.add("card-body", "text-center");
+
+
     const cardTitle = document.createElement('h2');
     cardTitle.classList.add("card-title", "text-decoration-underline");
     cardTitle.innerHTML = "The Creators";
+    
+    
     const cardInnerRow = document.createElement('div');
     cardInnerRow.classList.add("row", "justify-content-center", "mb-2");
 
