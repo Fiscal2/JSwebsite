@@ -10,14 +10,24 @@ async function CreatorCardConstructor() {
     card.setAttribute("style", "width: 40rem;");
     const cardBody = document.createElement('div');
     const cardBlockquote = document.createElement('blockquote');
+    cardBlockquote.classList.add("blockquote");
     const cardBlockquoteParagraph = document.createElement('p');
+    cardBlockquoteParagraph.classList.add("text-start");
+    cardBlockquoteParagraph.setAttribute("style", "text-indent: 2em;");
     cardBlockquoteParagraph.innerHTML =
         `Rick and Morty is an American adult animated science fiction sitcom created by Justin
     Roiland and Dan Harmon for Cartoon Network's nighttime programming block Adult Swim.
     The series follows the misadventures of cynical mad scientist Rick Sanchez
     and his good-hearted, but fretful grandson Morty Smith,
     who split their time between domestic life and interdimensional adventures.`
-
+    const cardBlockquoteCaption = document.createElement("figcaption");
+    cardBlockquoteCaption.classList.add("blockquote-footer");
+    const blockquoteCitation = document.createElement("cite");
+    blockquoteCitation.setAttribute("title", "Source");
+    const blockquoteCitationLink = document.createElement("a");
+    blockquoteCitationLink.setAttribute("href", "https://en.wikipedia.org/wiki/Rick_and_Morty")
+    blockquoteCitationLink.setAttribute("target", "_blank")
+    blockquoteCitationLink.innerHTML = "Wikipedia";
     cardBody.classList.add("card-body", "text-center");
     const cardTitle = document.createElement('h2');
     cardTitle.classList.add("card-title", "text-decoration-underline");
@@ -30,7 +40,9 @@ async function CreatorCardConstructor() {
 
     cardInnerRow.append(cardInnerColJustin, cardInnerColDan);
     cardBlockquote.appendChild(cardBlockquoteParagraph);
-    cardBody.append(cardTitle, cardInnerRow, cardBlockquote);
+    blockquoteCitation.appendChild(blockquoteCitationLink);
+    cardBlockquoteCaption.appendChild(blockquoteCitation);
+    cardBody.append(cardTitle, cardInnerRow, cardBlockquote, cardBlockquoteCaption);
     card.appendChild(cardBody);
     cardRow.appendChild(card);
 
