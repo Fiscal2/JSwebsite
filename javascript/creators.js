@@ -6,18 +6,15 @@ function CreatorCardConstructor() {
 
     const cardRow = document.getElementById("creatorCards");
 
-
     const card = document.createElement('div');
     card.classList.add("card", "bg-light");
     card.setAttribute("style", "width: 40rem;");
 
-
     const cardBody = document.createElement('div');
     cardBody.classList.add("card-body", "text-center");
-    
+
     const cardBlockquote = document.createElement('blockquote');
     cardBlockquote.classList.add("blockquote");
-
 
     const cardBlockquoteParagraph = document.createElement('p');
     cardBlockquoteParagraph.classList.add("text-start");
@@ -29,26 +26,21 @@ function CreatorCardConstructor() {
     and his good-hearted, but fretful grandson Morty Smith,
     who split their time between domestic life and interdimensional adventures.`
 
-
     const cardBlockquoteCaption = document.createElement("figcaption");
     cardBlockquoteCaption.classList.add("blockquote-footer");
 
-    
     const blockquoteCitation = document.createElement("cite");
     blockquoteCitation.setAttribute("title", "Source");
 
-    
     const blockquoteCitationLink = document.createElement("a");
     blockquoteCitationLink.setAttribute("href", "https://en.wikipedia.org/wiki/Rick_and_Morty")
     blockquoteCitationLink.setAttribute("target", "_blank")
     blockquoteCitationLink.innerHTML = "Wikipedia";
 
-
     const cardTitle = document.createElement('h2');
     cardTitle.classList.add("card-title", "text-decoration-underline");
     cardTitle.innerHTML = "The Creators";
-    
-    
+
     const cardInnerRow = document.createElement('div');
     cardInnerRow.classList.add("row", "justify-content-center", "mb-2");
 
@@ -80,27 +72,21 @@ function imageAndColumnMaker3000(creatorName, imageSource) {
     return imageColumn;
 }
 
-function CardCreator(cardBodyData) {
-
-    const cardRow = document.getElementById("ratingCard");
-
+function GenericCardCreator(cardBodyData) {
 
     const card = document.createElement("div");
-
+    card.classList.add("card", "bg-light");
+    card.setAttribute("style", "width: 40rem;");
 
     const cardBody = document.createElement('div');
-
+    cardBody.classList.add("card-body", "text-center");
 
     const cardTitle = document.createElement('h2');
+    cardTitle.classList.add("card-title", "text-decoration-underline");
 
-
-
-    cardBody.appendChild(cardTitle);
+    cardBody.appendChild(cardTitle, cardBodyData);
     card.appendChild(cardBody);
-    cardRow.appendChild(card);
-
-
-
+    return card
 }
 
 CreatorCardConstructor();
