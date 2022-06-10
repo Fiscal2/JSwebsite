@@ -16,25 +16,28 @@ async function CreatorCardConstructor() {
     const cardInnerRow = document.createElement('div');
     cardInnerRow.classList.add("row", "justify-content-center", "mb-2");
 
-    const cardInnerColDan = imageAndColumnMaker3000(danImg);
-    const cardInnerColJustin = imageAndColumnMaker3000(justinImg);
+    const cardInnerColDan = imageAndColumnMaker3000("Dan Harmon", danImg);
+    const cardInnerColJustin = imageAndColumnMaker3000("Justin Roiland", justinImg);
 
-    cardInnerRow.append(cardInnerColDan, cardInnerColJustin);
+    cardInnerRow.append(cardInnerColJustin, cardInnerColDan);
     cardBody.append(cardTitle, cardInnerRow);
     card.appendChild(cardBody);
     cardRow.appendChild(card);
 
 }
 
-function imageAndColumnMaker3000(imageSource) {
+function imageAndColumnMaker3000(creatorName, imageSource) {
     const imageColumn = document.createElement('div');
     imageColumn.classList.add("col-sm-4");
     const imageElement = document.createElement('img');
     imageElement.classList.add("img-thumbnail");
+    const imageText = document.createElement('p');
+    imageText.classList.add("card-text");
+    imageText.innerHTML = creatorName;
 
     imageElement.setAttribute("src", imageSource);
     imageElement.setAttribute("style", "width: 200px; height:250px;");
-    imageColumn.appendChild(imageElement)
+    imageColumn.append(imageElement, imageText)
     return imageColumn;
 }
 
