@@ -72,7 +72,7 @@ function imageAndColumnMaker3000(creatorName, imageSource) {
     return imageColumn;
 }
 
-function GenericCardCreator(cardBodyData) {
+function GenericCardCreator(cardTitleText, cardBodyData) {
 
     const card = document.createElement("div");
     card.classList.add("card", "bg-light");
@@ -83,10 +83,11 @@ function GenericCardCreator(cardBodyData) {
 
     const cardTitle = document.createElement('h2');
     cardTitle.classList.add("card-title", "text-decoration-underline");
+    cardTitle.innerHTML = cardTitleText;
 
     cardBody.appendChild(cardTitle, cardBodyData);
     card.appendChild(cardBody);
-    return card
+    return card;
 }
 
 CreatorCardConstructor();
