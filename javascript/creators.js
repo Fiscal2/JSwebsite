@@ -11,12 +11,13 @@ async function CreatorCardConstructor() {
     const cardBody = document.createElement('div');
     const cardBlockquote = document.createElement('blockquote');
     const cardBlockquoteParagraph = document.createElement('p');
-    cardBlockquoteParagraph.innerHTML = "Rick and Morty is an American adult animated science fiction sitcom created by Justin
+    cardBlockquoteParagraph.innerHTML =
+        `Rick and Morty is an American adult animated science fiction sitcom created by Justin
     Roiland and Dan Harmon for Cartoon Network's nighttime programming block Adult Swim.
     The series follows the misadventures of cynical mad scientist Rick Sanchez
     and his good-hearted, but fretful grandson Morty Smith,
-    who split their time between domestic life and interdimensional adventures."
-    
+    who split their time between domestic life and interdimensional adventures.`
+
     cardBody.classList.add("card-body", "text-center");
     const cardTitle = document.createElement('h2');
     cardTitle.classList.add("card-title", "text-decoration-underline");
