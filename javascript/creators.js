@@ -13,11 +13,13 @@ function CreatorCardInfo() {
     cardBlockquoteParagraph.classList.add("text-start");
     cardBlockquoteParagraph.setAttribute("style", "text-indent: 2em;");
     cardBlockquoteParagraph.innerHTML =
-        `Rick and Morty is an American adult animated science fiction sitcom created by Justin
-    Roiland and Dan Harmon for Cartoon Network's nighttime programming block Adult Swim.
-    The series follows the misadventures of cynical mad scientist Rick Sanchez
-    and his good-hearted, but fretful grandson Morty Smith,
-    who split their time between domestic life and interdimensional adventures.`
+        `
+        Rick and Morty is an American adult animated science fiction sitcom created by Justin
+        Roiland and Dan Harmon for Cartoon Network's nighttime programming block Adult Swim.
+        The series follows the misadventures of cynical mad scientist Rick Sanchez
+        and his good-hearted, but fretful grandson Morty Smith,
+        who split their time between domestic life and interdimensional adventures.
+        `
 
     const cardBlockquoteCaption = document.createElement("figcaption");
     cardBlockquoteCaption.classList.add("blockquote-footer");
@@ -33,8 +35,8 @@ function CreatorCardInfo() {
     const cardInnerRow = document.createElement('div');
     cardInnerRow.classList.add("row", "justify-content-center", "mb-2");
 
-    const cardInnerColDan = imageAndColumnMaker3000("Dan Harmon", danImg);
-    const cardInnerColJustin = imageAndColumnMaker3000("Justin Roiland", justinImg);
+    const cardInnerColDan = ImageAndColumnMaker3000("Dan Harmon", danImg);
+    const cardInnerColJustin = ImageAndColumnMaker3000("Justin Roiland", justinImg);
 
     cardInnerRow.append(cardInnerColJustin, cardInnerColDan);
     cardBlockquote.appendChild(cardBlockquoteParagraph);
@@ -47,7 +49,15 @@ function CreatorCardInfo() {
 
 }
 
-function imageAndColumnMaker3000(creatorName, imageSource) {
+function TableConstructor() {
+    // Do the thing
+}
+
+function AccordionConstructor() {
+    // Do the thing again
+}
+
+function ImageAndColumnMaker3000(creatorName, imageSource) {
 
     const imageColumn = document.createElement('div');
     imageColumn.classList.add("col-sm-4");
