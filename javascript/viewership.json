@@ -1,0 +1,79 @@
+{
+    "views":[
+        {
+            "season": 1,
+            "episodes": {
+                "Pilot": 1.10,
+                "Lawnmower Dog": 1.51,
+                "M. Night Shaym-Aliens!": 1.30,
+                "Meeseeks and Destroy": 1.32,
+                "Rick Potion #9": 1.75,
+                "Raising Gazorpazorp": 1.76,
+                "Rixty Minutes": 1.48,
+                "Something Ricked This Way Comes": 1.54,
+                "Close Rick-counters of the Rick Kind": 1.75,
+                "Ricksy Business": 2.13
+            }
+        },
+        {
+            "season": 2,
+            "episodes":{
+                "A Rickle in Time": 2.12,
+                "Mortynight Run": 2.19,
+                "Auto Erotic Assimilation": 1.94,
+                "Total Rickall": 1.96,
+                "Get Schwifty": 2.12,
+                "The Ricks Must Be Crazy": 1.91,
+                "Big Trouble in Little Sanchez": 1.97,
+                "Interdimensional Cable 2: Tempting Fate": 1.79,
+                "Look Who's Purging Now": 1.89,
+                "The Wedding Squanchers": 1.84
+            }
+        },
+        {
+            "season": 3,
+            "episodes":{
+                "The Rickshank Rickdemption": 0.68,
+                "Rickmancing the Stone": 2.86,
+                "Pickle Rick": 2.31,
+                "Vindicators 3: The Return of Worldender": 2.66,
+                "The Whirly Dirly Conspiracy": 2.29,
+                "Rest and Ricklaxation": 2.47,
+                "The Ricklantis Mixup": 2.38,
+                "Morty's Mind Blowers": 2.51,
+                "The ABC's of Beth": 2.49,
+                "The Rickchurian Mortydate": 2.60
+            }
+        },
+        {
+            "season": 4,
+            "episodes":{
+                "Edge of Tomorty: Rick Die Rickpeat": 2.33,
+                "The Old Man and the Seat": 1.67,
+                "One Crew over the Crewcoo's Morty": 1.61,
+                "Claw and Hoarder: Special Ricktim's Morty": 1.63,
+                "Rattlestar Ricklactica": 1.32,
+                "Never Ricking Morty": 1.55,
+                "Promortyus": 1.34,
+                "The Vat of Acid Episode": 1.26,
+                "Childrick of Mort": 1.22,
+                "Star Mort Rickturn of the Jerri": 1.30
+            }
+        },
+        {
+            "season": 5,
+            "episodes":{
+                "Mort Dinner Rick Andre": 1.30,
+                "Mortyplicity": 1.16,
+                "A Rickconvenient Mort": 1.01,
+                "Rickdependence Spray": 0.96,
+                "Amortycan Grickfitti": 0.78,
+                "Rick & Morty's Thanksploitation Spectacular": 0.93,
+                "Gotron Jerrysis Rickvangelion": 0.82,
+                "Rickternal Friendshine of the Spotless Mort": 0.83,
+                "Forgetting Sarick Mortshall": 0.91,
+                "Rickmurai Jack": 0.94
+            }
+        }
+    ]
+}
