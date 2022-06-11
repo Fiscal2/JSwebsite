@@ -1,3 +1,5 @@
+"use strict";
+
 async function FetchRickAndMortyData(url) {
     const responseData = await fetch(url);
 
