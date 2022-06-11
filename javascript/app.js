@@ -66,9 +66,10 @@ async function dynamicCarouselConstructor() {
 }
 
 async function CharacterCardConstructor() {
+
     const rickAndMortyUrl = "https://rickandmortyapi.com/api/character/?page=2"
     const data = await FetchRickAndMortyData(rickAndMortyUrl)
-    console.log(data)
+
     for (let character of data.results) {
         const cardRow = document.getElementById('cardrow');
         const card = document.createElement('div');
@@ -84,14 +85,12 @@ async function CharacterCardConstructor() {
         const cardImage = document.createElement('img');
         cardImage.classList.add("img-thumbnail", "rounded-start");
         cardImage.setAttribute("src", character.image)
-        // cardImage.setAttribute("style", "width: 150px; height: 175px;")
 
         const cardBodyColumn = document.createElement('div');
         cardBodyColumn.classList.add("col-md-8")
 
         const cardBody = document.createElement('div');
         cardBody.classList.add("card-body", "p-1", "ms-1");
-
 
         cardBody.innerHTML =
             `
