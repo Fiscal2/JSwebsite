@@ -37,7 +37,7 @@ async function LocationCardConstructor() {
             </div>
         `
 
-        if(cardRow.childElementCount < 20) {
+        if (cardRow.childElementCount < 20) {
             const loadingDiv = document.createElement("div");
             loadingDiv.classList.add("spinner-border");
             loadingDiv.setAttribute("role", "status");
@@ -97,7 +97,7 @@ async function LocationCardConstructor() {
                 modalBodyRowDiv.append(info.characterInfoColumn);
             }
         } else if (typeof characterInfo == "string") {
-            characterInfoText = document.createElement('p');
+            const characterInfoText = document.createElement('p');
             characterInfoText.classList.add("text-center");
             characterInfoText.innerHTML = characterInfo;
             modalBodyDiv.append(characterInfoText);
