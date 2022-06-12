@@ -37,6 +37,17 @@ async function LocationCardConstructor() {
             </div>
         `
 
+        if(cardRow.childElementCount < 20) {
+            const loadingDiv = document.createElement("div");
+            loadingDiv.classList.add("spinner-border");
+            loadingDiv.setAttribute("role", "status");
+            const loadingDivSpan = document.createElement("span");
+            loadingDivSpan.classList.add("visually-hidden");
+            loadingDivSpan.innerHTML = "Loading...";
+        } else {
+            
+        }
+
         const modalContainerDiv = document.createElement('div');
         modalContainerDiv.classList.add("modal", "fade")
         const modalContainer = setElementAttributes(modalContainerDiv,
