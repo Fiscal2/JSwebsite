@@ -10,6 +10,7 @@ async function FetchRickAndMortyData(url) {
     }
 }
 
+
 async function LocationCardConstructor() {
     const locationBaseUrl = "https://rickandmortyapi.com/api/location/";
     const locationData = await FetchRickAndMortyData(locationBaseUrl);
@@ -36,89 +37,18 @@ async function LocationCardConstructor() {
                 </button>
             </div>
         `
-
-        if (cardRow.childElementCount < 20) {
-            const loadingDiv = document.createElement("div");
-            loadingDiv.classList.add("spinner-border");
-            loadingDiv.setAttribute("role", "status");
-            loadingDiv.setAttribute("id", "loadingWheel");
-            const loadingDivSpan = document.createElement("span");
-            loadingDivSpan.classList.add("visually-hidden");
-            loadingDivSpan.innerHTML = "Loading...";
-            cardRow.appendChild(loadingDiv);
-        } else {
-            const spinner = document.getElementById("loadingWheel");
-            spinner.remove();
-        }
-
-        const modalContainerDiv = document.createElement('div');
-        modalContainerDiv.classList.add("modal", "fade")
-        const modalContainer = setElementAttributes(modalContainerDiv,
-            {
-                "id": `locationModal${location.id}`,
-                "data-bs-keyboard": "false",
-                "tabindex": "-1",
-                "aria-labelledby": "locationModal",
-                "aria-hidden": "true"
-            });
-        const modalDialogDiv = document.createElement('div');
-        modalDialogDiv.classList.add("modal-dialog", "modal-dialog-centered", "modal-dialog-scrollable");
-
-        const modalContentDiv = document.createElement('div');
-        modalContentDiv.classList.add("modal-content");
-
-        const modalHeaderDiv = document.createElement('div');
-        modalHeaderDiv.classList.add("modal-header");
-
-        const modalTitleH5 = document.createElement('h5');
-        modalTitleH5.classList.add("modal-title");
-        modalTitleH5.innerHTML = location.name;
-
-        const modalCloseButtonElement = document.createElement('button');
-        modalCloseButtonElement.classList.add("btn-close");
-        const modalCloseButton = setElementAttributes(modalCloseButtonElement,
-            {
-                "type": "button",
-                "data-bs-dismiss": "modal",
-                "aria-label": "close"
-            });
-
-        const modalBodyDiv = document.createElement('div');
-        modalBodyDiv.classList.add("modal-body");
-
-        const modalBodyRowDiv = document.createElement('div');
-        modalBodyRowDiv.classList.add("row");
-
         const characterInfo = await ResidentsToCharacterObjects(locationBaseUrl, (location.id - 1));
 
-        if (Array.isArray(characterInfo)) {
-            for (const character of characterInfo) {
-                const info = ModalBodyElementsConstructor(character);
-                modalBodyRowDiv.append(info.characterInfoColumn);
-            }
-        } else if (typeof characterInfo == "string") {
-            const characterInfoText = document.createElement('p');
-            characterInfoText.classList.add("text-center");
-            characterInfoText.innerHTML = characterInfo;
-            modalBodyDiv.append(characterInfoText);
-        } else {
-            const info = ModalBodyElementsConstructor(characterInfo);
-            modalBodyRowDiv.classList.add("justify-content-center");
-            modalBodyRowDiv.append(info.characterInfoColumn);
-        }
+        const completedModal = await ModalConstructor(location.id, characterInfo, location.name)
 
-        modalBodyDiv.append(modalBodyRowDiv);
-        modalHeaderDiv.append(modalTitleH5, modalCloseButton);
-        modalContentDiv.append(modalHeaderDiv, modalBodyDiv);
-        modalDialogDiv.appendChild(modalContentDiv);
-        modalContainer.appendChild(modalDialogDiv);
-        modalDiv.appendChild(modalContainer);
+        modalDiv.appendChild(completedModal);
 
         columnSmall.appendChild(card);
         cardRow.appendChild(columnSmall);
         console.log(cardRow.childElementCount)
     }
 }
+
 
 async function ResidentsToCharacterObjects(locationUrl, id) {
     const locationData = await FetchRickAndMortyData(locationUrl);
@@ -138,12 +68,77 @@ async function ResidentsToCharacterObjects(locationUrl, id) {
     return characterObjects;
 }
 
+
 function setElementAttributes(element, attributes) {
     for (let key in attributes) {
         element.setAttribute(key, attributes[key]);
     }
     return element;
 }
+
+
+async function ModalConstructor(locationId, characterDetails, modalTitle) {
+
+    const modalContainerDiv = document.createElement('div');
+    modalContainerDiv.classList.add("modal", "fade")
+    const modalContainer = setElementAttributes(modalContainerDiv,
+        {
+            "id": `locationModal${locationId}`,
+            "data-bs-keyboard": "false",
+            "tabindex": "-1",
+            "aria-labelledby": "locationModal",
+            "aria-hidden": "true"
+        });
+    const modalDialogDiv = document.createElement('div');
+    modalDialogDiv.classList.add("modal-dialog", "modal-dialog-centered", "modal-dialog-scrollable");
+
+    const modalContentDiv = document.createElement('div');
+    modalContentDiv.classList.add("modal-content");
+
+    const modalHeaderDiv = document.createElement('div');
+    modalHeaderDiv.classList.add("modal-header");
+
+    const modalTitleH5 = document.createElement('h5');
+    modalTitleH5.classList.add("modal-title");
+    modalTitleH5.innerHTML = modalTitle;
+
+    const modalCloseButtonElement = document.createElement('button');
+    modalCloseButtonElement.classList.add("btn-close");
+    const modalCloseButton = setElementAttributes(modalCloseButtonElement,
+        {
+            "type": "button",
+            "data-bs-dismiss": "modal",
+            "aria-label": "close"
+        });
+
+    const modalBodyDiv = document.createElement('div');
+    modalBodyDiv.classList.add("modal-body");
+
+    const modalBodyRowDiv = document.createElement('div');
+    modalBodyRowDiv.classList.add("row");
+
+    if (Array.isArray(characterDetails)) {
+        for (const character of characterDetails) {
+            const infoColumn = ModalBodyElementsConstructor(character);
+            modalBodyRowDiv.append(infoColumn);
+        }
+    } else if (typeof characterDetails == "string") {
+        modalBodyDiv.append(characterDetails);
+    } else {
+        const infoColumn = ModalBodyElementsConstructor(characterDetails);
+        modalBodyRowDiv.classList.add("justify-content-center");
+        modalBodyRowDiv.append(infoColumn);
+    }
+
+    modalBodyDiv.append(modalBodyRowDiv);
+    modalHeaderDiv.append(modalTitleH5, modalCloseButton);
+    modalContentDiv.append(modalHeaderDiv, modalBodyDiv);
+    modalDialogDiv.appendChild(modalContentDiv);
+    modalContainer.appendChild(modalDialogDiv);
+
+    return modalContainer;
+}
+
 
 function ModalBodyElementsConstructor(character) {
     if (character) {
@@ -159,8 +154,24 @@ function ModalBodyElementsConstructor(character) {
         characterInfoImage.classList.add("img-thumbnail", "mx-auto", "d-block");
 
         characterInfoColumn.append(characterInfoImage, characterInfoText)
-        return { characterInfoColumn };
+        return characterInfoColumn;
     }
 }
 
-LocationCardConstructor();
+
+LocationCardConstructor()
+
+
+        // if (cardRow.childElementCount < 20) {
+        //     const loadingDiv = document.createElement("div");
+        //     loadingDiv.classList.add("spinner-border");
+        //     loadingDiv.setAttribute("role", "status");
+        //     loadingDiv.setAttribute("id", "loadingWheel");
+        //     const loadingDivSpan = document.createElement("span");
+        //     loadingDivSpan.classList.add("visually-hidden");
+        //     loadingDivSpan.innerHTML = "Loading...";
+        //     cardRow.appendChild(loadingDiv);
+        // } else {
+        //     const spinner = document.getElementById("loadingWheel");
+        //     spinner.remove();
+        // }
