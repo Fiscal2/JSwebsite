@@ -92,7 +92,7 @@ async function FetchAllEpisodes() {
 }
 
 async function EpisodesBySeason() {
-    allEpisodes = await FetchAllEpisodes();
+    const allEpisodes = await FetchAllEpisodes();
     return allEpisodes.reduce(function (seasonObj, episodeObj) {
         const season = episodeObj['episode'].substring(2, 3);
 

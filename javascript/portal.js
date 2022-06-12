@@ -17,6 +17,7 @@ async function LocationCardConstructor() {
 
     const cardRow = document.getElementById("cardrow");
 
+
     const modalDiv = document.getElementById("modalDiv");
 
     for (const location of locationData.results) {
@@ -45,8 +46,9 @@ async function LocationCardConstructor() {
 
         columnSmall.appendChild(card);
         cardRow.appendChild(columnSmall);
-        console.log(cardRow.childElementCount)
+
     }
+    console.log(cardRow.childElementCount)
 }
 
 
@@ -158,6 +160,16 @@ function setElementAttributes(element, attributes) {
     return element;
 }
 
+
+function CardSearchFilter() {
+    const searchInput = document.getElementById("navsearch");
+    const searchFilter = searchInput.value.toLowerCase();
+    const rowOfCards = document.getElementById("cardrow");
+    const cardHeaders = document.getElementsByClassName("card-header");
+    for (const card of rowOfCards.children) {
+        console.log(card.querySelector("h5").innerHTML);
+    }
+}
 LocationCardConstructor();
 
 
