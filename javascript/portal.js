@@ -36,7 +36,6 @@ async function LocationCardConstructor() {
                 </button>
             </div>
         `
-
         if(cardRow.childElementCount < 20) {
             const loadingDiv = document.createElement("div");
             loadingDiv.classList.add("spinner-border");
