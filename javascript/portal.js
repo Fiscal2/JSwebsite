@@ -50,33 +50,6 @@ async function LocationCardConstructor() {
 }
 
 
-async function ResidentsToCharacterObjects(locationUrl, id) {
-    const locationData = await FetchRickAndMortyData(locationUrl);
-    const characterArray = [];
-
-    if (locationData.results[id].residents.length > 0) {
-        for (let resident of locationData.results[id].residents) {
-            const characterUrl = new URL(resident);
-            characterArray.push(characterUrl.pathname.match('[0-9]+$'));
-        }
-    } else {
-        return "This location has no residents";
-    }
-
-    const flatCharacterArray = characterArray.flat(1);
-    const characterObjects = await FetchRickAndMortyData(`https://rickandmortyapi.com/api/character/${flatCharacterArray}`);
-    return characterObjects;
-}
-
-
-function setElementAttributes(element, attributes) {
-    for (let key in attributes) {
-        element.setAttribute(key, attributes[key]);
-    }
-    return element;
-}
-
-
 async function ModalConstructor(locationId, characterDetails, modalTitle) {
 
     const modalContainerDiv = document.createElement('div');
@@ -159,7 +132,33 @@ function ModalBodyElementsConstructor(character) {
 }
 
 
-LocationCardConstructor()
+async function ResidentsToCharacterObjects(locationUrl, id) {
+    const locationData = await FetchRickAndMortyData(locationUrl);
+    const characterArray = [];
+
+    if (locationData.results[id].residents.length > 0) {
+        for (let resident of locationData.results[id].residents) {
+            const characterUrl = new URL(resident);
+            characterArray.push(characterUrl.pathname.match('[0-9]+$'));
+        }
+    } else {
+        return "This location has no residents";
+    }
+
+    const flatCharacterArray = characterArray.flat(1);
+    const characterObjects = await FetchRickAndMortyData(`https://rickandmortyapi.com/api/character/${flatCharacterArray}`);
+    return characterObjects;
+}
+
+
+function setElementAttributes(element, attributes) {
+    for (let key in attributes) {
+        element.setAttribute(key, attributes[key]);
+    }
+    return element;
+}
+
+LocationCardConstructor();
 
 
         // if (cardRow.childElementCount < 20) {
