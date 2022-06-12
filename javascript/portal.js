@@ -39,13 +39,17 @@ async function LocationCardConstructor() {
 
         if(cardRow.childElementCount < 20) {
             const loadingDiv = document.createElement("div");
-            loadingDiv.classList.add("spinner-border");
+            loadingDiv.classList.add("spinner-border", "d-none");
             loadingDiv.setAttribute("role", "status");
+            loadingDiv.setAttribute("id", "loadingWheel");
             const loadingDivSpan = document.createElement("span");
             loadingDivSpan.classList.add("visually-hidden");
             loadingDivSpan.innerHTML = "Loading...";
             cardRow.appendChild(loadingDiv);
-        } 
+        } else {
+            const spinner = document.getElementById("loadingWheel");
+            spinner.remove("d-none");
+        }
 
         const modalContainerDiv = document.createElement('div');
         modalContainerDiv.classList.add("modal", "fade")
