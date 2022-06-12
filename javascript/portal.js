@@ -171,6 +171,8 @@ function CardSearchFilter() {
 
         if (!cardHeaderText.includes(searchInput)) {
             card.classList.add("d-none");
+        } else {
+            card.classList.remove("d-none");
         }
     }
 }
