@@ -165,9 +165,12 @@ function CardSearchFilter() {
     const searchInput = document.getElementById("navsearch");
     const searchFilter = searchInput.value.toLowerCase();
     const rowOfCards = document.getElementById("cardrow");
-    const cardHeaders = document.getElementsByClassName("card-header");
     for (const card of rowOfCards.children) {
-        console.log(card.querySelector("h5").innerHTML);
+        const cardHeaderText = card.querySelector("h5").innerHTML.toLowerCase()
+        //console.log(cardHeaderText);
+        if (!cardHeaderText.includes(searchFilter)) {
+            card.classList.add("d-none")
+        }
     }
 }
 LocationCardConstructor();
