@@ -18,7 +18,7 @@ async function LocationCardConstructor() {
 
     const modalDiv = document.getElementById("modalDiv");
 
-    for (let location of locationData.results) {
+    for (const location of locationData.results) {
         const columnSmall = document.createElement("div");
         columnSmall.classList.add("col-sm-4");
         const card = document.createElement("div");
@@ -78,7 +78,7 @@ async function LocationCardConstructor() {
         const characterInfo = await ResidentsToCharacterObjects(locationBaseUrl, (location.id - 1));
 
         if (Array.isArray(characterInfo)) {
-            for (character of characterInfo) {
+            for (const character of characterInfo) {
                 const info = ModalBodyElementsConstructor(character);
                 modalBodyRowDiv.append(info.characterInfoColumn);
             }
