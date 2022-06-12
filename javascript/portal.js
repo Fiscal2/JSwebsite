@@ -163,14 +163,14 @@ function setElementAttributes(element, attributes) {
 
 
 function CardSearchFilter() {
-    const searchInput = document.getElementById("navsearch").value.toLowerCase();
+    const searchInput = document.getElementById("navsearch").value.toLowerCase().trim();
     const rowOfCards = document.getElementById("cardrow");
 
     for (const card of rowOfCards.children) {
-        const cardHeaderText = card.querySelector("h5").innerHTML.toLowerCase()
+        const cardHeaderText = card.querySelector("h5").innerHTML.toLowerCase().trim();
 
         if (!cardHeaderText.includes(searchInput)) {
-            card.classList.add("d-none")
+            card.classList.add("d-none");
         }
     }
 }
