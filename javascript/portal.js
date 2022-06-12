@@ -126,6 +126,7 @@ function ModalBodyElementsConstructor(character) {
 
         const characterInfoImage = document.createElement('img');
         characterInfoImage.setAttribute('src', character.image);
+        characterInfoImage.setAttribute('loading', 'lazy');
         characterInfoImage.classList.add("img-thumbnail", "mx-auto", "d-block");
 
         characterInfoColumn.append(characterInfoImage, characterInfoText)
@@ -162,13 +163,13 @@ function setElementAttributes(element, attributes) {
 
 
 function CardSearchFilter() {
-    const searchInput = document.getElementById("navsearch");
-    const searchFilter = searchInput.value.toLowerCase();
+    const searchInput = document.getElementById("navsearch").value.toLowerCase();
     const rowOfCards = document.getElementById("cardrow");
+
     for (const card of rowOfCards.children) {
         const cardHeaderText = card.querySelector("h5").innerHTML.toLowerCase()
-        //console.log(cardHeaderText);
-        if (!cardHeaderText.includes(searchFilter)) {
+
+        if (!cardHeaderText.includes(searchInput)) {
             card.classList.add("d-none")
         }
     }
