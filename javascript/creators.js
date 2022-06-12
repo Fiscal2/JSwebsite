@@ -90,7 +90,7 @@ function GenericCardCreator(cardTitleText, cardBodyData) {
     cardBody.appendChild(cardTitle);
 
     if (Array.isArray(cardBodyData)) {
-        for (bodyElement of cardBodyData) {
+        for (const bodyElement of cardBodyData) {
             cardBody.append(bodyElement);
         }
     } else {
