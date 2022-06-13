@@ -19,9 +19,8 @@ async function CardAndModalBuilder() {
     const modalDiv = document.getElementById("modalDiv");
 
     for (const location of locationData.results) {
-        console.log(location)
         const cardColumns = CardConstructor(location);
-        const characterInfo = await ResidentsToCharacterObjects(locationBaseUrl, (location.id - 1));
+        const characterInfo = await ResidentsToCharacterObjects(location);
         const completedModal = ModalConstructor(location.id, characterInfo, location.name)
 
         modalDiv.appendChild(completedModal);
@@ -134,12 +133,11 @@ function ModalBodyElementsConstructor(character) {
 }
 
 
-async function ResidentsToCharacterObjects(locationUrl, id) {
-    const locationData = await FetchRickAndMortyData(locationUrl);
+async function ResidentsToCharacterObjects(locationInfo) {
     const characterArray = [];
 
-    if (locationData.results[id].residents.length > 0) {
-        for (const resident of locationData.results[id].residents) {
+    if (locationInfo.residents.length > 0) {
+        for (const resident of locationInfo.residents) {
             const characterUrl = new URL(resident);
             characterArray.push(characterUrl.pathname.match('[0-9]+$'));
         }
