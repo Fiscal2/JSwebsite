@@ -28,11 +28,11 @@ async function CardAndModalBuilder() {
         cardRow.appendChild(cardColumns);
     }
 
-    if(cardRow.childElementCount === locationData.results.length) {
+    
         const loadingSpinner = document.getElementById("loadingSpinner");
         loadingSpinner.classList.add("d-none");
         
-    }
+
 }
 
 
