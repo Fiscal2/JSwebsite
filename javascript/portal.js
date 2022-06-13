@@ -23,16 +23,12 @@ async function CardAndModalBuilder() {
         const characterInfo = await ResidentsToCharacterObjects(location);
         const completedModal = ModalConstructor(location.id, characterInfo, location.name)
 
-
         modalDiv.appendChild(completedModal);
         cardRow.appendChild(cardColumns);
     }
 
-    
-        const loadingSpinner = document.getElementById("loadingSpinner");
-        loadingSpinner.classList.add("d-none");
-        
-
+    const loadingSpinner = document.getElementById("loadingSpinner");
+    loadingSpinner.classList.add("d-none");
 }
 
 
@@ -196,4 +192,3 @@ CardAndModalBuilder();
         //     spinner.remove();
         // }
 
-    
