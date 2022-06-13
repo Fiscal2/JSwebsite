@@ -14,7 +14,7 @@ async function FetchRickAndMortyData(url) {
 async function CardAndModalBuilder() {
     const locationBaseUrl = "https://rickandmortyapi.com/api/location/";
     const locationData = await FetchRickAndMortyData(locationBaseUrl);
-
+    console.log(locationData)
     const cardRow = document.getElementById("cardrow");
     const modalDiv = document.getElementById("modalDiv");
 
