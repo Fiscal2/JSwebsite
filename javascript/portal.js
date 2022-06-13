@@ -23,14 +23,15 @@ async function CardAndModalBuilder() {
         const characterInfo = await ResidentsToCharacterObjects(location);
         const completedModal = ModalConstructor(location.id, characterInfo, location.name)
 
-        if(cardRow.childElementCount === locationData.results.length) {
-            const loadingSpinner = document.getElementById("loadingSpinner");
-            loadingSpinner.classList.add("d-none");
-            
-        }
 
         modalDiv.appendChild(completedModal);
         cardRow.appendChild(cardColumns);
+    }
+
+    if(cardRow.childElementCount === locationData.results.length) {
+        const loadingSpinner = document.getElementById("loadingSpinner");
+        loadingSpinner.classList.add("d-none");
+        
     }
 }
 
