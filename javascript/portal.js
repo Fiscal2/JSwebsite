@@ -19,7 +19,7 @@ async function CardAndModalBuilder() {
     const modalDiv = document.getElementById("modalDiv");
 
     for (const location of locationData.results) {
-
+        console.log(location)
         const cardColumns = CardConstructor(location);
         const characterInfo = await ResidentsToCharacterObjects(locationBaseUrl, (location.id - 1));
         const completedModal = ModalConstructor(location.id, characterInfo, location.name)
