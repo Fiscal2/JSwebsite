@@ -19,31 +19,37 @@ async function LocationCardConstructor() {
     const modalDiv = document.getElementById("modalDiv");
 
     for (const location of locationData.results) {
-        const columnSmall = document.createElement("div");
-        columnSmall.classList.add("col-sm-4");
-        const card = document.createElement("div");
-        card.classList.add("card", "my-2", "bg-transparent", "text-white");
 
-        card.innerHTML =
-            `
-            <h5 class="card-header bg-success" style="text-shadow: 2px 2px 2px #000000;">${location.name}</h5>
-            <div class="card-body bg-success bg-opacity-75">
-                <h5 class="card-title">${location.dimension}</h5>
-                <h6 class="card-subtitle mb-2">Type: ${location.type}</h6>
-                <p class="card-text">Number of residents: ${location.residents.length}</p>
-                <button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#locationModal${location.id}">
-                Residents
-                </button>
-            </div>
-        `
+        const cardColumns = CardConstructor(location);
         const characterInfo = await ResidentsToCharacterObjects(locationBaseUrl, (location.id - 1));
         const completedModal = ModalConstructor(location.id, characterInfo, location.name)
 
         modalDiv.appendChild(completedModal);
-        columnSmall.appendChild(card);
-        cardRow.appendChild(columnSmall);
+        cardRow.appendChild(cardColumns);
     }
-    // console.log(cardRow.childElementCount)
+}
+
+
+function CardConstructor(locationInfo) {
+    const cardColumn = document.createElement("div");
+    cardColumn.classList.add("col-sm-4");
+    const card = document.createElement("div");
+    card.classList.add("card", "my-2", "bg-transparent", "text-white");
+
+    card.innerHTML =
+        `
+        <h5 class="card-header bg-success" style="text-shadow: 2px 2px 2px #000000;">${locationInfo.name}</h5>
+        <div class="card-body bg-success bg-opacity-75">
+            <h5 class="card-title">${locationInfo.dimension}</h5>
+            <h6 class="card-subtitle mb-2">Type: ${locationInfo.type}</h6>
+            <p class="card-text">Number of residents: ${locationInfo.residents.length}</p>
+            <button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#locationModal${locationInfo.id}">
+            Residents
+            </button>
+        </div>
+    `
+    cardColumn.appendChild(card);
+    return cardColumn
 }
 
 
@@ -155,9 +161,9 @@ function setElementAttributes(element, attributes) {
 
 function CardSearchFilter() {
     const searchInput = document.getElementById("navsearch").value.toLowerCase().trim();
-    const rowOfCards = document.getElementById("cardrow");
+    const rowOfCards = document.getElementById("cardrow").children;
     console.log(searchInput);
-    for (const card of rowOfCards.children) {
+    for (const card of rowOfCards) {
         const cardHeaderText = card.querySelector("h5").innerHTML.toLowerCase().trim();
 
         if (!cardHeaderText.includes(searchInput) && !!searchInput) {
