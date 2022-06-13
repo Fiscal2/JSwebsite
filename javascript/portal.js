@@ -16,8 +16,6 @@ async function LocationCardConstructor() {
     const locationData = await FetchRickAndMortyData(locationBaseUrl);
 
     const cardRow = document.getElementById("cardrow");
-
-
     const modalDiv = document.getElementById("modalDiv");
 
     for (const location of locationData.results) {
@@ -48,7 +46,7 @@ async function LocationCardConstructor() {
         cardRow.appendChild(columnSmall);
 
     }
-    console.log(cardRow.childElementCount)
+    // console.log(cardRow.childElementCount)
 }
 
 
@@ -110,7 +108,6 @@ async function ModalConstructor(locationId, characterDetails, modalTitle) {
     modalContentDiv.append(modalHeaderDiv, modalBodyDiv);
     modalDialogDiv.appendChild(modalContentDiv);
     modalContainer.appendChild(modalDialogDiv);
-
     return modalContainer;
 }
 
@@ -140,7 +137,7 @@ async function ResidentsToCharacterObjects(locationUrl, id) {
     const characterArray = [];
 
     if (locationData.results[id].residents.length > 0) {
-        for (let resident of locationData.results[id].residents) {
+        for (const resident of locationData.results[id].residents) {
             const characterUrl = new URL(resident);
             characterArray.push(characterUrl.pathname.match('[0-9]+$'));
         }
@@ -155,7 +152,7 @@ async function ResidentsToCharacterObjects(locationUrl, id) {
 
 
 function setElementAttributes(element, attributes) {
-    for (let key in attributes) {
+    for (const key in attributes) {
         element.setAttribute(key, attributes[key]);
     }
     return element;
@@ -169,13 +166,14 @@ function CardSearchFilter() {
     for (const card of rowOfCards.children) {
         const cardHeaderText = card.querySelector("h5").innerHTML.toLowerCase().trim();
 
-        if (!cardHeaderText.includes(searchInput)) {
+        if (!cardHeaderText.includes(searchInput) && !!searchInput) {
             card.classList.add("d-none");
         } else {
             card.classList.remove("d-none");
         }
     }
 }
+
 LocationCardConstructor();
 
 
