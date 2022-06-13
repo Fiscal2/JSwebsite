@@ -37,21 +37,17 @@ async function LocationCardConstructor() {
             </div>
         `
         const characterInfo = await ResidentsToCharacterObjects(locationBaseUrl, (location.id - 1));
-
-        const completedModal = await ModalConstructor(location.id, characterInfo, location.name)
+        const completedModal = ModalConstructor(location.id, characterInfo, location.name)
 
         modalDiv.appendChild(completedModal);
-
         columnSmall.appendChild(card);
         cardRow.appendChild(columnSmall);
-
     }
     // console.log(cardRow.childElementCount)
 }
 
 
-async function ModalConstructor(locationId, characterDetails, modalTitle) {
-
+function ModalConstructor(locationId, characterDetails, modalTitle) {
     const modalContainerDiv = document.createElement('div');
     modalContainerDiv.classList.add("modal", "fade")
     const modalContainer = setElementAttributes(modalContainerDiv,
@@ -145,9 +141,7 @@ async function ResidentsToCharacterObjects(locationUrl, id) {
         return "This location has no residents";
     }
 
-    const flatCharacterArray = characterArray.flat(1);
-    const characterObjects = await FetchRickAndMortyData(`https://rickandmortyapi.com/api/character/${flatCharacterArray}`);
-    return characterObjects;
+    return await FetchRickAndMortyData(`https://rickandmortyapi.com/api/character/${characterArray.flat(1)}`);
 }
 
 
