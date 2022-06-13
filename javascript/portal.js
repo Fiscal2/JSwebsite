@@ -11,7 +11,7 @@ async function FetchRickAndMortyData(url) {
 }
 
 
-async function LocationCardConstructor() {
+async function CardAndModalBuilder() {
     const locationBaseUrl = "https://rickandmortyapi.com/api/location/";
     const locationData = await FetchRickAndMortyData(locationBaseUrl);
 
@@ -174,7 +174,7 @@ function CardSearchFilter() {
     }
 }
 
-LocationCardConstructor();
+CardAndModalBuilder();
 
 
         // if (cardRow.childElementCount < 20) {
