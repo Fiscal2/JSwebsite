@@ -176,19 +176,3 @@ function CardSearchFilter() {
 }
 
 CardAndModalBuilder();
-
-
-        // if (cardRow.childElementCount < 20) {
-        //     const loadingDiv = document.createElement("div");
-        //     loadingDiv.classList.add("spinner-border");
-        //     loadingDiv.setAttribute("role", "status");
-        //     loadingDiv.setAttribute("id", "loadingWheel");
-        //     const loadingDivSpan = document.createElement("span");
-        //     loadingDivSpan.classList.add("visually-hidden");
-        //     loadingDivSpan.innerHTML = "Loading...";
-        //     cardRow.appendChild(loadingDiv);
-        // } else {
-        //     const spinner = document.getElementById("loadingWheel");
-        //     spinner.remove();
-        // }
-
