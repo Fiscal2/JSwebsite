@@ -14,7 +14,8 @@ async function FetchAllLocations() {
     const completeLocationList = [];
     const locationBaseUrl =  "https://rickandmortyapi.com/api/location/";
     const locationData = await FetchRickAndMortyData(locationBaseUrl);
-    const numOfPages = locationData.info.pages
+    completeLocationList.push(locationData.results);
+    const numOfPages = locationData.info.pages;
 
     for (let i = 2; i <= numOfPages; i++) {
         const nextPageUrl = `${locationBaseUrl}?page=${i}`;
@@ -22,9 +23,8 @@ async function FetchAllLocations() {
         completeLocationList.push(locationsOnEachPage.results);
     }
     
-    completeLocationList.push(locationData);
     console.log(completeLocationList);
-    // return completeLocationList;
+    return completeLocationList;
 }
 
 FetchAllLocations();
