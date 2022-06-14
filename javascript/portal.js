@@ -23,8 +23,8 @@ async function FetchAllLocations() {
         completeLocationList.push(locationsOnEachPage.results);
     }
     
-    console.log(completeLocationList);
-    return completeLocationList;
+    console.log(completeLocationList.flat(1));
+    return completeLocationList.flat(1);
 }
 
 FetchAllLocations();
