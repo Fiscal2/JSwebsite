@@ -69,9 +69,13 @@ function TableConstructor() {
         4: { "Rotten Tomatoes": "94%", "Metacritic": "84" },
         5: { "Rotten Tomatoes": "95%", "Metacritic": "89" }
     }
-
     // idea 3: we put this in json file instead
 
+    for(const [key, value] of Object.entries(tableRatingInfo2)){
+        // How do I log just the value when iterating?
+        
+
+    }
     const tableRow = document.getElementById("ratingCard");
 
     const Table = document.createElement("table");
@@ -96,7 +100,10 @@ function TableConstructor() {
     tableHead.append(tableHeaderRows, mainTableHeaders);
     Table.append(tableHead, tableBody);
     tableRow.appendChild(Table);
+    
+    const card = GenericCardCreator("Ratings", Table);
 
+    tableRow.appendChild(card);
     // you also need to put the table inside a card...
 }
 
