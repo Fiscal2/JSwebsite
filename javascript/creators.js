@@ -50,45 +50,63 @@ function CreatorCardInfo() {
 
 }
 
+
 function TableConstructor() {
+    // idea 1:
+    const tableRatingInfo = {
+        1: ["96%", "85"],
+        2: ["91%", "86"],
+        3: ["96%", "88"],
+        4: ["94%", "84"],
+        5: ["95%", "89"]
+    }
+
+    // idea 2:
+    const tableRatingInfo2 = {
+        1: { "Rotten Tomatoes": "96%", "Metacritic": "85" },
+        2: { "Rotten Tomatoes": "91%", "Metacritic": "86" },
+        3: { "Rotten Tomatoes": "96%", "Metacritic": "88" },
+        4: { "Rotten Tomatoes": "94%", "Metacritic": "84" },
+        5: { "Rotten Tomatoes": "95%", "Metacritic": "89" }
+    }
+
+    // idea 3: we put this in json file instead
+
     const tableRow = document.getElementById("ratingCard");
 
     const Table = document.createElement("table");
     Table.classList.add("table", "table-success", "table-striped", "table-hover");
 
     const tableHead = document.createElement("thead");
-
     const tableHeaderRows = document.createElement("tr");
 
     const mainTableHeaders = document.createElement("th");
     mainTableHeaders.setAttribute("scope", "col");
-    
 
     const tableBody = document.createElement("tbody");
-    
     const tableRows = document.createElement("tr");
 
     const tableHeaders = document.createElement("th");
     tableHeaders.setAttribute("scope", "row");
 
     const tableData = document.createElement("td");
-    
+
     tableRows.append(tableHeaders, tableData);
     tableBody.appendChild(tableRows);
     tableHead.append(tableHeaderRows, mainTableHeaders);
     Table.append(tableHead, tableBody);
     tableRow.appendChild(Table);
 
-
-
-
+    // you also need to put the table inside a card...
 }
+
 TableConstructor();
 
 
 function AccordionConstructor() {
     // Do the thing again
 }
+
 
 function ImageAndColumnMaker3000(creatorName, imageSource) {
 
