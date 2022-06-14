@@ -10,6 +10,7 @@ async function FetchRickAndMortyData(url) {
     }
 }
 
+
 function switchTheme() {
     const currentBackground = document.body.classList[0]
     const themeButton = document.getElementById("themebutton")
@@ -25,6 +26,7 @@ function switchTheme() {
         themeButton.classList.replace("btn-warning", "btn-dark")
     }
 }
+
 
 async function dynamicCarouselConstructor() {
 
@@ -64,6 +66,7 @@ async function dynamicCarouselConstructor() {
         carouselInner.appendChild(carouselItem);
     }
 }
+
 
 async function CharacterCardConstructor() {
 
@@ -114,6 +117,7 @@ function RandomUrlConstructor(length) {
     const randomNumArray = Array.from({ length: length }, () => Math.floor(Math.random() * 826) + 1);
     return `https://rickandmortyapi.com/api/character/${randomNumArray}`
 }
+
 
 function CardSearchFilter() {
     const searchInput = document.getElementById("navsearch").value.replace(/[^a-z0-9]/gi, '').toLowerCase().trim();
