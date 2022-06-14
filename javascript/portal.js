@@ -23,7 +23,7 @@ async function FetchAllLocations() {
     //     completeLocationList.push(locationsOnEachPage.results);
     // }
 
-    for (let i = 1; i < numOfPages; i++) {
+    for (let i = 1; i <= numOfPages; i++) {
         const locationsOnEachPage = await FetchRickAndMortyData(locationBaseUrl);
         completeLocationList.push(locationsOnEachPage.results);
         locationBaseUrl = locationsOnEachPage.info.next;
