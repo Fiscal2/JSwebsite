@@ -10,6 +10,17 @@ async function FetchRickAndMortyData(url) {
     }
 }
 
+async function FetchAllLocations() {
+    const completeLocationList = [];
+    const locationBaseUrl =  "https://rickandmortyapi.com/api/location/";
+    const locationData = await FetchRickAndMortyData(locationBaseUrl);
+    
+    completeLocationList.push(locationData);
+    console.log(completeLocationList);
+    // return completeLocationList;
+}
+
+FetchAllLocations();
 
 async function CardAndModalBuilder() {
     const locationBaseUrl = "https://rickandmortyapi.com/api/location/";
