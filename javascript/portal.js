@@ -23,20 +23,18 @@ async function FetchAllLocations() {
         completeLocationList.push(locationsOnEachPage.results);
     }
     
-    console.log(completeLocationList.flat(1));
     return completeLocationList.flat(1);
 }
 
 FetchAllLocations();
 
 async function CardAndModalBuilder() {
-    const locationBaseUrl = "https://rickandmortyapi.com/api/location/";
-    const locationData = await FetchRickAndMortyData(locationBaseUrl);
+    const locationData = await FetchAllLocations();
     console.log(locationData)
     const cardRow = document.getElementById("cardrow");
     const modalDiv = document.getElementById("modalDiv");
 
-    for (const location of locationData.results) {
+    for (const location of locationData) {
         const cardColumns = CardConstructor(location);
         const characterInfo = await ResidentsToCharacterObjects(location);
         const completedModal = ModalConstructor(location.id, characterInfo, location.name)
