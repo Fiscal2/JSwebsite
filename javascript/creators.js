@@ -51,8 +51,38 @@ function CreatorCardInfo() {
 }
 
 function TableConstructor() {
-    // Do the thing
+    const tableRow = document.getElementById("ratingCard");
+
+    const Table = document.createElement("table");
+    Table.classList.add("table", "table-success", "table-striped", "table-hover");
+
+    const tableHead = document.createElement("thead");
+
+    const tableHeaderRows = document.createElement("tr");
+
+    const mainTableHeaders = document.createElement("th");
+    tableHeaders.setAttribute("scope", "col");
+    
+
+    const tableBody = document.createElement("tbody");
+    
+    const tableRows = document.createElement("tr");
+
+    const tableHeaders = document.createElement("th");
+    tableHeaders.setAttribute("scope", "row");
+
+    const tableData = document.createElement("td");
+    
+    tableRows.append(tableHeaders, tableData);
+    tableBody.appendChild(tableRows);
+    tableHead.append(tableHeaderRows, mainTableHeaders);
+    Table.append(tableHead, tableBody);
+
+
+
 }
+TableConstructor();
+
 
 function AccordionConstructor() {
     // Do the thing again
