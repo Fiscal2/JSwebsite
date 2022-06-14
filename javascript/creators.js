@@ -61,7 +61,7 @@ function TableConstructor() {
     const tableHeaderRows = document.createElement("tr");
 
     const mainTableHeaders = document.createElement("th");
-    tableHeaders.setAttribute("scope", "col");
+    mainTableHeaders.setAttribute("scope", "col");
     
 
     const tableBody = document.createElement("tbody");
@@ -78,7 +78,7 @@ function TableConstructor() {
     tableHead.append(tableHeaderRows, mainTableHeaders);
     Table.append(tableHead, tableBody);
     tableRow.appendChild(Table);
-    
+
 
 
 
