@@ -77,6 +77,8 @@ function TableConstructor() {
     tableBody.appendChild(tableRows);
     tableHead.append(tableHeaderRows, mainTableHeaders);
     Table.append(tableHead, tableBody);
+    tableRow.appendChild(Table);
+    
 
 
 
