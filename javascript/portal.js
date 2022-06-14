@@ -26,7 +26,6 @@ async function FetchAllLocations() {
     return completeLocationList.flat(1);
 }
 
-FetchAllLocations();
 
 async function CardAndModalBuilder() {
     const locationData = await FetchAllLocations();
