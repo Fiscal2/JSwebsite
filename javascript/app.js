@@ -110,11 +110,9 @@ async function CharacterCardConstructor() {
 }
 
 
-
 function RandomUrlConstructor(length) {
     const randomNumArray = Array.from({ length: length }, () => Math.floor(Math.random() * 826) + 1);
-    const randomUrl = `https://rickandmortyapi.com/api/character/${randomNumArray}`
-    return randomUrl;
+    return `https://rickandmortyapi.com/api/character/${randomNumArray}`
 }
 
 dynamicCarouselConstructor();
