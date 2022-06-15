@@ -72,7 +72,8 @@ function TableConstructor() {
     // idea 3: we put this in json file instead
 
     for(const [key, value] of Object.entries(tableRatingInfo2)){
-        // How do I log just the value when iterating?
+        const keys = 
+        console.log(keys);
         
 
     }
