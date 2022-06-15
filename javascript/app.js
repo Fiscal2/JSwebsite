@@ -76,7 +76,7 @@ async function CharacterCardConstructor() {
     for (let character of data.results) {
         const cardRow = document.getElementById('cardrow');
         const card = document.createElement('div');
-        card.classList.add("card", "bg-info", "bg-opacity-75", "text-black", "mb-3", "shadow", "ms-3", "p-1");
+        card.classList.add("card", "bg-info", "bg-opacity-75", "text-white", "mb-3", "shadow", "ms-3", "p-1");
         card.setAttribute("style", "max-width: 540px;");
 
         const cardInnerRow = document.createElement('div');
