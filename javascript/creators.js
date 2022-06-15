@@ -73,6 +73,25 @@ function TableConstructor() {
         tableHeaderRows.appendChild(mainTableHeaders)
     }
 
+    for(const season of tableRatingInfo) {
+        const tableBody = document.createElement("div");
+        tableBody.setAttribute("scope", "row");
+        tableBody.innerHTML = season;
+        
+        const tableData = document.createElement("div");
+        tableData.innerHTML = `
+            <th>${season["Season"]}</th>
+            <td>${season["Rotten Tomatoes"]}</td>
+            <td>${season["Metacritic"]}</td>
+
+        `
+
+        tableBody.appendChild(tableData);
+        return tableBody;
+
+        
+    }
+
     const tableRow = document.getElementById("ratingCard");
 
     const Table = document.createElement("table");
