@@ -62,13 +62,13 @@ function TableConstructor() {
     }
 
     // idea 2:
-    const tableRatingInfo2 = {
-        1: { "Rotten Tomatoes": "96%", "Metacritic": "85" },
-        2: { "Rotten Tomatoes": "91%", "Metacritic": "86" },
-        3: { "Rotten Tomatoes": "96%", "Metacritic": "88" },
-        4: { "Rotten Tomatoes": "94%", "Metacritic": "84" },
-        5: { "Rotten Tomatoes": "95%", "Metacritic": "89" }
-    }
+    const tableRatingInfo2 = [
+        { "Season": 1, "Rotten Tomatoes": "96%", "Metacritic": "85" },
+        { "Season": 2, "Rotten Tomatoes": "91%", "Metacritic": "86" },
+        { "Season": 3, "Rotten Tomatoes": "96%", "Metacritic": "88" },
+        { "Season": 4, "Rotten Tomatoes": "94%", "Metacritic": "84" },
+        { "Season": 5, "Rotten Tomatoes": "95%", "Metacritic": "89" }
+    ]
     // idea 3: we put this in json file instead
 
     for (const [key, value] of Object.entries(tableRatingInfo2)) {
