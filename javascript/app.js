@@ -97,7 +97,7 @@ async function CharacterCardConstructor() {
 
         cardBody.innerHTML =
             `
-            <h5 class="card-title">${character.name}</h5>
+            <h5 class="card-title" style="text-shadow: 2px 2px 2px #000000;">${character.name}</h5>
             <p class="card-text mb-1">Status: ${character.status}</p> 
             <p class="card-text mb-1">Species: ${character.species}</p>
             <p class="card-text mb-1">Gender: ${character.gender}</p>
