@@ -71,12 +71,13 @@ function TableConstructor() {
     }
     // idea 3: we put this in json file instead
 
-    for(const [key, value] of Object.entries(tableRatingInfo2)){
-        const keys = 
-        console.log(keys);
-        
-
+    for (const [key, value] of Object.entries(tableRatingInfo2)) {
+        const tableValueTomato = `Rotten Tomatoes: ${value["Rotten Tomatoes"]}`;
+        const tableValueKeys = Object.keys(value)
+        console.log(tableValueTomato);
+        console.log(tableValueKeys);
     }
+
     const tableRow = document.getElementById("ratingCard");
 
     const Table = document.createElement("table");
@@ -101,7 +102,7 @@ function TableConstructor() {
     tableHead.append(tableHeaderRows, mainTableHeaders);
     Table.append(tableHead, tableBody);
     tableRow.appendChild(Table);
-    
+
     const card = GenericCardCreator("Ratings", Table);
 
     tableRow.appendChild(card);
