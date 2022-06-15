@@ -52,26 +52,16 @@ function CreatorCardInfo() {
 
 
 function TableConstructor() {
-    // idea 1:
-    const tableRatingInfo = {
-        1: ["96%", "85"],
-        2: ["91%", "86"],
-        3: ["96%", "88"],
-        4: ["94%", "84"],
-        5: ["95%", "89"]
-    }
 
-    // idea 2:
-    const tableRatingInfo2 = [
+    const tableRatingInfo = [
         { "Season": 1, "Rotten Tomatoes": "96%", "Metacritic": "85" },
         { "Season": 2, "Rotten Tomatoes": "91%", "Metacritic": "86" },
         { "Season": 3, "Rotten Tomatoes": "96%", "Metacritic": "88" },
         { "Season": 4, "Rotten Tomatoes": "94%", "Metacritic": "84" },
         { "Season": 5, "Rotten Tomatoes": "95%", "Metacritic": "89" }
     ]
-    // idea 3: we put this in json file instead
 
-    for (const season of tableRatingInfo2) {
+    for (const season of tableRatingInfo) {
         console.log(season)
         console.log(season["Season"])
         console.log(season["Rotten Tomatoes"])
