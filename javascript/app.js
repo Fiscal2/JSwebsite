@@ -76,7 +76,7 @@ async function CharacterCardConstructor() {
     for (let character of data.results) {
         const cardRow = document.getElementById('cardrow');
         const card = document.createElement('div');
-        card.classList.add("card", "bg-info", "bg-opacity-75", "text-white", "mb-3", "shadow", "ms-3", "p-1");
+        card.classList.add("card", "bg-info", "bg-opacity-75", "text-black", "mb-3", "shadow", "ms-3", "p-1");
         card.setAttribute("style", "max-width: 540px;");
 
         const cardInnerRow = document.createElement('div');
@@ -97,11 +97,11 @@ async function CharacterCardConstructor() {
 
         cardBody.innerHTML =
             `
-            <h5 class="card-title" style="text-shadow: 2px 2px 2px #000000;">${character.name}</h5>
-            <p class="card-text mb-1">Status: ${character.status}</p> 
-            <p class="card-text mb-1">Species: ${character.species}</p>
-            <p class="card-text mb-1">Gender: ${character.gender}</p>
-            <p class="card-text mb-1">Origin: ${character.origin['name']}</p>
+            <h5 class="card-title text-white" style="text-shadow: 2px 2px 2px #000000;">${character.name}</h5>
+            <p class="card-text mb-1"><b>Status:</b> ${character.status}</p> 
+            <p class="card-text mb-1"><b>Species:</b> ${character.species}</p>
+            <p class="card-text mb-1"><b>Gender:</b> ${character.gender}</p>
+            <p class="card-text mb-1"><b>Origin:</b> ${character.origin['name']}</p>
             `
 
         cardImageColumn.appendChild(cardImage);
