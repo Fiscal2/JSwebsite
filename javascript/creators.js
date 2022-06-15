@@ -63,21 +63,20 @@ function TableConstructor() {
 
     const tableHead = document.createElement("thead");
     const tableHeaderRows = document.createElement("tr");
+    const tableHeaderText = Object.keys(tableRatingInfo[1]);
 
-    for (const season of tableRatingInfo) {
+    console.log(tableHeaderText);
+    for (const label of tableHeaderText) {
         const mainTableHeaders = document.createElement("th");
         mainTableHeaders.setAttribute("scope", "col");
-
-        console.log(season)
-
+        mainTableHeaders.innerHTML = label
+        console.log(label)
     }
 
     const tableRow = document.getElementById("ratingCard");
 
     const Table = document.createElement("table");
     Table.classList.add("table", "table-success", "table-striped", "table-hover");
-
-
 
     const tableBody = document.createElement("tbody");
     const tableRows = document.createElement("tr");
@@ -89,7 +88,7 @@ function TableConstructor() {
 
     tableRows.append(tableHeaders, tableData);
     tableBody.appendChild(tableRows);
-    tableHead.append(tableHeaderRows, mainTableHeaders);
+    //tableHead.append(tableHeaderRows, mainTableHeaders);
     Table.append(tableHead, tableBody);
     tableRow.appendChild(Table);
 
