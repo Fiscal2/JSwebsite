@@ -194,7 +194,7 @@ function setElementAttributes(element, attributes) {
 function CardSearchFilter() {
     const searchInput = document.getElementById("navsearch").value.replace(/[^a-z0-9]/gi, '').toLowerCase().trim();
     const rowOfCards = document.getElementById("cardrow").children;
-    console.log(searchInput);
+
     for (const card of rowOfCards) {
         const cardHeaderText = card.querySelector("h5").innerHTML.toLowerCase().trim();
 
