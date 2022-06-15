@@ -36,25 +36,30 @@ async function LocationCollectionConstructor() {
 }
 
 
-async function CardAndModalBuilder(pageNumber = 0) {
-    //const locationData = await FetchAllLocations();
+async function PaginationCardBuilder(pageNumber = 0) {
     const groupedLocationData = await LocationCollectionConstructor();
     const cardRow = document.getElementById("cardrow");
-    const modalDiv = document.getElementById("modalDiv");
-    cardRow.replaceChildren()
+    cardRow.replaceChildren();
+
     for (const location of groupedLocationData[pageNumber]) {
         const cardColumns = CardConstructor(location);
-        //const characterInfo = await ResidentsToCharacterObjects(location);
-        //const completedModal = ModalConstructor(location.id, characterInfo, location.name)
-
-        //modalDiv.appendChild(completedModal);
         cardRow.appendChild(cardColumns);
+    }
+}
+
+async function ModalBuilder() {
+    const locationData = await FetchAllLocations();
+    const modalDiv = document.getElementById("modalDiv");
+
+    for (const location of locationData) {
+        const characterInfo = await ResidentsToCharacterObjects(location);
+        const completedModal = ModalConstructor(location.id, characterInfo, location.name);
+        modalDiv.appendChild(completedModal);
     }
 
     const loadingSpinner = document.getElementById("loadingSpinner");
     loadingSpinner.classList.add("d-none");
 }
-
 
 function CardConstructor(locationInfo) {
     const cardColumn = document.createElement("div");
@@ -199,4 +204,5 @@ function CardSearchFilter() {
     }
 }
 
-CardAndModalBuilder();
+PaginationCardBuilder();
+ModalBuilder();
