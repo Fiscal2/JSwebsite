@@ -35,20 +35,26 @@ async function LocationCollectionConstructor() {
     return groupedLocations;
 }
 
-console.log(LocationCollectionConstructor())
+
+async function LocationDisplayChanger(pageNum = 0) {
+    console.log(pageNum);
+    const groupedData = await LocationCollectionConstructor();
+    return groupedData[pageNum];
+}
 
 
-async function CardAndModalBuilder() {
-    const locationData = await FetchAllLocations();
+async function CardAndModalBuilder(pageNumber) {
+    //const locationData = await FetchAllLocations();
+    const groupedLocationData = await LocationDisplayChanger(pageNumber);
     const cardRow = document.getElementById("cardrow");
     const modalDiv = document.getElementById("modalDiv");
-
-    for (const location of locationData) {
+    cardRow.replaceChildren()
+    for (const location of groupedLocationData) {
         const cardColumns = CardConstructor(location);
-        const characterInfo = await ResidentsToCharacterObjects(location);
-        const completedModal = ModalConstructor(location.id, characterInfo, location.name)
+        //const characterInfo = await ResidentsToCharacterObjects(location);
+        //const completedModal = ModalConstructor(location.id, characterInfo, location.name)
 
-        modalDiv.appendChild(completedModal);
+        //modalDiv.appendChild(completedModal);
         cardRow.appendChild(cardColumns);
     }
 
