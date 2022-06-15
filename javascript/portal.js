@@ -47,6 +47,7 @@ async function PaginationCardBuilder(pageNumber = 0) {
     }
 }
 
+
 async function ModalBuilder() {
     const locationData = await FetchAllLocations();
     const modalDiv = document.getElementById("modalDiv");
@@ -60,6 +61,7 @@ async function ModalBuilder() {
     const loadingSpinner = document.getElementById("loadingSpinner");
     loadingSpinner.classList.add("d-none");
 }
+
 
 function CardConstructor(locationInfo) {
     const cardColumn = document.createElement("div");
