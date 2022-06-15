@@ -68,13 +68,12 @@ async function dynamicCarouselConstructor() {
 }
 
 
-async function CharacterCardConstructor() {
+async function CharacterCardConstructor(pageNumber = 0) {
+    const data = await CharacterCollectionConstructor();
+    const cardRow = document.getElementById('cardrow');
+    cardRow.replaceChildren();
+    for (const character of data[pageNumber]) {
 
-    const rickAndMortyUrl = "https://rickandmortyapi.com/api/character/?page=2"
-    const data = await FetchRickAndMortyData(rickAndMortyUrl)
-
-    for (let character of data.results) {
-        const cardRow = document.getElementById('cardrow');
         const card = document.createElement('div');
         card.classList.add("card", "bg-info", "bg-opacity-75", "text-black", "mb-3", "shadow", "ms-3", "p-1");
         card.setAttribute("style", "max-width: 540px;");
@@ -134,5 +133,44 @@ function CardSearchFilter() {
     }
 }
 
+async function FetchAllCharacters() {
+    const completeCharactersList = [];
+    let characterBaseUrl = "https://rickandmortyapi.com/api/character/";
+    const numOfPages = 42;
+
+    for (let i = 1; i <= numOfPages; i++) {
+        const charactersOnEachPage = await FetchRickAndMortyData(characterBaseUrl);
+        completeCharactersList.push(charactersOnEachPage.results);
+        characterBaseUrl = charactersOnEachPage.info.next;
+    }
+    
+    return completeCharactersList.flat(1);
+}
+
+
+async function CharacterCollectionConstructor() {
+    const rickAndMortyUrl = "https://rickandmortyapi.com/api/character/"
+    const allCharacters = await FetchAllCharacters(rickAndMortyUrl);
+
+    const groupedCharacters = [];
+    for (let i = 0; i < allCharacters.length; i += 59) {
+        groupedCharacters.push(allCharacters.slice(i, i + 59));
+    }
+    return groupedCharacters;
+}
+
+
+// async function PaginationCardBuilder(pageNumber = 0) {
+//     const groupedCharacterData = await CharacterCollectionConstructor();
+//     const cardRow = document.getElementById("cardrow");
+//     cardRow.replaceChildren();
+
+//     for (const character of groupedCharacterData[pageNumber]) {
+//         const cardColumns = CardConstructor(character);
+//         cardRow.appendChild(cardColumns);
+//     }
+// }
+
+//PaginationCardBuilder();
 dynamicCarouselConstructor();
 CharacterCardConstructor();
