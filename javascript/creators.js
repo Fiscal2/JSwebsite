@@ -140,7 +140,7 @@ function GenericCardCreator(cardTitleText, cardBodyData) {
     cardBody.classList.add("card-body", "text-center");
 
     const cardTitle = document.createElement('h2');
-    cardTitle.classList.add("card-title", "text-decoration-underline");
+    cardTitle.classList.add("card-title");  
     cardTitle.innerHTML = cardTitleText;
 
     cardBody.appendChild(cardTitle);
