@@ -10,6 +10,7 @@ async function FetchRickAndMortyData(url) {
     }
 }
 
+
 async function FetchAllLocations() {
     const completeLocationList = [];
     let locationBaseUrl = "https://rickandmortyapi.com/api/location/";
