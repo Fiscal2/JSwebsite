@@ -70,7 +70,7 @@ function TableConstructor() {
         const mainTableHeaders = document.createElement("th");
         mainTableHeaders.setAttribute("scope", "col");
         mainTableHeaders.innerHTML = label
-        console.log(label)
+        tableHeaderRows.appendChild(mainTableHeaders)
     }
 
     const tableRow = document.getElementById("ratingCard");
@@ -88,7 +88,7 @@ function TableConstructor() {
 
     tableRows.append(tableHeaders, tableData);
     tableBody.appendChild(tableRows);
-    //tableHead.append(tableHeaderRows, mainTableHeaders);
+    tableHead.append(tableHeaderRows);
     Table.append(tableHead, tableBody);
     tableRow.appendChild(Table);
 
