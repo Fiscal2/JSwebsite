@@ -61,11 +61,15 @@ function TableConstructor() {
         { "Season": 5, "Rotten Tomatoes": "95%", "Metacritic": "89" }
     ]
 
+    const tableHead = document.createElement("thead");
+    const tableHeaderRows = document.createElement("tr");
+
     for (const season of tableRatingInfo) {
+        const mainTableHeaders = document.createElement("th");
+        mainTableHeaders.setAttribute("scope", "col");
+
         console.log(season)
-        console.log(season["Season"])
-        console.log(season["Rotten Tomatoes"])
-        console.log(season["Metacritic"])
+
     }
 
     const tableRow = document.getElementById("ratingCard");
@@ -73,11 +77,7 @@ function TableConstructor() {
     const Table = document.createElement("table");
     Table.classList.add("table", "table-success", "table-striped", "table-hover");
 
-    const tableHead = document.createElement("thead");
-    const tableHeaderRows = document.createElement("tr");
 
-    const mainTableHeaders = document.createElement("th");
-    mainTableHeaders.setAttribute("scope", "col");
 
     const tableBody = document.createElement("tbody");
     const tableRows = document.createElement("tr");
