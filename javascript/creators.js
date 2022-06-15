@@ -50,58 +50,63 @@ function CreatorCardInfo() {
 
 }
 
+function TableHeadConstructor() {
+    const tableHeaderText = ["Season", "Rotten Tomatoes", "Metacritic"];
+    const tableHead = document.createElement("thead");
+    const tableHeaderRow = document.createElement("tr");
 
-function TableConstructor() {
+    for (const label of tableHeaderText) {
+        const tableHeaders = document.createElement("th");
+        tableHeaders.setAttribute("scope", "col");
+        tableHeaders.innerHTML = label
+        tableHeaderRow.appendChild(tableHeaders)
+    }
 
-    const tableRatingInfo = [
+    tableHead.append(tableHeaderRow);
+    return tableHead;
+}
+
+
+function TableBodyConstructor() {
+    const ratingInfo = [
         { "Season": 1, "Rotten Tomatoes": "96%", "Metacritic": "85" },
         { "Season": 2, "Rotten Tomatoes": "91%", "Metacritic": "86" },
         { "Season": 3, "Rotten Tomatoes": "96%", "Metacritic": "88" },
         { "Season": 4, "Rotten Tomatoes": "94%", "Metacritic": "84" },
         { "Season": 5, "Rotten Tomatoes": "95%", "Metacritic": "89" }
     ]
-    const tableHeaderText = ["Season", "Rotten Tomatoes", "Metacritic"]
-
-    const tableHead = document.createElement("thead");
-    const tableHeaderRows = document.createElement("tr");
-
-    for (const label of tableHeaderText) {
-        const mainTableHeaders = document.createElement("th");
-        mainTableHeaders.setAttribute("scope", "col");
-        mainTableHeaders.innerHTML = label
-        tableHeaderRows.appendChild(mainTableHeaders)
-    }
 
     const tableBody = document.createElement("tbody");
 
-    for (const season of tableRatingInfo) {
-
+    for (const rating of ratingInfo) {
         const tableDataRow = document.createElement("tr");
         tableDataRow.innerHTML =
             `
-            <th scope="row">${season["Season"]}</th>
-            <td>${season["Rotten Tomatoes"]}</td>
-            <td>${season["Metacritic"]}</td>
+            <th scope="row">${rating["Season"]}</th>
+            <td>${rating["Rotten Tomatoes"]}</td>
+            <td>${rating["Metacritic"]}</td>
             `
-
         tableBody.appendChild(tableDataRow);
     }
 
+    return tableBody;
+}
+
+function TableConstructor() {
     const tableRow = document.getElementById("ratingCard");
 
     const Table = document.createElement("table");
     Table.classList.add("table", "table-success", "table-striped", "table-hover");
 
-    tableHead.append(tableHeaderRows);
+    const tableHead = TableHeadConstructor();
+    const tableBody = TableBodyConstructor();
+
     Table.append(tableHead, tableBody);
     tableRow.appendChild(Table);
 
     const card = GenericCardCreator("Ratings", Table);
-
     tableRow.appendChild(card);
 }
-
-TableConstructor();
 
 
 function AccordionConstructor() {
@@ -153,3 +158,4 @@ function GenericCardCreator(cardTitleText, cardBodyData) {
 }
 
 CreatorCardInfo();
+TableConstructor();
