@@ -71,11 +71,11 @@ function TableConstructor() {
     ]
     // idea 3: we put this in json file instead
 
-    for (const [key, value] of Object.entries(tableRatingInfo2)) {
-        const tableValueTomato = `Rotten Tomatoes: ${value["Rotten Tomatoes"]}`;
-        const tableValueKeys = Object.keys(value)
-        console.log(tableValueTomato);
-        console.log(tableValueKeys);
+    for (const season of tableRatingInfo2) {
+        console.log(season)
+        console.log(season["Season"])
+        console.log(season["Rotten Tomatoes"])
+        console.log(season["Metacritic"])
     }
 
     const tableRow = document.getElementById("ratingCard");
