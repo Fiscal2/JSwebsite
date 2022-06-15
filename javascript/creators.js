@@ -60,12 +60,11 @@ function TableConstructor() {
         { "Season": 4, "Rotten Tomatoes": "94%", "Metacritic": "84" },
         { "Season": 5, "Rotten Tomatoes": "95%", "Metacritic": "89" }
     ]
+    const tableHeaderText = ["Season", "Rotten Tomatoes", "Metacritic"]
 
     const tableHead = document.createElement("thead");
     const tableHeaderRows = document.createElement("tr");
-    const tableHeaderText = Object.keys(tableRatingInfo[1]);
 
-    console.log(tableHeaderText);
     for (const label of tableHeaderText) {
         const mainTableHeaders = document.createElement("th");
         mainTableHeaders.setAttribute("scope", "col");
@@ -73,23 +72,19 @@ function TableConstructor() {
         tableHeaderRows.appendChild(mainTableHeaders)
     }
 
-    for(const season of tableRatingInfo) {
-        const tableBody = document.createElement("div");
-        tableBody.setAttribute("scope", "row");
-        tableBody.innerHTML = season;
-        
-        const tableData = document.createElement("div");
-        tableData.innerHTML = `
-            <th>${season["Season"]}</th>
+    const tableBody = document.createElement("tbody");
+
+    for (const season of tableRatingInfo) {
+
+        const tableDataRow = document.createElement("tr");
+        tableDataRow.innerHTML =
+            `
+            <th scope="row">${season["Season"]}</th>
             <td>${season["Rotten Tomatoes"]}</td>
             <td>${season["Metacritic"]}</td>
+            `
 
-        `
-
-        tableBody.appendChild(tableData);
-        return tableBody;
-
-        
+        tableBody.appendChild(tableDataRow);
     }
 
     const tableRow = document.getElementById("ratingCard");
@@ -97,16 +92,6 @@ function TableConstructor() {
     const Table = document.createElement("table");
     Table.classList.add("table", "table-success", "table-striped", "table-hover");
 
-    const tableBody = document.createElement("tbody");
-    const tableRows = document.createElement("tr");
-
-    const tableHeaders = document.createElement("th");
-    tableHeaders.setAttribute("scope", "row");
-
-    const tableData = document.createElement("td");
-
-    tableRows.append(tableHeaders, tableData);
-    tableBody.appendChild(tableRows);
     tableHead.append(tableHeaderRows);
     Table.append(tableHead, tableBody);
     tableRow.appendChild(Table);
@@ -114,7 +99,6 @@ function TableConstructor() {
     const card = GenericCardCreator("Ratings", Table);
 
     tableRow.appendChild(card);
-    // you also need to put the table inside a card...
 }
 
 TableConstructor();
