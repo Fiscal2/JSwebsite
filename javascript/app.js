@@ -183,7 +183,7 @@ function PaginationButtonGroupBuilder(buttonGroup = 0) {
 
 
 function pageButtonGroupSwapper() {
-    if (currentPage > 0 && currentPage % 5 == 0) {
+    if (currentPage > 0 && currentPage % 5 === 0) {
         PaginationButtonGroupBuilder(currentPage / 5);
     }
 }
