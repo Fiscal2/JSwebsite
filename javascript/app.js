@@ -138,7 +138,7 @@ async function CharacterCollectionConstructor() {
 
 
 function pageChanger(operation) {
-    if (currentPage > 0) {
+    if (currentPage > 0 || currentPage < 59) {
         CharacterBuilder((currentPage + operation));
     }
 }
