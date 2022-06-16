@@ -87,7 +87,7 @@ async function CharacterBuilder(pageNumber = 0) {
     }
     currentPage = pageNumber;
 
-    //Paginator5000(); Needs some work...
+    Paginator5000(); 
 }
 
 
@@ -152,15 +152,15 @@ function Paginator5000() {
     const nextButton = document.getElementById("next");
 
     if (currentPage === 0) {
-        previousButton.classList.add("d-none");
+        previousButton.classList.add("disabled");
     } else {
-        previousButton.classList.remove("d-none");
+        previousButton.classList.remove("disabled");
     }
 
     if (currentPage === 59) {
-        nextButton.classList.add("d-none");
+        nextButton.classList.add("disabled");
     } else {
-        nextButton.classList.remove("d-none");
+        nextButton.classList.remove("disabled");
     }
 }
 
