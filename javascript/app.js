@@ -87,7 +87,8 @@ async function CharacterBuilder(pageNumber = 0) {
     }
     currentPage = pageNumber;
 
-    Paginator5000(); 
+    Paginator5000();
+    pageButtonGroupSwapper();
 }
 
 
@@ -174,14 +175,12 @@ function PaginationButtonGroupBuilder(buttonGroup = 0) {
 
     paginationList.replaceChildren();
     paginationList.append(...paginationListArray)
-
-    pageButtonGroupSwapper();
 }
 
+
 function pageButtonGroupSwapper() {
-    if(currentPage > 0 && currentPage / 5 === 0) {
-        const newCurrentPage = currentPage / 5
-        return newCurrentPage;
+    if (currentPage > 0 && currentPage % 5 == 0) {
+        PaginationButtonGroupBuilder(currentPage / 5);
     }
 }
 
