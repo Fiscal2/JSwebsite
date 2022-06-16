@@ -87,7 +87,7 @@ async function CharacterBuilder(pageNumber = 0) {
     }
     currentPage = pageNumber;
 
-    //Paginator5000();
+    //Paginator5000(); Needs some work...
 }
 
 
@@ -127,6 +127,7 @@ function CharacterCardConstructor(characterInfo) {
     return card;
 }
 
+
 async function CharacterCollectionConstructor() {
     const rickAndMortyUrl = "https://rickandmortyapi.com/api/character/"
     const allCharacters = await FetchAllCharacters(rickAndMortyUrl);
@@ -162,6 +163,8 @@ function Paginator5000() {
         nextButton.classList.remove("d-none");
     }
 }
+
+
 function PaginationButtonGroupBuilder(buttonGroup = 0) {
     const paginationList = document.getElementById("paginationList");
     const groupedButtonList = PaginationListConstructor();
@@ -169,6 +172,7 @@ function PaginationButtonGroupBuilder(buttonGroup = 0) {
         paginationList.append(buttonList)
     }
 }
+
 
 function PaginationListConstructor() {
     const paginationListContainer = document.createElement("div");
@@ -223,7 +227,6 @@ function PaginationCollectionConstructor(paginationListChildren) {
 
     return groupedPaginationButtons;
 }
-
 
 
 function CardSearchFilter() {
