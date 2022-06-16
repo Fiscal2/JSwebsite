@@ -174,6 +174,15 @@ function PaginationButtonGroupBuilder(buttonGroup = 0) {
 
     paginationList.replaceChildren();
     paginationList.append(...paginationListArray)
+
+    pageButtonGroupSwapper();
+}
+
+function pageButtonGroupSwapper() {
+    if(currentPage > 0 && currentPage / 5 === 0) {
+        const newCurrentPage = currentPage / 5
+        return newCurrentPage;
+    }
 }
 
 
