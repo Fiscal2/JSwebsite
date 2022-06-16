@@ -180,7 +180,9 @@ function PaginationButtonGroupBuilder(buttonGroup = 0) {
 
 function pageButtonGroupSwapper() {
     if (currentPage > 0 && currentPage % 5 == 0) {
+        paginationList.replaceChildren();
         PaginationButtonGroupBuilder(currentPage / 5);
+        
     }
 }
 
