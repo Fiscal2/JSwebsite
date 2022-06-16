@@ -1,5 +1,7 @@
 'use strict';
 
+let currentPage;
+
 async function FetchRickAndMortyData(url) {
     const responseData = await fetch(url);
 
@@ -73,15 +75,17 @@ async function dynamicCarouselConstructor() {
 
 
 async function CharacterBuilder(pageNumber = 0) {
+
     const data = await CharacterCollectionConstructor();
     const cardRow = document.getElementById('cardrow');
     cardRow.replaceChildren();
-    // const newPageNumber = pageChanger(pageNumber);
+
     for (const character of data[pageNumber]) {
 
         const card = CharacterCardConstructor(character);
         cardRow.appendChild(card);
     }
+    currentPage = pageNumber;
 }
 
 
@@ -105,14 +109,13 @@ function CharacterCardConstructor(characterInfo) {
 
     const cardBody = document.createElement('div');
     cardBody.classList.add("card-body", "p-1", "ms-1");
-
     cardBody.innerHTML =
         `
         <h5 class="card-title text-white" style="text-shadow: 2px 2px 2px #000000;">${characterInfo.name}</h5>
         <p class="card-text mb-1"><b>Status:</b> ${characterInfo.status}</p> 
         <p class="card-text mb-1"><b>Species:</b> ${characterInfo.species}</p>
         <p class="card-text mb-1"><b>Gender:</b> ${characterInfo.gender}</p>
-        <p class="card-text mb-1"><b>Origin:</b> ${characterInfo.origin['name']}</p>
+        <p class="card-text mb-1"><b>Origin:</b> ${characterInfo.origin['name'] || "unknown"}</p>
         `
 
     cardImageColumn.appendChild(cardImage);
@@ -134,9 +137,10 @@ async function CharacterCollectionConstructor() {
 }
 
 
-function pageChanger(operation, pageNumber = 0) {
-    const newpage = operation + pageNumber;
-    CharacterCardConstructor(newpage);
+function pageChanger(operation) {
+    if (currentPage > 0) {
+        CharacterBuilder((currentPage + operation));
+    }
 }
 
 
