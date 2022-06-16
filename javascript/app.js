@@ -142,8 +142,9 @@ async function CharacterCollectionConstructor() {
 
 
 function pageChanger(operation) {
-    if (currentPage > 0 || currentPage < 59) {
+    if (currentPage > 0 || currentPage < 13) {
         CharacterBuilder((currentPage + operation));
+        pageButtonGroupSwapper();
     }
 }
 
