@@ -134,14 +134,10 @@ async function CharacterCollectionConstructor() {
 }
 
 
-
 function pageChanger(operation, pageNumber = 0) {
     const newpage = operation + pageNumber;
     CharacterCardConstructor(newpage);
 }
-
-
-
 
 
 function CardSearchFilter() {
@@ -158,9 +154,6 @@ function CardSearchFilter() {
         }
     }
 }
-
-
-
 
 
 dynamicCarouselConstructor();
