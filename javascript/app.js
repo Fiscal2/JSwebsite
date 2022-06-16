@@ -158,7 +158,7 @@ function Paginator5000() {
         previousButton.classList.remove("disabled");
     }
 
-    if (currentPage === 14) {
+    if (currentPage === 13) {
         nextButton.classList.add("disabled");
     } else {
         nextButton.classList.remove("disabled");
@@ -192,7 +192,7 @@ function pageButtonGroupSwapper() {
 function PaginationListConstructor() {
     const paginationListContainer = document.createElement("div");
 
-    for (let i = 1; i <= 15; i++) {
+    for (let i = 1; i <= 14; i++) {
         const pageButton = document.createElement("li");
         pageButton.classList.add("page-item");
 
