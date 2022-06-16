@@ -1,6 +1,6 @@
 'use strict';
 
-let currentPage;
+let currentPage = 0
 
 async function FetchRickAndMortyData(url) {
     const responseData = await fetch(url);
@@ -86,6 +86,7 @@ async function CharacterBuilder(pageNumber = 0) {
         cardRow.appendChild(card);
     }
     currentPage = pageNumber;
+    Paginator5000();
 }
 
 
@@ -144,6 +145,23 @@ function pageChanger(operation) {
 }
 
 
+function Paginator5000() {
+    const previousButton = document.getElementById("prev");
+    const nextButton = document.getElementById("next");
+
+    if (currentPage === 0) {
+        previousButton.classList.add("d-none");
+    } else {
+        previousButton.classList.remove("d-none");
+    }
+
+    if (currentPage === 59) {
+        nextButton.classList.add("d-none");
+    } else {
+        nextButton.classList.remove("d-none");
+    }
+}
+
 function CardSearchFilter() {
     const searchInput = document.getElementById("navsearch").value.replace(/[^a-z0-9]/gi, '').toLowerCase().trim();
     const rowOfCards = document.getElementById("cardrow").children;
@@ -158,7 +176,6 @@ function CardSearchFilter() {
         }
     }
 }
-
 
 dynamicCarouselConstructor();
 CharacterBuilder();
