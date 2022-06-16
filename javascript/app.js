@@ -167,11 +167,15 @@ function Paginator5000() {
 
 
 function PaginationButtonGroupBuilder(buttonGroup = 0) {
+    const groupedButtonList = PaginationListConstructor();
     const paginationList = document.getElementById("paginationList");
     const paginationListArray = Array.from(paginationList.children);
-    const groupedButtonList = PaginationListConstructor();
 
-    paginationListArray.splice(1, 0, ...groupedButtonList[buttonGroup])
+    if (buttonGroup > 0) {
+        paginationListArray.splice(1, 5, ...groupedButtonList[buttonGroup])
+    } else {
+        paginationListArray.splice(1, 0, ...groupedButtonList[buttonGroup])
+    }
 
     paginationList.replaceChildren();
     paginationList.append(...paginationListArray)
@@ -181,7 +185,6 @@ function PaginationButtonGroupBuilder(buttonGroup = 0) {
 function pageButtonGroupSwapper() {
     if (currentPage > 0 && currentPage % 5 == 0) {
         PaginationButtonGroupBuilder(currentPage / 5);
-
     }
 }
 
