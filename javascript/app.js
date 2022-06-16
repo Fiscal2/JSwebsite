@@ -11,6 +11,26 @@ async function FetchRickAndMortyData(url) {
 }
 
 
+async function FetchAllCharacters() {
+    const completeCharactersList = [];
+    let characterBaseUrl = "https://rickandmortyapi.com/api/character/";
+    const numOfPages = 42;
+
+    for (let i = 1; i <= numOfPages; i++) {
+        const charactersOnEachPage = await FetchRickAndMortyData(characterBaseUrl);
+        completeCharactersList.push(charactersOnEachPage.results);
+        characterBaseUrl = charactersOnEachPage.info.next;
+    }
+
+    return completeCharactersList.flat(1);
+}
+
+
+function RandomUrlConstructor(length) {
+    const randomNumArray = Array.from({ length: length }, () => Math.floor(Math.random() * 826) + 1);
+    return `https://rickandmortyapi.com/api/character/${randomNumArray}`
+}
+
 
 async function dynamicCarouselConstructor() {
 
@@ -52,60 +72,76 @@ async function dynamicCarouselConstructor() {
 }
 
 
-async function CharacterCardConstructor(pageNumber = 0) {
+async function CharacterBuilder(pageNumber = 0) {
     const data = await CharacterCollectionConstructor();
     const cardRow = document.getElementById('cardrow');
     cardRow.replaceChildren();
     // const newPageNumber = pageChanger(pageNumber);
     for (const character of data[pageNumber]) {
 
-        const card = document.createElement('div');
-        card.classList.add("card", "bg-info", "bg-opacity-75", "text-black", "mb-3", "shadow", "ms-3", "p-1");
-        card.setAttribute("style", "max-width: 540px;");
-
-        const cardInnerRow = document.createElement('div');
-        cardInnerRow.classList.add("row", "g-0");
-
-        const cardImageColumn = document.createElement('div');
-        cardImageColumn.classList.add("col-md-4");
-
-        const cardImage = document.createElement('img');
-        cardImage.classList.add("img-thumbnail", "rounded-start");
-        cardImage.setAttribute("src", character.image)
-
-        const cardBodyColumn = document.createElement('div');
-        cardBodyColumn.classList.add("col-md-8")
-
-        const cardBody = document.createElement('div');
-        cardBody.classList.add("card-body", "p-1", "ms-1");
-
-        cardBody.innerHTML =
-            `
-            <h5 class="card-title text-white" style="text-shadow: 2px 2px 2px #000000;">${character.name}</h5>
-            <p class="card-text mb-1"><b>Status:</b> ${character.status}</p> 
-            <p class="card-text mb-1"><b>Species:</b> ${character.species}</p>
-            <p class="card-text mb-1"><b>Gender:</b> ${character.gender}</p>
-            <p class="card-text mb-1"><b>Origin:</b> ${character.origin['name']}</p>
-            `
-
-        cardImageColumn.appendChild(cardImage);
-        cardBodyColumn.appendChild(cardBody);
-        cardInnerRow.append(cardImageColumn, cardBodyColumn);
-        card.appendChild(cardInnerRow);
+        const card = CharacterCardConstructor(character);
         cardRow.appendChild(card);
     }
 }
 
-// function pageChanger(operation=0, pageNumber = 0) {
-//     const newpage = operation + pageNumber;
-//     return CharacterCardConstructor(newpage);
-// }
 
+function CharacterCardConstructor(characterInfo) {
+    const card = document.createElement('div');
+    card.classList.add("card", "bg-info", "bg-opacity-75", "text-black", "mb-3", "shadow", "ms-3", "p-1");
+    card.setAttribute("style", "max-width: 540px;");
 
-function RandomUrlConstructor(length) {
-    const randomNumArray = Array.from({ length: length }, () => Math.floor(Math.random() * 826) + 1);
-    return `https://rickandmortyapi.com/api/character/${randomNumArray}`
+    const cardInnerRow = document.createElement('div');
+    cardInnerRow.classList.add("row", "g-0");
+
+    const cardImageColumn = document.createElement('div');
+    cardImageColumn.classList.add("col-md-4");
+
+    const cardImage = document.createElement('img');
+    cardImage.classList.add("img-thumbnail", "rounded-start");
+    cardImage.setAttribute("src", characterInfo.image)
+
+    const cardBodyColumn = document.createElement('div');
+    cardBodyColumn.classList.add("col-md-8")
+
+    const cardBody = document.createElement('div');
+    cardBody.classList.add("card-body", "p-1", "ms-1");
+
+    cardBody.innerHTML =
+        `
+        <h5 class="card-title text-white" style="text-shadow: 2px 2px 2px #000000;">${characterInfo.name}</h5>
+        <p class="card-text mb-1"><b>Status:</b> ${characterInfo.status}</p> 
+        <p class="card-text mb-1"><b>Species:</b> ${characterInfo.species}</p>
+        <p class="card-text mb-1"><b>Gender:</b> ${characterInfo.gender}</p>
+        <p class="card-text mb-1"><b>Origin:</b> ${characterInfo.origin['name']}</p>
+        `
+
+    cardImageColumn.appendChild(cardImage);
+    cardBodyColumn.appendChild(cardBody);
+    cardInnerRow.append(cardImageColumn, cardBodyColumn);
+    card.appendChild(cardInnerRow);
+    return card;
 }
+
+async function CharacterCollectionConstructor() {
+    const rickAndMortyUrl = "https://rickandmortyapi.com/api/character/"
+    const allCharacters = await FetchAllCharacters(rickAndMortyUrl);
+
+    const groupedCharacters = [];
+    for (let i = 0; i < allCharacters.length; i += 59) {
+        groupedCharacters.push(allCharacters.slice(i, i + 59));
+    }
+    return groupedCharacters;
+}
+
+
+
+function pageChanger(operation, pageNumber = 0) {
+    const newpage = operation + pageNumber;
+    CharacterCardConstructor(newpage);
+}
+
+
+
 
 
 function CardSearchFilter() {
@@ -123,44 +159,9 @@ function CardSearchFilter() {
     }
 }
 
-async function FetchAllCharacters() {
-    const completeCharactersList = [];
-    let characterBaseUrl = "https://rickandmortyapi.com/api/character/";
-    const numOfPages = 42;
-
-    for (let i = 1; i <= numOfPages; i++) {
-        const charactersOnEachPage = await FetchRickAndMortyData(characterBaseUrl);
-        completeCharactersList.push(charactersOnEachPage.results);
-        characterBaseUrl = charactersOnEachPage.info.next;
-    }
-    
-    return completeCharactersList.flat(1);
-}
 
 
-async function CharacterCollectionConstructor() {
-    const rickAndMortyUrl = "https://rickandmortyapi.com/api/character/"
-    const allCharacters = await FetchAllCharacters(rickAndMortyUrl);
-
-    const groupedCharacters = [];
-    for (let i = 0; i < allCharacters.length; i += 59) {
-        groupedCharacters.push(allCharacters.slice(i, i + 59));
-    }
-    return groupedCharacters;
-}
 
 
-// async function PaginationCardBuilder(pageNumber = 0) {
-//     const groupedCharacterData = await CharacterCollectionConstructor();
-//     const cardRow = document.getElementById("cardrow");
-//     cardRow.replaceChildren();
-
-//     for (const character of groupedCharacterData[pageNumber]) {
-//         const cardColumns = CardConstructor(character);
-//         cardRow.appendChild(cardColumns);
-//     }
-// }
-
-//PaginationCardBuilder();
 dynamicCarouselConstructor();
-CharacterCardConstructor();
+CharacterBuilder();
