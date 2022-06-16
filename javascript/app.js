@@ -172,7 +172,7 @@ function PaginationButtonGroupBuilder(buttonGroup = 0) {
     const paginationList = document.getElementById("paginationList");
     const paginationListArray = Array.from(paginationList.children);
 
-    if (buttonGroup > 0) {
+    if (paginationList.childElementCount > 2) {
         paginationListArray.splice(1, 7, ...groupedButtonList[buttonGroup])
     } else {
         paginationListArray.splice(1, 0, ...groupedButtonList[buttonGroup])
@@ -186,6 +186,8 @@ function PaginationButtonGroupBuilder(buttonGroup = 0) {
 function pageButtonGroupSwapper() {
     if (currentPage > 0 && currentPage % 7 === 0) {
         PaginationButtonGroupBuilder(currentPage / 7);
+    } else {
+        PaginationButtonGroupBuilder(0);
     }
 }
 
