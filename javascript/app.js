@@ -86,7 +86,8 @@ async function CharacterBuilder(pageNumber = 0) {
         cardRow.appendChild(card);
     }
     currentPage = pageNumber;
-    Paginator5000();
+
+    //Paginator5000();
 }
 
 
@@ -161,6 +162,69 @@ function Paginator5000() {
         nextButton.classList.remove("d-none");
     }
 }
+function PaginationButtonGroupBuilder(buttonGroup = 0) {
+    const paginationList = document.getElementById("paginationList");
+    const groupedButtonList = PaginationListConstructor();
+    for (const buttonList of groupedButtonList[buttonGroup]) {
+        paginationList.append(buttonList)
+    }
+}
+
+function PaginationListConstructor() {
+    const paginationListContainer = document.createElement("div");
+
+    const previousButton = document.createElement("li");
+    previousButton.classList.add("page-item");
+    previousButton.setAttribute("id", "prev")
+
+    const previousButtonAnchor = document.createElement("a");
+    previousButtonAnchor.classList.add("page-link");
+    previousButtonAnchor.setAttribute("onclick", "pageChanger(-1)")
+    previousButtonAnchor.innerHTML = "Previous"
+
+    previousButton.appendChild(previousButtonAnchor);
+    paginationListContainer.appendChild(previousButton);
+
+    for (let i = 1; i <= 59; i++) {
+        const pageButton = document.createElement("li");
+        pageButton.classList.add("page-item");
+
+        const pageButtonAnchor = document.createElement("a");
+        pageButtonAnchor.classList.add("page-link");
+        pageButtonAnchor.setAttribute("onclick", `CharacterBuilder(${i - 1})`)
+        pageButtonAnchor.innerHTML = `${i}`
+
+        pageButton.appendChild(pageButtonAnchor);
+        paginationListContainer.appendChild(pageButton);
+    }
+
+    const nextButton = document.createElement("li");
+    nextButton.classList.add("page-item");
+    nextButton.setAttribute("id", "next")
+
+    const nextButtonAnchor = document.createElement("a");
+    nextButtonAnchor.classList.add("page-link");
+    nextButtonAnchor.setAttribute("onclick", "pageChanger(1)")
+    nextButtonAnchor.innerHTML = "Next"
+
+    nextButton.appendChild(nextButtonAnchor);
+    paginationListContainer.appendChild(nextButton);
+
+    return PaginationCollectionConstructor(paginationListContainer.children);
+}
+
+
+function PaginationCollectionConstructor(paginationListChildren) {
+    const groupedPaginationButtons = [];
+    const paginationListArray = Array.from(paginationListChildren);
+    for (let i = 0; i < paginationListChildren.length; i += 5) {
+        groupedPaginationButtons.push(paginationListArray.slice(i, i + 5));
+    }
+
+    return groupedPaginationButtons;
+}
+
+
 
 function CardSearchFilter() {
     const searchInput = document.getElementById("navsearch").value.replace(/[^a-z0-9]/gi, '').toLowerCase().trim();
@@ -177,5 +241,6 @@ function CardSearchFilter() {
     }
 }
 
+PaginationButtonGroupBuilder();
 dynamicCarouselConstructor();
 CharacterBuilder();
