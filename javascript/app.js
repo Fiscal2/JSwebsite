@@ -56,6 +56,7 @@ async function CharacterCardConstructor(pageNumber = 0) {
     const data = await CharacterCollectionConstructor();
     const cardRow = document.getElementById('cardrow');
     cardRow.replaceChildren();
+    // const newPageNumber = pageChanger(pageNumber);
     for (const character of data[pageNumber]) {
 
         const card = document.createElement('div');
@@ -94,6 +95,11 @@ async function CharacterCardConstructor(pageNumber = 0) {
         cardRow.appendChild(card);
     }
 }
+
+// function pageChanger(operation=0, pageNumber = 0) {
+//     const newpage = operation + pageNumber;
+//     return CharacterCardConstructor(newpage);
+// }
 
 
 function RandomUrlConstructor(length) {
