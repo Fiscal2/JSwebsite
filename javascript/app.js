@@ -166,28 +166,31 @@ function Paginator5000() {
 
 
 function PaginationButtonGroupBuilder(buttonGroup = 0) {
-    const paginationList = document.getElementById("paginationList");
+    //const paginationList = Array.from(document.getElementById("paginationList").children);
+    let paginationList = document.getElementById("paginationList");
+    const paginationListArray = Array.from(document.getElementById("paginationList").children);
     const groupedButtonList = PaginationListConstructor();
-    for (const buttonList of groupedButtonList[buttonGroup]) {
-        paginationList.append(buttonList)
-    }
+
+    paginationListArray.splice(1, 0, ...groupedButtonList[buttonGroup])
+    console.log(paginationListArray)
+    //paginationList.appendChild(paginationListArray)
 }
 
 
 function PaginationListConstructor() {
     const paginationListContainer = document.createElement("div");
 
-    const previousButton = document.createElement("li");
-    previousButton.classList.add("page-item");
-    previousButton.setAttribute("id", "prev")
+    // const previousButton = document.createElement("li");
+    // previousButton.classList.add("page-item");
+    // previousButton.setAttribute("id", "prev")
 
-    const previousButtonAnchor = document.createElement("a");
-    previousButtonAnchor.classList.add("page-link");
-    previousButtonAnchor.setAttribute("onclick", "pageChanger(-1)")
-    previousButtonAnchor.innerHTML = "Previous"
+    // const previousButtonAnchor = document.createElement("a");
+    // previousButtonAnchor.classList.add("page-link");
+    // previousButtonAnchor.setAttribute("onclick", "pageChanger(-1)")
+    // previousButtonAnchor.innerHTML = "Previous"
 
-    previousButton.appendChild(previousButtonAnchor);
-    paginationListContainer.appendChild(previousButton);
+    // previousButton.appendChild(previousButtonAnchor);
+    // paginationListContainer.appendChild(previousButton);
 
     for (let i = 1; i <= 59; i++) {
         const pageButton = document.createElement("li");
@@ -202,17 +205,17 @@ function PaginationListConstructor() {
         paginationListContainer.appendChild(pageButton);
     }
 
-    const nextButton = document.createElement("li");
-    nextButton.classList.add("page-item");
-    nextButton.setAttribute("id", "next")
+    // const nextButton = document.createElement("li");
+    // nextButton.classList.add("page-item");
+    // nextButton.setAttribute("id", "next")
 
-    const nextButtonAnchor = document.createElement("a");
-    nextButtonAnchor.classList.add("page-link");
-    nextButtonAnchor.setAttribute("onclick", "pageChanger(1)")
-    nextButtonAnchor.innerHTML = "Next"
+    // const nextButtonAnchor = document.createElement("a");
+    // nextButtonAnchor.classList.add("page-link");
+    // nextButtonAnchor.setAttribute("onclick", "pageChanger(1)")
+    // nextButtonAnchor.innerHTML = "Next"
 
-    nextButton.appendChild(nextButtonAnchor);
-    paginationListContainer.appendChild(nextButton);
+    // nextButton.appendChild(nextButtonAnchor);
+    // paginationListContainer.appendChild(nextButton);
 
     return PaginationCollectionConstructor(paginationListContainer.children);
 }
