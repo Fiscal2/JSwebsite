@@ -166,14 +166,14 @@ function Paginator5000() {
 
 
 function PaginationButtonGroupBuilder(buttonGroup = 0) {
-    //const paginationList = Array.from(document.getElementById("paginationList").children);
-    let paginationList = document.getElementById("paginationList");
+    const paginationList = document.getElementById("paginationList");
     const paginationListArray = Array.from(document.getElementById("paginationList").children);
     const groupedButtonList = PaginationListConstructor();
 
     paginationListArray.splice(1, 0, ...groupedButtonList[buttonGroup])
-    console.log(paginationListArray)
-    //paginationList.appendChild(paginationListArray)
+
+    paginationList.replaceChildren();
+    paginationList.append(...paginationListArray)
 }
 
 
