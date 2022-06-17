@@ -129,7 +129,7 @@ function CharacterCardConstructor(characterInfo) {
     return card;
 }
 
-// Gets all 826 characters and makes 14 arrays of 59 character
+// Gets all 826 characters and makes 14 arrays of 59 characters
 async function CharacterCollectionConstructor() {
     const rickAndMortyUrl = "https://rickandmortyapi.com/api/character/"
     const allCharacters = await FetchAllCharacters(rickAndMortyUrl);
@@ -227,7 +227,7 @@ function PaginationCollectionConstructor(paginationListChildren) {
 function CardSearchFilter() {
     const searchInput = document.getElementById("navsearch").value.replace(/[^a-z0-9]/gi, '').toLowerCase().trim();
     const rowOfCards = document.getElementById("cardrow").children;
-    console.log(searchInput);
+
     for (const card of rowOfCards) {
         const cardHeaderText = card.querySelector("h5").innerHTML.toLowerCase().trim();
 
