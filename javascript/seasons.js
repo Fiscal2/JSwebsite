@@ -1,5 +1,6 @@
 "use strict";
 
+// Fetches data from api, returns json response
 async function FetchRickAndMortyData(url) {
     const responseData = await fetch(url);
 
@@ -9,13 +10,13 @@ async function FetchRickAndMortyData(url) {
         return alert(`HTTP-Error: ${responseData.status}`);
     }
 }
-
+// Constructs modals for each season 
 async function EpisodeModalConstructor() {
     const allEpisodesBySeason = await EpisodesBySeason();
     const modalDiv = document.getElementById("modalDiv");
 
     const numberOfSeasons = [1, 2, 3, 4, 5]
-    for (let season of numberOfSeasons) {
+    for (const season of numberOfSeasons) {
         const modalContainerDiv = document.createElement('div');
         modalContainerDiv.classList.add("modal", "fade")
         const modalContainer = setElementAttributes(modalContainerDiv,
@@ -52,7 +53,7 @@ async function EpisodeModalConstructor() {
         const modalBodyDiv = document.createElement('div');
         modalBodyDiv.classList.add("modal-body");
 
-        for (let episode of allEpisodesBySeason[season]) {
+        for (const episode of allEpisodesBySeason[season]) {
             const episodeTitle = document.createElement('h5');
             episodeTitle.innerHTML = episode.name
             const episodeInfo = document.createElement('p');
@@ -68,29 +69,30 @@ async function EpisodeModalConstructor() {
     }
 }
 
+// automates multiple set attributes for an html element
 function setElementAttributes(element, attributes) {
-    for (let key in attributes) {
+    for (const key in attributes) {
         element.setAttribute(key, attributes[key]);
     }
     return element;
 }
 
+// gets all the episodes from the api 
 async function FetchAllEpisodes() {
     const completeEpisodeList = [];
-    const episodeBaseUrl = "https://rickandmortyapi.com/api/episode";
-    const pagesOfEpisodes = await FetchRickAndMortyData(episodeBaseUrl);
-    completeEpisodeList.push(pagesOfEpisodes.results)
-    const numberOfPages = pagesOfEpisodes.info.pages;
+    let episodeBaseUrl = "https://rickandmortyapi.com/api/episode";
+    const numberOfPages = 3;
 
-    for (let i = 2; i <= numberOfPages; i++) {
-        const nextPageUrl = `${episodeBaseUrl}?page=${i}`
-        const episodesOnEachPage = await FetchRickAndMortyData(nextPageUrl);
-        completeEpisodeList.push(episodesOnEachPage.results)
+    for (let i = 1; i <= numberOfPages; i++) {
+        const episodesOnEachPage = await FetchRickAndMortyData(episodeBaseUrl);
+        completeEpisodeList.push(episodesOnEachPage.results);
+        episodeBaseUrl = episodesOnEachPage.info.next;
     }
 
     return completeEpisodeList.flat(1);
 }
 
+// takes all episodes and groups them by season 
 async function EpisodesBySeason() {
     const allEpisodes = await FetchAllEpisodes();
     return allEpisodes.reduce(function (seasonObj, episodeObj) {
@@ -105,6 +107,7 @@ async function EpisodesBySeason() {
     }, {});
 }
 
+// crazy function that makes Season card
 function SeasonThumbnailContructor() {
     const seasonContainer = document.getElementById("card-container");
 
@@ -156,6 +159,7 @@ function SeasonThumbnailContructor() {
         seasonContainer.appendChild(seasonContainerRow);
     }
 }
+
 
 SeasonThumbnailContructor();
 EpisodeModalConstructor();

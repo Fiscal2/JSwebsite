@@ -1,5 +1,8 @@
 "use strict";
 
+// THIS PAGE IS STILL BEING WORKED ON AND IS NOT CLOSE TO BEING FINISHED :) 
+// DEFINITELY DON'T LOOK AT IT 
+
 function CreatorCardInfo() {
 
     const justinImg = "https://static.wikia.nocookie.net/gravityfalls/images/2/2f/Justin_Roiland.jpg/revision/latest?cb=20200204214613";

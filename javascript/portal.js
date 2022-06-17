@@ -1,5 +1,6 @@
 "use strict";
 
+// Fetches data from api, returns json response
 async function FetchRickAndMortyData(url) {
     const responseData = await fetch(url);
 
@@ -10,7 +11,7 @@ async function FetchRickAndMortyData(url) {
     }
 }
 
-
+// fetches all the locations from api 
 async function FetchAllLocations() {
     const completeLocationList = [];
     let locationBaseUrl = "https://rickandmortyapi.com/api/location/";
@@ -25,7 +26,7 @@ async function FetchAllLocations() {
     return completeLocationList.flat(1);
 }
 
-
+// constructs 6 arrays of 21 locations 
 async function LocationCollectionConstructor() {
     const allLocations = await FetchAllLocations();
 
@@ -36,7 +37,7 @@ async function LocationCollectionConstructor() {
     return groupedLocations;
 }
 
-
+// cycles cards depending on page number
 async function PaginationCardBuilder(pageNumber = 0) {
     const groupedLocationData = await LocationCollectionConstructor();
     const cardRow = document.getElementById("cardrow");
@@ -48,7 +49,8 @@ async function PaginationCardBuilder(pageNumber = 0) {
     }
 }
 
-
+// builds the finished modals for each location 
+// also lets loading wheel spin while the for loop is going then hides it
 async function ModalBuilder() {
     const locationData = await FetchAllLocations();
     const modalDiv = document.getElementById("modalDiv");
@@ -63,7 +65,7 @@ async function ModalBuilder() {
     loadingSpinner.classList.add("d-none");
 }
 
-
+// makes the cards for the locations in as few lines as possible
 function CardConstructor(locationInfo) {
     const cardColumn = document.createElement("div");
     cardColumn.classList.add("col-sm-4");
@@ -86,10 +88,12 @@ function CardConstructor(locationInfo) {
     return cardColumn
 }
 
-
+// takes in a location, character object, and location name and makes the majority of the modal
+// on line 130 is logic for 1 character, many characters, or No characters 
 function ModalConstructor(locationId, characterDetails, modalTitle) {
     const modalContainerDiv = document.createElement('div');
     modalContainerDiv.classList.add("modal", "fade")
+
     const modalContainer = setElementAttributes(modalContainerDiv,
         {
             "id": `locationModal${locationId}`,
@@ -147,7 +151,7 @@ function ModalConstructor(locationId, characterDetails, modalTitle) {
     return modalContainer;
 }
 
-
+// takes in character object and makes a the modal body elements
 function ModalBodyElementsConstructor(character) {
     if (character) {
         const characterInfoColumn = document.createElement('div');
@@ -167,7 +171,8 @@ function ModalBodyElementsConstructor(character) {
     }
 }
 
-
+// gets all character urls from locations and makes 1 query with an array of all the numbers
+// parsing the urls to just get the numbers off the ends with .match()
 async function ResidentsToCharacterObjects(locationInfo) {
     const characterArray = [];
 
@@ -183,7 +188,7 @@ async function ResidentsToCharacterObjects(locationInfo) {
     return await FetchRickAndMortyData(`https://rickandmortyapi.com/api/character/${characterArray.flat(1)}`);
 }
 
-
+// automates multiple set attributes for an html element
 function setElementAttributes(element, attributes) {
     for (const key in attributes) {
         element.setAttribute(key, attributes[key]);
@@ -191,7 +196,7 @@ function setElementAttributes(element, attributes) {
     return element;
 }
 
-
+// Function for search box, does minor sanitization of input, hides/shows cards depending on input
 function CardSearchFilter() {
     const searchInput = document.getElementById("navsearch").value.replace(/[^a-z0-9]/gi, '').toLowerCase().trim();
     const rowOfCards = document.getElementById("cardrow").children;
@@ -206,6 +211,7 @@ function CardSearchFilter() {
         }
     }
 }
+
 
 PaginationCardBuilder();
 ModalBuilder();
