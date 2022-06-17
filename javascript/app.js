@@ -62,7 +62,7 @@ async function dynamicCarouselConstructor() {
 
         const carouselItem = document.createElement('div');
 
-        if (data.indexOf(character) == 0) {
+        if (randomCharacters.indexOf(character) == 0) {
             carouselItem.classList.add("carousel-item", "active");
 
         } else {
