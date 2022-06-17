@@ -183,11 +183,13 @@ function PaginationButtonGroupBuilder(buttonGroup = 0) {
     paginationList.append(...paginationListArray)
 }
 
-// Currently doesn't work correctly but works going Next from 1-7 to 8-14 just not in reverse
+// Changes button group from 1-7 to 8-14 and reverse
 function pageButtonGroupSwapper() {
-    if (currentPage > 0 && currentPage % 7 === 0) {
-        PaginationButtonGroupBuilder(currentPage / 7);
-    } else {
+    if (currentPage > 0 && currentPage === 7) {
+        PaginationButtonGroupBuilder(1);
+    }
+
+    if (currentPage === 6) {
         PaginationButtonGroupBuilder(0);
     }
 }
