@@ -1,7 +1,8 @@
 'use strict';
-
+// global current page variable
 let currentPage = 0
 
+// Fetches data from api, returns json response
 async function FetchRickAndMortyData(url) {
     const responseData = await fetch(url);
 
@@ -12,7 +13,7 @@ async function FetchRickAndMortyData(url) {
     }
 }
 
-
+// Fetches every page of characters(42 pages in all) from the api
 async function FetchAllCharacters() {
     const completeCharactersList = [];
     let characterBaseUrl = "https://rickandmortyapi.com/api/character/";
@@ -27,21 +28,21 @@ async function FetchAllCharacters() {
     return completeCharactersList.flat(1);
 }
 
-
+// Randomly picks 3 characters for the carousel to use
 function RandomUrlConstructor(length) {
     const randomNumArray = Array.from({ length: length }, () => Math.floor(Math.random() * 826) + 1);
     return `https://rickandmortyapi.com/api/character/${randomNumArray}`
 }
 
-
+// Function that builds the Carousel 
 async function dynamicCarouselConstructor() {
 
-    const randomizedCharacters = RandomUrlConstructor(3);
-    const data = await FetchRickAndMortyData(randomizedCharacters);
+    const randomizedCharacterUrls = RandomUrlConstructor(3);
+    const randomCharacters = await FetchRickAndMortyData(randomizedCharacterUrls);
 
     const carouselInner = document.getElementById('carouselInner');
 
-    for (let character of data) {
+    for (const character of randomCharacters) {
         const carouselImage = document.createElement('img');
         carouselImage.setAttribute('src', character.image);
         carouselImage.classList.add("d-block", "mx-auto", "img-fluid", "rounded");
@@ -73,25 +74,25 @@ async function dynamicCarouselConstructor() {
     }
 }
 
-
+// Builds full page of cards, takes in page number to cycle which group of characters is visible 
 async function CharacterBuilder(pageNumber = 0) {
 
-    const data = await CharacterCollectionConstructor();
+    const collectionOfCharacters = await CharacterCollectionConstructor();
     const cardRow = document.getElementById('cardrow');
     cardRow.replaceChildren();
 
-    for (const character of data[pageNumber]) {
+    for (const character of collectionOfCharacters[pageNumber]) {
 
         const card = CharacterCardConstructor(character);
         cardRow.appendChild(card);
     }
     currentPage = pageNumber;
 
-    Paginator5000();
+    PaginatonButtonDisabler();
     pageButtonGroupSwapper();
 }
 
-
+// Constructs the cards for the characters giving all styles etc 
 function CharacterCardConstructor(characterInfo) {
     const card = document.createElement('div');
     card.classList.add("card", "bg-info", "bg-opacity-75", "text-black", "mb-3", "shadow", "ms-3", "p-1");
@@ -128,7 +129,7 @@ function CharacterCardConstructor(characterInfo) {
     return card;
 }
 
-
+// Gets all 826 characters and makes 14 arrays of 59 character
 async function CharacterCollectionConstructor() {
     const rickAndMortyUrl = "https://rickandmortyapi.com/api/character/"
     const allCharacters = await FetchAllCharacters(rickAndMortyUrl);
@@ -140,7 +141,7 @@ async function CharacterCollectionConstructor() {
     return groupedCharacters;
 }
 
-
+// Next & Previous buttons in pagination use this to cycle character cards
 function pageChanger(operation) {
     if (currentPage > 0 || currentPage < 13) {
         CharacterBuilder((currentPage + operation));
@@ -148,8 +149,8 @@ function pageChanger(operation) {
     }
 }
 
-
-function Paginator5000() {
+// Depending on current page, Next/Previous button will disable
+function PaginatonButtonDisabler() {
     const previousButton = document.getElementById("prev");
     const nextButton = document.getElementById("next");
 
@@ -166,7 +167,7 @@ function Paginator5000() {
     }
 }
 
-
+// Initalizes and builds the pagination button group, which changes if its 1-7 or 8-14
 function PaginationButtonGroupBuilder(buttonGroup = 0) {
     const groupedButtonList = PaginationListConstructor();
     const paginationList = document.getElementById("paginationList");
@@ -182,7 +183,7 @@ function PaginationButtonGroupBuilder(buttonGroup = 0) {
     paginationList.append(...paginationListArray)
 }
 
-
+// Currently doesn't work correctly but works going Next from 1-7 to 8-14 just not in reverse
 function pageButtonGroupSwapper() {
     if (currentPage > 0 && currentPage % 7 === 0) {
         PaginationButtonGroupBuilder(currentPage / 7);
@@ -191,7 +192,7 @@ function pageButtonGroupSwapper() {
     }
 }
 
-
+// Creates 14 buttons for pagination button group
 function PaginationListConstructor() {
     const paginationListContainer = document.createElement("div");
 
@@ -211,7 +212,7 @@ function PaginationListConstructor() {
     return PaginationCollectionConstructor(paginationListContainer.children);
 }
 
-
+// Puts the 14 buttons into 2 arrays of 7 buttons
 function PaginationCollectionConstructor(paginationListChildren) {
     const groupedPaginationButtons = [];
     const paginationListArray = Array.from(paginationListChildren);
@@ -222,7 +223,7 @@ function PaginationCollectionConstructor(paginationListChildren) {
     return groupedPaginationButtons;
 }
 
-
+// Function for search box, does minor sanitization of input, hides/shows cards depending on input
 function CardSearchFilter() {
     const searchInput = document.getElementById("navsearch").value.replace(/[^a-z0-9]/gi, '').toLowerCase().trim();
     const rowOfCards = document.getElementById("cardrow").children;
