@@ -53,6 +53,7 @@ function CreatorCardInfo() {
 
 }
 
+
 function TableHeadConstructor() {
     const tableHeaderText = ["Season", "Rotten Tomatoes", "Metacritic"];
     const tableHead = document.createElement("thead");
@@ -95,6 +96,7 @@ function TableBodyConstructor() {
     return tableBody;
 }
 
+
 function TableConstructor() {
     const tableRow = document.getElementById("ratingCard");
 
@@ -132,6 +134,7 @@ function ImageAndColumnMaker3000(creatorName, imageSource) {
     imageColumn.append(imageElement, imageText)
     return imageColumn;
 }
+
 
 function GenericCardCreator(cardTitleText, cardBodyData) {
 
