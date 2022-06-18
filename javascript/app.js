@@ -36,10 +36,8 @@ function RandomUrlConstructor(length) {
 
 // Function that builds the Carousel 
 async function dynamicCarouselConstructor() {
-
     const randomizedCharacterUrls = RandomUrlConstructor(3);
     const randomCharacters = await FetchRickAndMortyData(randomizedCharacterUrls);
-
     const carouselInner = document.getElementById('carouselInner');
 
     for (const character of randomCharacters) {
@@ -76,57 +74,44 @@ async function dynamicCarouselConstructor() {
 
 // Builds full page of cards, takes in page number to cycle which group of characters is visible 
 async function CharacterBuilder(pageNumber = 0) {
-
     const collectionOfCharacters = await CharacterCollectionConstructor();
     const cardRow = document.getElementById('cardrow');
     cardRow.replaceChildren();
 
     for (const character of collectionOfCharacters[pageNumber]) {
-
         const card = CharacterCardConstructor(character);
         cardRow.appendChild(card);
     }
-    currentPage = pageNumber;
 
+    currentPage = pageNumber;
     PaginatonButtonDisabler();
     pageButtonGroupSwapper();
 }
 
 // Constructs the cards for the characters giving all styles etc 
 function CharacterCardConstructor(characterInfo) {
-    const card = document.createElement('div');
-    card.classList.add("card", "bg-info", "bg-opacity-75", "text-black", "mb-3", "shadow", "ms-3", "p-1");
-    card.setAttribute("style", "max-width: 540px;");
+    const card = document.createElement('template');
+    const templateHTML = `
+        <div class="card bg-info bg-opacity-75 text-black mb-3 shadow ms-3 p-1" style="max-width: 540px;">
+            <div class="row g-0">
+                <div class="col-md-4">
+                    <img class="img-thumbnail rounded-start" src="${characterInfo.image}"/>
+                </div>
+                <div class="col-md-8">
+                    <div class="card-body p-1 ms-1">
+                    <h5 class="card-title text-white" style="text-shadow: 2px 2px 2px #000000;">${characterInfo.name}</h5>
+                    <p class="card-text mb-1"><b>Status:</b> ${characterInfo.status}</p> 
+                    <p class="card-text mb-1"><b>Species:</b> ${characterInfo.species}</p>
+                    <p class="card-text mb-1"><b>Gender:</b> ${characterInfo.gender}</p>
+                    <p class="card-text mb-1"><b>Origin:</b> ${characterInfo.origin['name'] || "unknown"}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    `.trim()
 
-    const cardInnerRow = document.createElement('div');
-    cardInnerRow.classList.add("row", "g-0");
-
-    const cardImageColumn = document.createElement('div');
-    cardImageColumn.classList.add("col-md-4");
-
-    const cardImage = document.createElement('img');
-    cardImage.classList.add("img-thumbnail", "rounded-start");
-    cardImage.setAttribute("src", characterInfo.image)
-
-    const cardBodyColumn = document.createElement('div');
-    cardBodyColumn.classList.add("col-md-8")
-
-    const cardBody = document.createElement('div');
-    cardBody.classList.add("card-body", "p-1", "ms-1");
-    cardBody.innerHTML =
-        `
-        <h5 class="card-title text-white" style="text-shadow: 2px 2px 2px #000000;">${characterInfo.name}</h5>
-        <p class="card-text mb-1"><b>Status:</b> ${characterInfo.status}</p> 
-        <p class="card-text mb-1"><b>Species:</b> ${characterInfo.species}</p>
-        <p class="card-text mb-1"><b>Gender:</b> ${characterInfo.gender}</p>
-        <p class="card-text mb-1"><b>Origin:</b> ${characterInfo.origin['name'] || "unknown"}</p>
-        `
-
-    cardImageColumn.appendChild(cardImage);
-    cardBodyColumn.appendChild(cardBody);
-    cardInnerRow.append(cardImageColumn, cardBodyColumn);
-    card.appendChild(cardInnerRow);
-    return card;
+    card.innerHTML = templateHTML;
+    return card.content;
 }
 
 // Gets all 826 characters and makes 14 arrays of 59 characters
