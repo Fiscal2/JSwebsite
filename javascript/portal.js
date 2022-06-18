@@ -11,6 +11,7 @@ async function FetchRickAndMortyData(url) {
     }
 }
 
+
 async function paginatedFetchEndpoint({ endpoint, pageCount, grouped = false, groupSize = 0 }) {
     const responseArray = [];
     let baseUrl = `https://rickandmortyapi.com/api/${endpoint}/`;

@@ -199,16 +199,14 @@ function PaginationListConstructor() {
     const paginationListContainer = document.createElement("div");
 
     for (let i = 1; i <= 14; i++) {
-        const pageButton = document.createElement("li");
-        pageButton.classList.add("page-item");
+        const pageButton = document.createElement("template");
+        const templateHTML =
+            `<li class="page-item">
+                <a class="page-link" onclick="characterBuilder(${i - 1})">${i}</a>
+            </li>`.trim();
 
-        const pageButtonAnchor = document.createElement("a");
-        pageButtonAnchor.classList.add("page-link");
-        pageButtonAnchor.setAttribute("onclick", `CharacterBuilder(${i - 1})`)
-        pageButtonAnchor.innerHTML = `${i}`
-
-        pageButton.appendChild(pageButtonAnchor);
-        paginationListContainer.appendChild(pageButton);
+        pageButton.innerHTML = templateHTML;
+        paginationListContainer.appendChild(pageButton.content);
     }
 
     return PaginationCollectionConstructor(paginationListContainer.children);
