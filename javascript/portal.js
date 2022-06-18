@@ -133,13 +133,13 @@ function ModalConstructor(locationId, characterDetails, modalTitle) {
 
     if (Array.isArray(characterDetails)) {
         for (const character of characterDetails) {
-            const infoColumn = ModalBodyElementsConstructor(character);
+            const infoColumn = ModalBodyElements(character);
             modalBodyRowDiv.append(infoColumn);
         }
     } else if (typeof characterDetails == "string") {
         modalBodyDiv.append(characterDetails);
     } else {
-        const infoColumn = ModalBodyElementsConstructor(characterDetails);
+        const infoColumn = ModalBodyElements(characterDetails);
         modalBodyRowDiv.classList.add("justify-content-center");
         modalBodyRowDiv.append(infoColumn);
     }
@@ -153,7 +153,7 @@ function ModalConstructor(locationId, characterDetails, modalTitle) {
 }
 
 // takes in character object and makes a the modal body elements
-function ModalBodyElementsConstructor(character) {
+function ModalBodyElements(character) {
     if (character) {
         const characterInfoColumn = document.createElement('div');
         characterInfoColumn.classList.add("col-md-4")
