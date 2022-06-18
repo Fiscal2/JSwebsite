@@ -49,22 +49,6 @@ async function PaginationCardBuilder(pageNumber = 0) {
     }
 }
 
-// builds the finished modals for each location 
-// also lets loading wheel spin while the for loop is going then hides it
-async function ModalBuilder() {
-    const locationData = await paginatedFetchEndpoint({ endpoint: "location", pageCount: 7 });
-    const modalDiv = document.getElementById("modalDiv");
-
-    for (const location of locationData) {
-        const characterInfo = await ResidentsToCharacterObjects(location.residents);
-        const completedModal = ModalConstructor(location.id, characterInfo, location.name);
-        modalDiv.appendChild(completedModal);
-    }
-
-    const loadingSpinner = document.getElementById("loadingSpinner");
-    loadingSpinner.classList.add("d-none");
-}
-
 // makes the cards for the locations in as few lines as possible
 function CardTemplateConstructor(locationInfo) {
     const card = document.createElement('template');
@@ -89,6 +73,21 @@ function CardTemplateConstructor(locationInfo) {
     return card.content;
 }
 
+// builds the finished modals for each location 
+// also lets loading wheel spin while the for loop is going then hides it
+async function ModalBuilder() {
+    const locationData = await paginatedFetchEndpoint({ endpoint: "location", pageCount: 7 });
+    const modalDiv = document.getElementById("modalDiv");
+
+    for (const location of locationData) {
+        const characterInfo = await ResidentsToCharacterObjects(location.residents);
+        const completedModal = ModalConstructor(location.id, characterInfo, location.name);
+        modalDiv.appendChild(completedModal);
+    }
+
+    const loadingSpinner = document.getElementById("loadingSpinner");
+    loadingSpinner.classList.add("d-none");
+}
 // takes in a location, character object, and location name and makes the majority of the modal
 // on line 130 is logic for 1 character, many characters, or No characters 
 function ModalConstructor(locationId, characterDetails, modalTitle) {
@@ -155,20 +154,15 @@ function ModalConstructor(locationId, characterDetails, modalTitle) {
 // takes in character object and makes a the modal body elements
 function ModalBodyElements(character) {
     if (character) {
-        const characterInfoColumn = document.createElement('div');
-        characterInfoColumn.classList.add("col-md-4")
+        const characterInfoColumn = document.createElement("template");
+        const templateHTML =
+            `<div class="col-md-4">
+                <img src=${character.image} class="img-thumbnail mx-auto d-block" loading="lazy"/>
+                <p class="text-center">${character.name}</p>
+            </div>`.trim()
 
-        const characterInfoText = document.createElement('p');
-        characterInfoText.classList.add("text-center")
-        characterInfoText.innerHTML = character.name;
-
-        const characterInfoImage = document.createElement('img');
-        characterInfoImage.setAttribute('src', character.image);
-        characterInfoImage.setAttribute('loading', 'lazy');
-        characterInfoImage.classList.add("img-thumbnail", "mx-auto", "d-block");
-
-        characterInfoColumn.append(characterInfoImage, characterInfoText)
-        return characterInfoColumn;
+        characterInfoColumn.innerHTML = templateHTML;
+        return characterInfoColumn.content;
     }
 }
 
@@ -211,7 +205,6 @@ function CardSearchFilter() {
         }
     }
 }
-
 
 PaginationCardBuilder();
 ModalBuilder();
