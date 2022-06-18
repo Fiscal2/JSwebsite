@@ -45,15 +45,15 @@ async function PaginationCardBuilder(pageNumber = 0) {
     cardRow.replaceChildren();
 
     for (const location of groupedLocationData[pageNumber]) {
-        const cardColumns = CardTemplateConstructor(location);
+        const cardColumns = CardTemplateBuilder(location);
         cardRow.appendChild(cardColumns);
     }
 }
 
 // makes the cards for the locations in as few lines as possible
-function CardTemplateConstructor(locationInfo) {
+function CardTemplateBuilder(locationInfo) {
     const card = document.createElement('template');
-    const templateHTML =
+    card.innerHTML =
         `
         <div class="col-sm-4">
             <div class="card my-2 bg-transparent text-white">
@@ -70,10 +70,33 @@ function CardTemplateConstructor(locationInfo) {
         </div>
     `.trim()
 
-    card.innerHTML = templateHTML;
     return card.content;
 }
 
+
+function PlaceHolderBuilder() {
+    const placeholder = document.createElement("template");
+    placeholder.innerHTML =
+        `
+        <div class="row">
+        <div class="col-sm-4">
+            <div class="card my-2 bg-transparent text-white " aria-hidden="true">
+                <h5 class="card-header bg-success"><span class="placeholder col-6"></span></h5>
+                <div class="card-body bg-success bg-opacity-75">
+                    <p class="card-text placeholder-glow">
+                        <span class="placeholder col-4"></span>
+                        <span class="placeholder col-4"></span>
+                        <span class="placeholder col-6"></span>
+                        <span class="placeholder col-8"></span>
+                    </p>
+                    <button tabindex="-1" class="btn btn-dark disabled placeholder col-6 w-25"></button>
+                </div>
+            </div>
+        </div>
+        `.trim()
+
+    return placeholder.content;
+}
 // builds the finished modals for each location 
 // also lets loading wheel spin while the for loop is going then hides it
 async function ModalBuilder() {
@@ -82,7 +105,7 @@ async function ModalBuilder() {
 
     for (const location of locationData) {
         const characterInfo = await ResidentsToCharacterObjects(location.residents);
-        const completedModal = ModalConstructor(location.id, characterInfo, location.name);
+        const completedModal = ModalBodyBuilder(location.id, characterInfo, location.name);
         modalDiv.appendChild(completedModal);
     }
 
@@ -91,7 +114,7 @@ async function ModalBuilder() {
 }
 // takes in a location, character object, and location name and makes the majority of the modal
 // on line 130 is logic for 1 character, many characters, or No characters 
-function ModalConstructor(locationId, characterDetails, modalTitle) {
+function ModalBodyBuilder(locationId, characterDetails, modalTitle) {
     const modalContainerDiv = document.createElement('div');
     modalContainerDiv.classList.add("modal", "fade")
 
