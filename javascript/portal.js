@@ -116,7 +116,7 @@ async function modalBuilder() {
 // on line 130 is logic for 1 character, many characters, or No characters 
 function modalBodyBuilder(locationId, characterDetails, modalTitle) {
     const modalContainerDiv = document.createElement('div');
-    modalContainerDiv.classList.add("modal", "fade")
+    modalContainerDiv.classList.add("modal", "fade");
 
     const modalContainer = setElementAttributes(modalContainerDiv,
         {
@@ -151,41 +151,37 @@ function modalBodyBuilder(locationId, characterDetails, modalTitle) {
     const modalBodyDiv = document.createElement('div');
     modalBodyDiv.classList.add("modal-body");
 
-    const modalBodyRowDiv = document.createElement('div');
-    modalBodyRowDiv.classList.add("row");
+    const modalBodyInfo = modalBodyElements(characterDetails);
 
-    if (Array.isArray(characterDetails)) {
-        for (const character of characterDetails) {
-            const infoColumn = modalBodyElements(character);
-            modalBodyRowDiv.append(infoColumn);
-        }
-    } else if (typeof characterDetails == "string") {
-        modalBodyDiv.append(characterDetails);
-    } else {
-        const infoColumn = modalBodyElements(characterDetails);
-        modalBodyRowDiv.classList.add("justify-content-center");
-        modalBodyRowDiv.append(infoColumn);
-    }
-
-    modalBodyDiv.append(modalBodyRowDiv);
+    modalBodyDiv.append(modalBodyInfo);
     modalHeaderDiv.append(modalTitleH5, modalCloseButton);
     modalContentDiv.append(modalHeaderDiv, modalBodyDiv);
     modalDialogDiv.appendChild(modalContentDiv);
     modalContainer.appendChild(modalDialogDiv);
     return modalContainer;
 }
-
-// takes in character object and makes a the modal body elements
+// Need to work on this logic...
+// takes in character object, array of objects or string and returns the modal body elements
 function modalBodyElements(character) {
-    if (character) {
-        const characterInfoColumn = document.createElement("template");
-        characterInfoColumn.innerHTML =
-            `<div class="col-md-4">
-                <img src=${character.image} class="img-thumbnail mx-auto d-block" loading="lazy"/>
-                <p class="text-center">${character.name}</p>
-            </div>`.trim()
+    if (!Array.isArray(character) && typeof character !== "string") {
+        character = [character];
+    }
+    if (typeof character !== "string") {
+        const modalBodyRowDiv = document.createElement('div');
+        modalBodyRowDiv.classList.add("row");
 
-        return characterInfoColumn.content;
+        for (const characterInfo of character) {
+            const characterInfoTemplate = document.createElement("template");
+            characterInfoTemplate.innerHTML =
+                `<div class="col-md-4">
+                    <img src=${characterInfo.image} class="img-thumbnail mx-auto d-block" loading="lazy"/>
+                    <p class="text-center">${characterInfo.name}</p>
+                </div>`.trim();
+            modalBodyRowDiv.append(characterInfoTemplate.content);
+        }
+        return modalBodyRowDiv;
+    } else {
+        return character;
     }
 }
 
