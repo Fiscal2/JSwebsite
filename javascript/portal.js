@@ -1,7 +1,7 @@
 "use strict";
 
 // Fetches data from api, returns json response
-async function FetchRickAndMortyData(url) {
+async function fetchRickAndMortyData(url) {
     const responseData = await fetch(url);
 
     if (responseData.ok) {
@@ -17,20 +17,20 @@ async function paginatedFetchEndpoint({ endpoint, pageCount, grouped = false, gr
     let baseUrl = `https://rickandmortyapi.com/api/${endpoint}/`;
 
     for (let i = 1; i <= pageCount; i++) {
-        const pageData = await FetchRickAndMortyData(baseUrl);
+        const pageData = await fetchRickAndMortyData(baseUrl);
         responseArray.push(pageData.results);
         baseUrl = pageData.info.next;
     }
 
     if (grouped) {
-        return await LocationGroupBuilder(responseArray.flat(1), groupSize)
+        return await locationGroupBuilder(responseArray.flat(1), groupSize)
     }
 
     return responseArray.flat(1);
 }
 
 // constructs 6 arrays of 21 locations 
-async function LocationGroupBuilder(allLocations, groupSize) {
+async function locationGroupBuilder(allLocations, groupSize) {
     const groupedLocations = [];
     for (let i = 0; i < allLocations.length; i += groupSize) {
         groupedLocations.push(allLocations.slice(i, i + groupSize));
@@ -39,19 +39,19 @@ async function LocationGroupBuilder(allLocations, groupSize) {
 }
 
 // cycles cards depending on page number
-async function PaginationCardBuilder(pageNumber = 0) {
+async function paginationCardBuilder(pageNumber = 0) {
     const groupedLocationData = await paginatedFetchEndpoint({ endpoint: "location", pageCount: 7, grouped: true, groupSize: 21 });
     const cardRow = document.getElementById("cardrow");
     cardRow.replaceChildren();
 
     for (const location of groupedLocationData[pageNumber]) {
-        const cardColumns = CardTemplateBuilder(location);
+        const cardColumns = cardTemplateBuilder(location);
         cardRow.appendChild(cardColumns);
     }
 }
 
 // makes the cards for the locations in as few lines as possible
-function CardTemplateBuilder(locationInfo) {
+function cardTemplateBuilder(locationInfo) {
     const card = document.createElement('template');
     card.innerHTML =
         `
@@ -74,7 +74,7 @@ function CardTemplateBuilder(locationInfo) {
 }
 
 
-function PlaceHolderBuilder() {
+function placeHolderBuilder() {
     const placeholder = document.createElement("template");
     placeholder.innerHTML =
         `
@@ -99,13 +99,13 @@ function PlaceHolderBuilder() {
 }
 // builds the finished modals for each location 
 // also lets loading wheel spin while the for loop is going then hides it
-async function ModalBuilder() {
+async function modalBuilder() {
     const locationData = await paginatedFetchEndpoint({ endpoint: "location", pageCount: 7 });
     const modalDiv = document.getElementById("modalDiv");
 
     for (const location of locationData) {
-        const characterInfo = await ResidentsToCharacterObjects(location.residents);
-        const completedModal = ModalBodyBuilder(location.id, characterInfo, location.name);
+        const characterInfo = await residentsToCharacterObjects(location.residents);
+        const completedModal = modalBodyBuilder(location.id, characterInfo, location.name);
         modalDiv.appendChild(completedModal);
     }
 
@@ -114,7 +114,7 @@ async function ModalBuilder() {
 }
 // takes in a location, character object, and location name and makes the majority of the modal
 // on line 130 is logic for 1 character, many characters, or No characters 
-function ModalBodyBuilder(locationId, characterDetails, modalTitle) {
+function modalBodyBuilder(locationId, characterDetails, modalTitle) {
     const modalContainerDiv = document.createElement('div');
     modalContainerDiv.classList.add("modal", "fade")
 
@@ -156,13 +156,13 @@ function ModalBodyBuilder(locationId, characterDetails, modalTitle) {
 
     if (Array.isArray(characterDetails)) {
         for (const character of characterDetails) {
-            const infoColumn = ModalBodyElements(character);
+            const infoColumn = modalBodyElements(character);
             modalBodyRowDiv.append(infoColumn);
         }
     } else if (typeof characterDetails == "string") {
         modalBodyDiv.append(characterDetails);
     } else {
-        const infoColumn = ModalBodyElements(characterDetails);
+        const infoColumn = modalBodyElements(characterDetails);
         modalBodyRowDiv.classList.add("justify-content-center");
         modalBodyRowDiv.append(infoColumn);
     }
@@ -176,7 +176,7 @@ function ModalBodyBuilder(locationId, characterDetails, modalTitle) {
 }
 
 // takes in character object and makes a the modal body elements
-function ModalBodyElements(character) {
+function modalBodyElements(character) {
     if (character) {
         const characterInfoColumn = document.createElement("template");
         const templateHTML =
@@ -192,7 +192,7 @@ function ModalBodyElements(character) {
 
 // gets all character urls from locations and makes 1 query with an array of all the numbers
 // parsing the urls to just get the numbers off the ends with .match()
-async function ResidentsToCharacterObjects(locationResidents) {
+async function residentsToCharacterObjects(locationResidents) {
     const characterArray = [];
     if (locationResidents.length > 0) {
         for (const resident of locationResidents) {
@@ -203,7 +203,7 @@ async function ResidentsToCharacterObjects(locationResidents) {
         return "This location has no residents";
     }
 
-    return await FetchRickAndMortyData(`https://rickandmortyapi.com/api/character/${characterArray.flat(1)}`);
+    return await fetchRickAndMortyData(`https://rickandmortyapi.com/api/character/${characterArray.flat(1)}`);
 }
 
 // automates multiple set attributes for an html element
@@ -215,7 +215,7 @@ function setElementAttributes(element, attributes) {
 }
 
 // Function for search box, does minor sanitization of input, hides/shows cards depending on input
-function CardSearchFilter() {
+function cardSearchFilter() {
     const searchInput = document.getElementById("navsearch").value.replace(/[^a-z0-9]/gi, '').toLowerCase().trim();
     const rowOfCards = document.getElementById("cardrow").children;
 
@@ -230,5 +230,5 @@ function CardSearchFilter() {
     }
 }
 
-PaginationCardBuilder();
-ModalBuilder();
+paginationCardBuilder();
+modalBuilder();
