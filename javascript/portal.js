@@ -66,28 +66,6 @@ async function ModalBuilder() {
 }
 
 // makes the cards for the locations in as few lines as possible
-function CardConstructor(locationInfo) {
-    const cardColumn = document.createElement("div");
-    cardColumn.classList.add("col-sm-4");
-    const card = document.createElement("div");
-    card.classList.add("card", "my-2", "bg-transparent", "text-white");
-
-    card.innerHTML =
-        `
-        <h5 class="card-header bg-success" style="text-shadow: 2px 2px 2px #000000;">${locationInfo.name}</h5>
-        <div class="card-body bg-success bg-opacity-75">
-            <h5 class="card-title">${locationInfo.dimension || "Unknown Dimension"}</h5>
-            <h6 class="card-subtitle mb-2">Type: ${locationInfo.type}</h6>
-            <p class="card-text">Number of residents: ${locationInfo.residents.length}</p>
-            <button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#locationModal${locationInfo.id}">
-            Residents
-            </button>
-        </div>
-    `
-    cardColumn.appendChild(card);
-    return cardColumn
-}
-
 function CardTemplateConstructor(locationInfo) {
     const card = document.createElement('template');
     const templateHTML =
