@@ -11,40 +11,40 @@ async function FetchRickAndMortyData(url) {
     }
 }
 
-// fetches all the locations from api 
-async function FetchAllLocations() {
-    const completeLocationList = [];
-    let locationBaseUrl = "https://rickandmortyapi.com/api/location/";
-    const numOfPages = 7;
+async function paginatedFetchEndpoint({ endpoint, pageCount, grouped = false, groupSize = 0 }) {
+    const responseArray = [];
+    let baseUrl = `https://rickandmortyapi.com/api/${endpoint}/`;
 
-    for (let i = 1; i <= numOfPages; i++) {
-        const locationsOnEachPage = await FetchRickAndMortyData(locationBaseUrl);
-        completeLocationList.push(locationsOnEachPage.results);
-        locationBaseUrl = locationsOnEachPage.info.next;
+    for (let i = 1; i <= pageCount; i++) {
+        const pageData = await FetchRickAndMortyData(baseUrl);
+        responseArray.push(pageData.results);
+        baseUrl = pageData.info.next;
     }
 
-    return completeLocationList.flat(1);
+    if (grouped) {
+        return await LocationGroupBuilder(responseArray.flat(1), groupSize)
+    }
+
+    return responseArray.flat(1);
 }
 
 // constructs 6 arrays of 21 locations 
-async function LocationCollectionConstructor() {
-    const allLocations = await FetchAllLocations();
-
+async function LocationGroupBuilder(allLocations, groupSize) {
     const groupedLocations = [];
-    for (let i = 0; i < allLocations.length; i += 21) {
-        groupedLocations.push(allLocations.slice(i, i + 21));
+    for (let i = 0; i < allLocations.length; i += groupSize) {
+        groupedLocations.push(allLocations.slice(i, i + groupSize));
     }
     return groupedLocations;
 }
 
 // cycles cards depending on page number
 async function PaginationCardBuilder(pageNumber = 0) {
-    const groupedLocationData = await LocationCollectionConstructor();
+    const groupedLocationData = await paginatedFetchEndpoint({ endpoint: "location", pageCount: 7, grouped: true, groupSize: 21 });
     const cardRow = document.getElementById("cardrow");
     cardRow.replaceChildren();
 
     for (const location of groupedLocationData[pageNumber]) {
-        const cardColumns = CardConstructor(location);
+        const cardColumns = CardTemplateConstructor(location);
         cardRow.appendChild(cardColumns);
     }
 }
@@ -52,7 +52,7 @@ async function PaginationCardBuilder(pageNumber = 0) {
 // builds the finished modals for each location 
 // also lets loading wheel spin while the for loop is going then hides it
 async function ModalBuilder() {
-    const locationData = await FetchAllLocations();
+    const locationData = await paginatedFetchEndpoint({ endpoint: "location", pageCount: 7 });
     const modalDiv = document.getElementById("modalDiv");
 
     for (const location of locationData) {
@@ -86,6 +86,29 @@ function CardConstructor(locationInfo) {
     `
     cardColumn.appendChild(card);
     return cardColumn
+}
+
+function CardTemplateConstructor(locationInfo) {
+    const card = document.createElement('template');
+    const templateHTML =
+        `
+        <div class="col-sm-4">
+            <div class="card my-2 bg-transparent text-white">
+                <h5 class="card-header bg-success" style="text-shadow: 2px 2px 2px #000000;">${locationInfo.name}</h5>
+                <div class="card-body bg-success bg-opacity-75">
+                    <h5 class="card-title">${locationInfo.dimension || "Unknown Dimension"}</h5>
+                    <h6 class="card-subtitle mb-2">Type: ${locationInfo.type}</h6>
+                    <p class="card-text">Number of residents: ${locationInfo.residents.length}</p>
+                    <button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#locationModal${locationInfo.id}">
+                    Residents
+                    </button>
+                </div>
+            </div>
+        </div>
+    `.trim()
+
+    card.innerHTML = templateHTML;
+    return card.content;
 }
 
 // takes in a location, character object, and location name and makes the majority of the modal
