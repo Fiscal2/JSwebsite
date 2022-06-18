@@ -56,7 +56,7 @@ async function ModalBuilder() {
     const modalDiv = document.getElementById("modalDiv");
 
     for (const location of locationData) {
-        const characterInfo = await ResidentsToCharacterObjects(location);
+        const characterInfo = await ResidentsToCharacterObjects(location.residents);
         const completedModal = ModalConstructor(location.id, characterInfo, location.name);
         modalDiv.appendChild(completedModal);
     }
@@ -174,11 +174,10 @@ function ModalBodyElementsConstructor(character) {
 
 // gets all character urls from locations and makes 1 query with an array of all the numbers
 // parsing the urls to just get the numbers off the ends with .match()
-async function ResidentsToCharacterObjects(locationInfo) {
+async function ResidentsToCharacterObjects(locationResidents) {
     const characterArray = [];
-
-    if (locationInfo.residents.length > 0) {
-        for (const resident of locationInfo.residents) {
+    if (locationResidents.length > 0) {
+        for (const resident of locationResidents) {
             const characterUrl = new URL(resident);
             characterArray.push(characterUrl.pathname.match('[0-9]+$'));
         }
