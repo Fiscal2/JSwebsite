@@ -1,7 +1,7 @@
 "use strict";
 
 // Fetches data from api, returns json response
-async function FetchRickAndMortyData(url) {
+async function fetchRickAndMortyData(url) {
     const responseData = await fetch(url);
 
     if (responseData.ok) {
@@ -11,8 +11,8 @@ async function FetchRickAndMortyData(url) {
     }
 }
 // Constructs modals for each season 
-async function EpisodeModalConstructor() {
-    const allEpisodesBySeason = await EpisodesBySeason();
+async function episodeModalBuilder() {
+    const allEpisodesBySeason = await episodesBySeason();
     const modalDiv = document.getElementById("modalDiv");
 
     const numberOfSeasons = [1, 2, 3, 4, 5]
@@ -78,13 +78,13 @@ function setElementAttributes(element, attributes) {
 }
 
 // gets all the episodes from the api 
-async function FetchAllEpisodes() {
+async function fetchAllEpisodes() {
     const completeEpisodeList = [];
     let episodeBaseUrl = "https://rickandmortyapi.com/api/episode";
     const numberOfPages = 3;
 
     for (let i = 1; i <= numberOfPages; i++) {
-        const episodesOnEachPage = await FetchRickAndMortyData(episodeBaseUrl);
+        const episodesOnEachPage = await fetchRickAndMortyData(episodeBaseUrl);
         completeEpisodeList.push(episodesOnEachPage.results);
         episodeBaseUrl = episodesOnEachPage.info.next;
     }
@@ -93,8 +93,8 @@ async function FetchAllEpisodes() {
 }
 
 // takes all episodes and groups them by season 
-async function EpisodesBySeason() {
-    const allEpisodes = await FetchAllEpisodes();
+async function episodesBySeason() {
+    const allEpisodes = await fetchAllEpisodes();
     return allEpisodes.reduce(function (seasonObj, episodeObj) {
         const season = episodeObj['episode'].substring(2, 3);
 
@@ -108,7 +108,7 @@ async function EpisodesBySeason() {
 }
 
 // crazy function that makes Season card
-function SeasonThumbnailContructor() {
+function seasonThumbnailBuilder() {
     const seasonContainer = document.getElementById("card-container");
 
     const seasonNumAndImage = {
@@ -161,5 +161,5 @@ function SeasonThumbnailContructor() {
 }
 
 
-SeasonThumbnailContructor();
-EpisodeModalConstructor();
+seasonThumbnailBuilder();
+episodeModalBuilder();
