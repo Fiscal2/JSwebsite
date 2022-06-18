@@ -179,13 +179,12 @@ function modalBodyBuilder(locationId, characterDetails, modalTitle) {
 function modalBodyElements(character) {
     if (character) {
         const characterInfoColumn = document.createElement("template");
-        const templateHTML =
+        characterInfoColumn.innerHTML =
             `<div class="col-md-4">
                 <img src=${character.image} class="img-thumbnail mx-auto d-block" loading="lazy"/>
                 <p class="text-center">${character.name}</p>
             </div>`.trim()
 
-        characterInfoColumn.innerHTML = templateHTML;
         return characterInfoColumn.content;
     }
 }
