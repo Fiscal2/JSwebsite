@@ -14,18 +14,20 @@ async function fetchRickAndMortyData(url) {
 }
 
 // Fetches every page of characters(42 pages in all) from the api
-async function fetchAllCharacters() {
-    const completeCharactersList = [];
-    let characterBaseUrl = "https://rickandmortyapi.com/api/character/";
-    const numOfPages = 42;
+async function paginatedFetchEndpoint({ endpoint, pageCount, grouped = false, groupSize = 0 }) {
+    const responseArray = [];
+    let baseUrl = `https://rickandmortyapi.com/api/${endpoint}/`;
 
-    for (let i = 1; i <= numOfPages; i++) {
-        const charactersOnEachPage = await fetchRickAndMortyData(characterBaseUrl);
-        completeCharactersList.push(charactersOnEachPage.results);
-        characterBaseUrl = charactersOnEachPage.info.next;
+    for (let i = 1; i <= pageCount; i++) {
+        const pageData = await fetchRickAndMortyData(baseUrl);
+        responseArray.push(pageData.results);
+        baseUrl = pageData.info.next;
+    }
+    if (grouped) {
+        return await characterGroupBuilder(responseArray.flat(1), groupSize)
     }
 
-    return completeCharactersList.flat(1);
+    return responseArray.flat(1);
 }
 
 // Randomly picks 3 characters for the carousel to use
@@ -74,7 +76,7 @@ async function dynamicCarouselConstructor() {
 
 // Builds full page of cards, takes in page number to cycle which group of characters is visible 
 async function characterBuilder(pageNumber = 0) {
-    const collectionOfCharacters = await characterGroupBuilder();
+    const collectionOfCharacters = await paginatedFetchEndpoint({ endpoint: "character", pageCount: 42, grouped: true, groupSize: 59 });
     const cardRow = document.getElementById('cardrow');
     cardRow.replaceChildren();
 
@@ -114,12 +116,10 @@ function characterCardBuilder(characterInfo) {
 }
 
 // Gets all 826 characters and makes 14 arrays of 59 characters
-async function characterGroupBuilder() {
-    const allCharacters = await fetchAllCharacters();
-
+async function characterGroupBuilder(allCharacters, groupSize) {
     const groupedCharacters = [];
-    for (let i = 0; i < allCharacters.length; i += 59) {
-        groupedCharacters.push(allCharacters.slice(i, i + 59));
+    for (let i = 0; i < allCharacters.length; i += groupSize) {
+        groupedCharacters.push(allCharacters.slice(i, i + groupSize));
     }
     return groupedCharacters;
 }
@@ -224,37 +224,37 @@ function cardSearchFilter() {
 
 async function cardSearchFilterNumTwo() {
     const searchInput = document.getElementById("navsearch").value.replace(/[^a-z0-9]/gi, '').toLowerCase().trim();
-    const startIndex = await fetchAllCharacters();
+    //const startIndex = await fetchAllCharacters();
     const endIndex = startIndex.filter(character => character.name.toLowerCase().trim().includes(searchInput));
-    for(const character of endIndex) {
-    
-        if(character.id < 59) {
+    for (const character of endIndex) {
+
+        if (character.id < 59) {
             page = characterBuilder(1)
-        } else if(59 < character.id && character.id < 118) {
+        } else if (59 < character.id && character.id < 118) {
             page = characterBuilder(2)
-        } else if(118 < character.id && character.id < 177) {
+        } else if (118 < character.id && character.id < 177) {
             page = characterBuilder(3)
-        } else if(177 < character.id && character.id < 236) {
+        } else if (177 < character.id && character.id < 236) {
             page = characterBuilder(4)
-        } else if(236 < character.id && character.id < 295) {
+        } else if (236 < character.id && character.id < 295) {
             page = characterBuilder(5)
-        } else if(295 < character.id && character.id < 354) {
+        } else if (295 < character.id && character.id < 354) {
             page = characterBuilder(6)
-        } else if(354 < character.id && character.id < 413) {
+        } else if (354 < character.id && character.id < 413) {
             page = characterBuilder(7)
-        } else if(413 < character.id && character.id < 472) {
+        } else if (413 < character.id && character.id < 472) {
             page = characterBuilder(8)
-        } else if(472 < character.id && character.id < 531) {
+        } else if (472 < character.id && character.id < 531) {
             page = characterBuilder(9)
-        } else if(531 < character.id && character.id < 590) {
+        } else if (531 < character.id && character.id < 590) {
             page = characterBuilder(10)
-        } else if(590 < character.id && character.id < 649) {
+        } else if (590 < character.id && character.id < 649) {
             page = characterBuilder(11)
-        } else if(649 < character.id && character.id < 708) {
+        } else if (649 < character.id && character.id < 708) {
             page = characterBuilder(12)
-        } else if(708 < character.id && character.id < 767) {
+        } else if (708 < character.id && character.id < 767) {
             page = characterBuilder(13)
-        } else if(767 < character.id && character.id < 826) {
+        } else if (767 < character.id && character.id < 826) {
             page = characterBuilder(14)
         }
     }
