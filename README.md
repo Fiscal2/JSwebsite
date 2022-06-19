@@ -17,9 +17,8 @@
 ## TODOs: 
 - Add a unique favicon to each page.
 - Add features to light/dark button on home page.
-- On Portal page, load in all of the locations.
-- On Home page, load in all of the characters. 
-- Create search function for characters, location, and seasons pages.
+- Placeholder loading
+- Possibly use [Intersection Observer API]("https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API")
 - Make a page about the shows creators, details on upcoming season, etc.
     - Make section for streaming services/places to watch it.
     - stats about viewership, etc.
