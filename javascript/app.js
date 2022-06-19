@@ -224,6 +224,14 @@ function cardSearchFilter() {
     }
 }
 
+async function cardSearchFilterNumTwo() {
+    const searchInput = document.getElementById("navsearch").value.replace(/[^a-z0-9]/gi, '').toLowerCase().trim();
+    startIndex = await fetchAllCharacters();
+    endIndex = startIndex.filter(character => character.name.includes(searchInput));
+
+    console.log(endIndex);
+}
+cardSearchFilterNumTwo();
 cardSearchFilter();
 paginationButtonGroupBuilder();
 dynamicCarouselConstructor();
