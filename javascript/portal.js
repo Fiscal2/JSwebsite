@@ -163,7 +163,7 @@ function modalBodyBuilder(locationId, characterDetails, modalTitle) {
 // Need to work on this logic...
 // takes in character object, array of objects or string and returns the modal body elements
 function modalBodyElements(character) {
-    if (!Array.isArray(character) && typeof character !== "string") {
+    if (Object.prototype.toString.call(character) === '[object Object]') {
         character = [character];
     }
     if (typeof character !== "string") {
