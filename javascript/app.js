@@ -91,7 +91,7 @@ async function characterBuilder(pageNumber = 0) {
 // Constructs the cards for the characters giving all styles etc 
 function characterCardBuilder(characterInfo) {
     const card = document.createElement('template');
-    const templateHTML = `
+    card.innerHTML = `
         <div class="card bg-info bg-opacity-75 text-black mb-3 shadow ms-3 p-1" style="max-width: 540px;">
             <div class="row g-0">
                 <div class="col-md-4">
@@ -110,14 +110,12 @@ function characterCardBuilder(characterInfo) {
         </div>
     `.trim()
 
-    card.innerHTML = templateHTML;
     return card.content;
 }
 
 // Gets all 826 characters and makes 14 arrays of 59 characters
 async function characterGroupBuilder() {
-    const rickAndMortyUrl = "https://rickandmortyapi.com/api/character/"
-    const allCharacters = await fetchAllCharacters(rickAndMortyUrl);
+    const allCharacters = await fetchAllCharacters();
 
     const groupedCharacters = [];
     for (let i = 0; i < allCharacters.length; i += 59) {
@@ -229,34 +227,34 @@ async function cardSearchFilterNumTwo() {
     const startIndex = await fetchAllCharacters();
     const endIndex = startIndex.filter(character => character.name.toLowerCase().trim().includes(searchInput));
     for(const character of endIndex) {
-        const characterID = character.id;
-        if(characterID < 59) {
+    
+        if(character.id < 59) {
             page = characterBuilder(1)
-        } else if(59 < characterID < 118) {
+        } else if(59 < character.id && character.id < 118) {
             page = characterBuilder(2)
-        } else if(118 < characterID < 177) {
+        } else if(118 < character.id && character.id < 177) {
             page = characterBuilder(3)
-        } else if(177 < characterID < 236) {
+        } else if(177 < character.id && character.id < 236) {
             page = characterBuilder(4)
-        } else if(236 < characterID < 295) {
+        } else if(236 < character.id && character.id < 295) {
             page = characterBuilder(5)
-        } else if(295 < characterID < 354) {
+        } else if(295 < character.id && character.id < 354) {
             page = characterBuilder(6)
-        } else if(354 < characterID < 413) {
+        } else if(354 < character.id && character.id < 413) {
             page = characterBuilder(7)
-        } else if(413 < characterID < 472) {
+        } else if(413 < character.id && character.id < 472) {
             page = characterBuilder(8)
-        } else if(472 < characterID < 531) {
+        } else if(472 < character.id && character.id < 531) {
             page = characterBuilder(9)
-        } else if(531 < characterID < 590) {
+        } else if(531 < character.id && character.id < 590) {
             page = characterBuilder(10)
-        } else if(590 < characterID < 649) {
+        } else if(590 < character.id && character.id < 649) {
             page = characterBuilder(11)
-        } else if(649 < characterID < 708) {
+        } else if(649 < character.id && character.id < 708) {
             page = characterBuilder(12)
-        } else if(708 < characterID < 767) {
+        } else if(708 < character.id && character.id < 767) {
             page = characterBuilder(13)
-        } else if(767 < characterID < 826) {
+        } else if(767 < character.id && character.id < 826) {
             page = characterBuilder(14)
         }
     }
