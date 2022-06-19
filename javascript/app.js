@@ -224,6 +224,7 @@ function cardSearchFilter() {
     }
 }
 
+cardSearchFilter();
 paginationButtonGroupBuilder();
 dynamicCarouselConstructor();
 characterBuilder();
