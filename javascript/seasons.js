@@ -53,6 +53,7 @@ async function episodeModalBuilder() {
         const modalBodyDiv = document.createElement('div');
         modalBodyDiv.classList.add("modal-body");
 
+        // move this to its own function
         for (const episode of allEpisodesBySeason[season]) {
             const episodeTitle = document.createElement('h5');
             episodeTitle.innerHTML = episode.name
