@@ -101,6 +101,7 @@ async function episodesBySeason() {
         if (!seasonObj[season]) {
             seasonObj[season] = [];
         }
+        // seasonObj[season] = seasonObj[season] ?? [] maybe this would work
 
         seasonObj[season].push(episodeObj);
         return seasonObj;
