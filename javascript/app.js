@@ -228,7 +228,38 @@ async function cardSearchFilterNumTwo() {
     const searchInput = document.getElementById("navsearch").value.replace(/[^a-z0-9]/gi, '').toLowerCase().trim();
     const startIndex = await fetchAllCharacters();
     const endIndex = startIndex.filter(character => character.name.toLowerCase().trim().includes(searchInput));
-
+    for(const character of endIndex) {
+        const characterID = character.id;
+        if(characterID < 59) {
+            page = characterBuilder(1)
+        } else if(59 < characterID < 118) {
+            page = characterBuilder(2)
+        } else if(118 < characterID < 177) {
+            page = characterBuilder(3)
+        } else if(177 < characterID < 236) {
+            page = characterBuilder(4)
+        } else if(236 < characterID < 295) {
+            page = characterBuilder(5)
+        } else if(295 < characterID < 354) {
+            page = characterBuilder(6)
+        } else if(354 < characterID < 413) {
+            page = characterBuilder(7)
+        } else if(413 < characterID < 472) {
+            page = characterBuilder(8)
+        } else if(472 < characterID < 531) {
+            page = characterBuilder(9)
+        } else if(531 < characterID < 590) {
+            page = characterBuilder(10)
+        } else if(590 < characterID < 649) {
+            page = characterBuilder(11)
+        } else if(649 < characterID < 708) {
+            page = characterBuilder(12)
+        } else if(708 < characterID < 767) {
+            page = characterBuilder(13)
+        } else if(767 < characterID < 826) {
+            page = characterBuilder(14)
+        }
+    }
     console.log(endIndex);
 }
 
