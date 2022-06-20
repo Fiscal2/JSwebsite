@@ -116,10 +116,10 @@ function TableConstructor() {
 
 function AccordionConstructor() {
     const accordionParent = document.getElementById("accordionParent");
+    const accordionItem = document.createElement('div');
+    accordionItem.classList.add('accordion-item');
 
     for(const accordionItem in accordionParent) {
-        const accordionItem = document.createElement('div');
-        accordionItem.classList.add('accordion-item');
 
         const accordionHeader = document.createElement('h2');
         accordionHeader.classList.add('accordion-header');
