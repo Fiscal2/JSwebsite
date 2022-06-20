@@ -172,3 +172,7 @@ function seasonThumbnailBuilder() {
 
 seasonThumbnailBuilder();
 episodeModalBuilder();
+
+function numberAdder(numOne, numTwo) {
+    return numOne + numTwo;
+}
