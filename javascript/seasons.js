@@ -50,7 +50,7 @@ async function episodeModalBuilder() {
                 "aria-label": "close"
             });
 
-        const modalBodyDiv = episodeBuilder(); // fix this
+        const modalBodyDiv = episodeBuilder(allEpisodesBySeason[season]);
 
         modalHeaderDiv.append(modalTitleH4, modalCloseButton);
         modalContentDiv.append(modalHeaderDiv, modalBodyDiv);
@@ -62,8 +62,7 @@ async function episodeModalBuilder() {
 }
 
 
-function episodeBuilder() {
-    // fix this
+function episodeBuilder(allEpisodes) {
     const modalBodyDiv = document.createElement('div');
     modalBodyDiv.classList.add("modal-body");
 
