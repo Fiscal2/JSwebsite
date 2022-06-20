@@ -54,20 +54,27 @@ async function episodeModalBuilder() {
         modalBodyDiv.classList.add("modal-body");
 
         // move this to its own function
-        for (const episode of allEpisodesBySeason[season]) {
-            const episodeTitle = document.createElement('h5');
-            episodeTitle.innerHTML = episode.name
-            const episodeInfo = document.createElement('p');
-            episodeInfo.innerHTML = `Episode: ${episode.id}, Air Date: ${episode.air_date}`
-            modalBodyDiv.append(episodeTitle, episodeInfo)
-        }
+        
+}
 
-        modalHeaderDiv.append(modalTitleH4, modalCloseButton);
-        modalContentDiv.append(modalHeaderDiv, modalBodyDiv);
-        modalDialogDiv.appendChild(modalContentDiv);
-        modalContainer.appendChild(modalDialogDiv);
-        modalDiv.appendChild(modalContainer);
+function episodeBuilder() {
+    const allEpisodes = episodeBuilder(allEpisodesBySeason[season]);
+
+    for (const episode of allEpisodes) {
+        const episodeTitle = document.createElement('h5');
+        episodeTitle.innerHTML = episode.name
+        const episodeInfo = document.createElement('p');
+        episodeInfo.innerHTML = `Episode: ${episode.id}, Air Date: ${episode.air_date}`
+        modalBodyDiv.append(episodeTitle, episodeInfo)
     }
+
+    modalHeaderDiv.append(modalTitleH4, modalCloseButton);
+    modalContentDiv.append(modalHeaderDiv, modalBodyDiv);
+    modalDialogDiv.appendChild(modalContentDiv);
+    modalContainer.appendChild(modalDialogDiv);
+    modalDiv.appendChild(modalContainer);
+}
+
 }
 
 // automates multiple set attributes for an html element
