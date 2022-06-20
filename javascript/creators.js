@@ -124,7 +124,7 @@ function AccordionConstructor() {
         3: "Social Media"
     }
 
-    for (const Item of accordionParent) {
+    for (const Item of accordionInfo) {
 
         const accordionItem = document.createElement('div');
         accordionItem.classList.add('accordion-item');
@@ -200,6 +200,6 @@ function GenericCardCreator(cardTitleText, cardBodyData) {
     card.appendChild(cardBody);
     return card;
 }
-
+AccordionConstructor();
 CreatorCardInfo();
 TableConstructor();
