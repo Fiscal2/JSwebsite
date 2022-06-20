@@ -21,7 +21,6 @@ async function paginatedFetchEndpoint({ endpoint, pageCount, grouped = false, gr
         responseArray.push(pageData.results);
         baseUrl = pageData.info.next;
     }
-
     if (grouped) {
         return await locationGroupBuilder(responseArray.flat(1), groupSize)
     }
