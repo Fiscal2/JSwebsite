@@ -133,17 +133,17 @@ function AccordionConstructor() {
         accordionHeader.classList.add('accordion-header');
 
         const accordionButton = document.createElement('button');
-        accordionButton.classList.add('accordion-button", "collapsed');
-        accordionButton.innerHTML = Item.value();
+        accordionButton.classList.add("accordion-button", "collapsed");
+        accordionButton.innerHTML = value
         accordionButton.setAttribute("type", "button");
         accordionButton.setAttribute("data-bs-toggle", "collapse");
-        accordionButton.setAttribute("data-bs-target", `#collapse${Item.value()}`);
+        accordionButton.setAttribute("data-bs-target", `#collapse${key}`);
         accordionButton.setAttribute("aria-expanded", "false");
-        accordionButton.setAttribute("aria-controls", `collapse${Item.value()}`);
+        accordionButton.setAttribute("aria-controls", `collapse${key}`);
 
         const accordionHeading = document.createElement('div');
         accordionHeading.classList.add("accordion-collapse", "collapse");
-        accordionHeading.setAttribute("aria-labelledby", `heading${Item.value()}`);
+        accordionHeading.setAttribute("aria-labelledby", `heading${key}`);
         accordionHeading.setAttribute("data-bs-parent", "#accordionParent");
 
         const accordionBody = document.createElement("div");
