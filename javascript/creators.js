@@ -115,7 +115,40 @@ function TableConstructor() {
 
 
 function AccordionConstructor() {
-    // Do the thing again
+    const accordionParent = document.getElementById("accordionParent");
+
+    for(const accordionItem in accordionParent) {
+        const accordionItem = document.createElement('div');
+        accordionItem.classList.add('accordion-item');
+
+        const accordionHeader = document.createElement('h2');
+        accordionHeader.classList.add('accordion-header');
+
+        const accordionButton = document.createElement('button');
+        accordionButton.classList.add('accordion-button", "collapsed');
+        // need to figure out how to add title to accordion
+        accordionButton.setAttribute("type", "button");
+        accordionButton.setAttribute("data-bs-toggle", "collapse");
+        accordionButton.setAttribute("data-bs-target", `#collapse${accordionItem}`);
+        accordionButton.setAttribute("aria-expanded", "false");
+        accordionButton.setAttribute("aria-controls", `collapse${accordionItem}`);
+        
+        const accordionHeading = document.createElement('div');
+        accordionHeading.classList.add("accordion-collapse", "collapse");
+        accordionHeading.setAttribute("aria-labelledby", `heading${accordionItem}`);
+        accordionHeading.setAttribute("data-bs-parent", "#accordionParent");
+
+        const accordionBody = document.createElement("div");
+        accordionBody.classList.add("accordion-body");
+
+        accordionHeading.appendChild(accordionBody);
+        accordionHeader.append(accordionButton);
+        accordionItem.appendChild(accordionHeader);
+        accordionParent.appendChild(accordionItem);
+
+    }
+    
+
 }
 
 
