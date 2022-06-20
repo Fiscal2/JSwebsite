@@ -148,10 +148,12 @@ function AccordionConstructor() {
 
         const accordionBody = document.createElement("div");
         accordionBody.classList.add("accordion-body");
+        accordionBody.setAttribute("id", "accordionBody")
+        accordionBody.innerHTML = ""
 
         accordionHeading.appendChild(accordionBody);
         accordionHeader.append(accordionButton);
-        accordionItem.appendChild(accordionHeader);
+        accordionItem.appendChild(accordionHeader, accordionHeading);
         accordionParent.appendChild(accordionItem);
     }
 }
