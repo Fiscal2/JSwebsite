@@ -1,10 +1,6 @@
 "use strict";
 
-// THIS PAGE IS STILL BEING WORKED ON AND IS NOT CLOSE TO BEING FINISHED :) 
-// DEFINITELY DON'T LOOK AT IT 
-
 function CreatorCardInfo() {
-
     const justinImg = "https://static.wikia.nocookie.net/gravityfalls/images/2/2f/Justin_Roiland.jpg/revision/latest?cb=20200204214613";
     const danImg = "https://m.media-amazon.com/images/M/MV5BMjEzMDY2NzI3MF5BMl5BanBnXkFtZTcwODY5MjI3NA@@._V1_.jpg";
 
@@ -50,7 +46,6 @@ function CreatorCardInfo() {
     const card = GenericCardCreator("The Creators", [cardInnerRow, cardBlockquote, cardBlockquoteCaption]);
 
     cardRow.appendChild(card);
-
 }
 
 
@@ -116,7 +111,6 @@ function TableConstructor() {
 
 function AccordionConstructor() {
     const accordionParent = document.getElementById("accordionParent");
-
     const accordionInfo =
     {
         1: "Awards",
@@ -125,7 +119,6 @@ function AccordionConstructor() {
     }
 
     for (const [key, value] of Object.entries(accordionInfo)) {
-
         const accordionItem = document.createElement('div');
         accordionItem.classList.add('accordion-item');
         accordionItem.setAttribute("id", `collapse${key}`);
@@ -150,18 +143,17 @@ function AccordionConstructor() {
         const accordionBody = document.createElement("div");
         accordionBody.classList.add("accordion-body");
         accordionBody.setAttribute("id", "accordionBody")
-        accordionBody.innerHTML = ""
+        accordionBody.innerHTML = "test"
 
         accordionHeading.appendChild(accordionBody);
-        accordionHeader.append(accordionButton);
-        accordionItem.appendChild(accordionHeader, accordionHeading);
+        accordionHeader.appendChild(accordionButton);
+        accordionItem.append(accordionHeader, accordionHeading);
         accordionParent.appendChild(accordionItem);
     }
 }
 
 
 function ImageAndColumnMaker3000(creatorName, imageSource) {
-
     const imageColumn = document.createElement('div');
     imageColumn.classList.add("col-sm-4");
     const imageElement = document.createElement('img');
@@ -178,7 +170,6 @@ function ImageAndColumnMaker3000(creatorName, imageSource) {
 
 
 function GenericCardCreator(cardTitleText, cardBodyData) {
-
     const card = document.createElement("div");
     card.classList.add("card", "bg-light");
     card.setAttribute("style", "width: 40rem;");
@@ -203,6 +194,7 @@ function GenericCardCreator(cardTitleText, cardBodyData) {
     card.appendChild(cardBody);
     return card;
 }
+
 AccordionConstructor();
 CreatorCardInfo();
 TableConstructor();
