@@ -127,7 +127,7 @@ function AccordionConstructor() {
 
         const accordionButton = document.createElement('button');
         accordionButton.classList.add('accordion-button", "collapsed');
-        // need to figure out how to add title to accordion
+        accordionButton.innerHTML = `${Item}`
         accordionButton.setAttribute("type", "button");
         accordionButton.setAttribute("data-bs-toggle", "collapse");
         accordionButton.setAttribute("data-bs-target", `#collapse${Item}`);
