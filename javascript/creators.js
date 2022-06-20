@@ -124,7 +124,7 @@ function AccordionConstructor() {
         3: "Social Media"
     }
 
-    for (const Item of accordionInfo) {
+    for (const [key, value] of Object.entries(accordionInfo)) {
 
         const accordionItem = document.createElement('div');
         accordionItem.classList.add('accordion-item');
