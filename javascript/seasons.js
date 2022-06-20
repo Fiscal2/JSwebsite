@@ -50,10 +50,7 @@ async function episodeModalBuilder() {
                 "aria-label": "close"
             });
 
-        const modalBodyDiv = document.createElement('div');
-        modalBodyDiv.classList.add("modal-body");
-
-        const modalBody = episodeBuilder(modalBodyDiv, allEpisodesBySeason[season]);
+        const modalBody = episodeBuilder(allEpisodesBySeason[season]);
 
         modalHeaderDiv.append(modalTitleH4, modalCloseButton);
         modalContentDiv.append(modalHeaderDiv, modalBody);
@@ -65,16 +62,18 @@ async function episodeModalBuilder() {
 }
 
 
-function episodeBuilder(modalBody, allEpisodes) {
+function episodeBuilder(allEpisodes) {
+    const modalBodyDiv = document.createElement('div');
+    modalBodyDiv.classList.add("modal-body");
 
     for (const episode of allEpisodes) {
         const episodeTitle = document.createElement('h5');
         episodeTitle.innerHTML = episode.name
         const episodeInfo = document.createElement('p');
         episodeInfo.innerHTML = `Episode: ${episode.id}, Air Date: ${episode.air_date}`
-        modalBody.append(episodeTitle, episodeInfo)
+        modalBodyDiv.append(episodeTitle, episodeInfo)
     }
-    return modalBody;
+    return modalBodyDiv;
 }
 
 // automates multiple set attributes for an html element
@@ -172,7 +171,3 @@ function seasonThumbnailBuilder() {
 
 seasonThumbnailBuilder();
 episodeModalBuilder();
-
-function numberAdder(numOne, numTwo) {
-    return numOne + numTwo;
-}
