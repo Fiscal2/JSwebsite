@@ -143,6 +143,7 @@ function AccordionConstructor() {
 
         const accordionHeading = document.createElement('div');
         accordionHeading.classList.add("accordion-collapse", "collapse");
+        accordionHeading.setAttribute("id", `collapse${key}`);
         accordionHeading.setAttribute("aria-labelledby", `heading${key}`);
         accordionHeading.setAttribute("data-bs-parent", "#accordionParent");
 
