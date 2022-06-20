@@ -117,7 +117,14 @@ function TableConstructor() {
 function AccordionConstructor() {
     const accordionParent = document.getElementById("accordionParent");
 
-    for(const Item in accordionParent) {
+    const accordionInfo =
+    {
+        1: "Awards",
+        2: "Streaming Services",
+        3: "Social Media"
+    }
+
+    for (const Item of accordionParent) {
 
         const accordionItem = document.createElement('div');
         accordionItem.classList.add('accordion-item');
@@ -133,7 +140,7 @@ function AccordionConstructor() {
         accordionButton.setAttribute("data-bs-target", `#collapse${Item}`);
         accordionButton.setAttribute("aria-expanded", "false");
         accordionButton.setAttribute("aria-controls", `collapse${Item}`);
-        
+
         const accordionHeading = document.createElement('div');
         accordionHeading.classList.add("accordion-collapse", "collapse");
         accordionHeading.setAttribute("aria-labelledby", `heading${Item}`);
@@ -146,10 +153,7 @@ function AccordionConstructor() {
         accordionHeader.append(accordionButton);
         accordionItem.appendChild(accordionHeader);
         accordionParent.appendChild(accordionItem);
-
     }
-    
-
 }
 
 
