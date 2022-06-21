@@ -11,7 +11,7 @@ async function fetchLocalFileData(filePath) {
 }
 
 
-function CreatorCardInfo() {
+async function creatorCardInfo() {
     const justinImg = "https://static.wikia.nocookie.net/gravityfalls/images/2/2f/Justin_Roiland.jpg/revision/latest?cb=20200204214613";
     const danImg = "https://m.media-amazon.com/images/M/MV5BMjEzMDY2NzI3MF5BMl5BanBnXkFtZTcwODY5MjI3NA@@._V1_.jpg";
     const cardRow = document.getElementById("creatorCard");
@@ -40,7 +40,7 @@ function CreatorCardInfo() {
             </cite>
         </figcaption>`.trim()
 
-    const card = GenericCardCreator("The Creators", creatorCardTemplate.innerHTML);
+    const card = genericCardCreator("The Creators", creatorCardTemplate.innerHTML);
 
     cardRow.appendChild(card);
 }
@@ -56,8 +56,14 @@ function imageAndColumnBuilder(creatorName, imageSource) {
     return creatorImageColumn;
 }
 
+async function viewershipCardBuilder() {
+    const viewership = await fetchLocalFileData('/javascript/viewership.json');
+    console.log(viewership);
+}
 
-function TableHeadConstructor() {
+viewershipCardBuilder();
+
+function tableHeadConstructor() {
     const tableHeaderText = ["Season", "Rotten Tomatoes", "Metacritic"];
     const tableHead = document.createElement("thead");
     const tableHeaderRow = document.createElement("tr");
@@ -74,7 +80,7 @@ function TableHeadConstructor() {
 }
 
 
-function TableBodyConstructor() {
+function tableBodyConstructor() {
     const ratingInfo = [
         { "Season": 1, "Rotten Tomatoes": "96%", "Metacritic": "85" },
         { "Season": 2, "Rotten Tomatoes": "91%", "Metacritic": "86" },
@@ -100,23 +106,23 @@ function TableBodyConstructor() {
 }
 
 
-function TableConstructor() {
+function tableConstructor() {
     const tableRow = document.getElementById("ratingCard");
     const tableDiv = document.createElement("div");
     const table = document.createElement("table");
     table.classList.add("table", "table-success", "table-striped", "table-hover");
 
-    const tableHead = TableHeadConstructor();
-    const tableBody = TableBodyConstructor();
+    const tableHead = tableHeadConstructor();
+    const tableBody = tableBodyConstructor();
 
     table.append(tableHead, tableBody);
     tableDiv.appendChild(table)
-    const card = GenericCardCreator("Ratings", tableDiv.innerHTML);
+    const card = genericCardCreator("Ratings", tableDiv.innerHTML);
     tableRow.appendChild(card);
 }
 
 
-function AccordionConstructor() {
+function accordionConstructor() {
     const accordionParent = document.getElementById("accordionParent");
     const accordionInfo =
     {
@@ -161,7 +167,7 @@ function AccordionConstructor() {
 }
 
 
-function GenericCardCreator(cardTitleText, cardBodyData) {
+function genericCardCreator(cardTitleText, cardBodyData) {
     const cardTemplate = document.createElement("template");
     cardTemplate.innerHTML =
         `<div class="card bg-light" style="width: 40rem;">
@@ -173,6 +179,6 @@ function GenericCardCreator(cardTitleText, cardBodyData) {
     return cardTemplate.content;
 }
 
-AccordionConstructor();
-CreatorCardInfo();
-TableConstructor();
+accordionConstructor();
+creatorCardInfo();
+tableConstructor();
