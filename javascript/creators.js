@@ -64,11 +64,24 @@ async function viewershipCardBuilder() {
     // console.log(viewershipData["viewership"]);
     // console.log(viewershipData["viewership"][1]);
     for (const seasonData of viewershipData["viewership"]) {
+        const viewershipCard = document.getElementById("viewershipCard");
         console.log(seasonData)
-    } for(const episode of viewershipData["episodes"]) {
-        console.log(episode)
-    }
 
+        for(const episode of Object.entries(seasonData["episodes"])) {
+            const viewershipCard = document.getElementById("viewershipCard");
+            let viewershipDiv = document.createElement("div");
+            viewershipDiv.innerHTML =
+            `
+            <h5>${episode[0]}</h5>
+            <p>Episode: ${episode[0]}, Viewers: ${episode[1] * 1000000}</p>
+            `
+            viewershipDiv = genericCardCreator(viewershipDiv.innerHTML);
+            viewershipCard.appendChild(viewershipDiv);
+            
+            console.log(episode)
+        }
+    
+    } 
 }
 
 viewershipCardBuilder();
