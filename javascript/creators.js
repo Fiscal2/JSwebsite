@@ -66,8 +66,8 @@ async function viewershipCardBuilder() {
             const viewershipDiv = document.createElement("div");
             viewershipDiv.innerHTML =
                 `
-                <h5>Season ${seasonData["season"]}</h5>
-                <p>Episode: ${episode[0]}, Viewers: ${episode[1] * 1000000}</p>
+                <h5>Episode: ${episode[0]}</h5>
+                <p>Season ${seasonData["season"]}, Viewers: ${episode[1] * 1000000}</p>
                 `
             viewershipCard.appendChild(viewershipDiv);
         }
