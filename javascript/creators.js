@@ -73,8 +73,7 @@ async function viewershipCardBuilder() {
             viewershipDiv.innerHTML =
             `
             <h5>${episode[0]}</h5>
-            <p>Episode: ${episode[0]}, Viewers: ${episode[1] * 1000000}</p>
-            `
+            <p>Viewers: ${episode[1] * 1000000}</p>`
             viewershipDiv = genericCardCreator(viewershipDiv.innerHTML);
             viewershipCard.appendChild(viewershipDiv);
             
@@ -193,7 +192,7 @@ function accordionConstructor() {
 function genericCardCreator(cardTitleText, cardBodyData) {
     const cardTemplate = document.createElement("template");
     cardTemplate.innerHTML =
-        `<div class="card bg-light" style="width: 40rem;">
+        `<div class="card bg-light mt-3 mb-3 my-3 me-3" style="width: 40rem;">
             <div class="card-body text-center">
                 <h2 class="card-title">${cardTitleText}</h2>
                 ${cardBodyData}
