@@ -73,7 +73,7 @@ async function viewershipCardBuilder() {
             viewershipDiv.innerHTML =
             `
             <h5>${episode[0]}</h5>
-            <p>Viewers: ${episode[1] * 1000000}</p>`
+            <p>Season: ${seasonData[0]} Viewers: ${episode[1] * 1000000}</p>`
             viewershipDiv = genericCardCreator(viewershipDiv.innerHTML);
             viewershipCard.appendChild(viewershipDiv);
             
