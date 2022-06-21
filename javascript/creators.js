@@ -65,7 +65,10 @@ async function viewershipCardBuilder() {
     // console.log(viewershipData["viewership"][1]);
     for (const seasonData of viewershipData["viewership"]) {
         console.log(seasonData)
+    } for(const episode of viewershipData["episodes"]) {
+        console.log(episode)
     }
+
 }
 
 viewershipCardBuilder();
