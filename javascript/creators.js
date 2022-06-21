@@ -29,7 +29,7 @@ function CreatorCardInfo() {
             </cite>
         </figcaption>`.trim()
 
-    const card = GenericCardCreator("The Creators", creatorCardTemplate);
+    const card = GenericCardCreator("The Creators", creatorCardTemplate.innerHTML);
 
     cardRow.appendChild(card);
 }
@@ -100,7 +100,7 @@ function TableConstructor() {
 
     table.append(tableHead, tableBody);
     tableDiv.appendChild(table)
-    const card = GenericCardCreator("Ratings", tableDiv);
+    const card = GenericCardCreator("Ratings", tableDiv.innerHTML);
     tableRow.appendChild(card);
 }
 
@@ -154,9 +154,9 @@ function GenericCardCreator(cardTitleText, cardBodyData) {
     const cardTemplate = document.createElement("template");
     cardTemplate.innerHTML =
         `<div class="card bg-light" style="width: 40rem;">
-            <h2 class="card-title text-center">${cardTitleText}</h2>
-            <div class="card-body">
-                ${cardBodyData.innerHTML}
+            <div class="card-body text-center">
+                <h2 class="card-title">${cardTitleText}</h2>
+                ${cardBodyData}
             </div>
         </div>`.trim()
     return cardTemplate.content;
