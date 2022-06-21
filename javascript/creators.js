@@ -35,8 +35,8 @@ function CreatorCardInfo() {
     const cardInnerRow = document.createElement('div');
     cardInnerRow.classList.add("row", "justify-content-center", "mb-2");
 
-    const cardInnerColDan = ImageAndColumnMaker3000("Dan Harmon", danImg);
-    const cardInnerColJustin = ImageAndColumnMaker3000("Justin Roiland", justinImg);
+    const cardInnerColDan = imageAndColumnBuilder("Dan Harmon", danImg);
+    const cardInnerColJustin = imageAndColumnBuilder("Justin Roiland", justinImg);
 
     cardInnerRow.append(cardInnerColJustin, cardInnerColDan);
     cardBlockquote.appendChild(cardBlockquoteParagraph);
@@ -121,7 +121,7 @@ function AccordionConstructor() {
     for (const [key, value] of Object.entries(accordionInfo)) {
         const accordionItem = document.createElement('div');
         accordionItem.classList.add('accordion-item');
-        
+
 
         const accordionHeader = document.createElement('h2');
         accordionHeader.setAttribute("id", `#heading${key}`);
@@ -155,19 +155,14 @@ function AccordionConstructor() {
 }
 
 
-function ImageAndColumnMaker3000(creatorName, imageSource) {
-    const imageColumn = document.createElement('div');
-    imageColumn.classList.add("col-sm-4");
-    const imageElement = document.createElement('img');
-    imageElement.classList.add("img-thumbnail");
-    const imageText = document.createElement('p');
-    imageText.classList.add("card-text");
-    imageText.innerHTML = creatorName;
-
-    imageElement.setAttribute("src", imageSource);
-    imageElement.setAttribute("style", "width: 200px; height:250px;");
-    imageColumn.append(imageElement, imageText)
-    return imageColumn;
+function imageAndColumnBuilder(creatorName, imageSource) {
+    const creatorImageColumn = document.createElement("template");
+    creatorImageColumn.innerHTML =
+        `<div class="col-sm-4">
+            <img src=${imageSource} class="img-thumbnail" style="width: 200px; height:250px;"/>
+            <p class="card-text">${creatorName}</p>
+        </div>`.trim()
+    return creatorImageColumn.content;
 }
 
 
