@@ -57,7 +57,9 @@ function imageAndColumnBuilder(creatorName, imageSource) {
 }
 
 async function viewershipCardBuilder() {
+    const viewershipData = []
     const viewership = await fetchLocalFileData('/javascript/viewership.json');
+    viewershipData.push(viewership.response);
     console.log(viewership);
 }
 
