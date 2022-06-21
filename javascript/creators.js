@@ -60,18 +60,15 @@ async function viewershipCardBuilder() {
     const viewershipData = await fetchLocalFileData('/javascript/viewership.json');
     for (const seasonData of viewershipData["viewership"]) {
         const viewershipCard = document.getElementById("viewershipCard");
-        console.log(seasonData)
+        const seasonDiv = document.createElement("div");
+        seasonDiv.innerHTML = `<h4>Season ${seasonData["season"]}</h4>`
 
         for (const episode of Object.entries(seasonData["episodes"])) {
-            const viewershipDiv = document.createElement("div");
-            viewershipDiv.innerHTML =
-                `
-                <h5>Episode: ${episode[0]}</h5>
-                <p>Season ${seasonData["season"]}, Viewers: ${episode[1] * 1000000}</p>
-                `
-            viewershipCard.appendChild(viewershipDiv);
+            const episodeInfo = document.createElement("p");
+            episodeInfo.innerHTML = `Episode: ${episode[0]}, Viewers: ${episode[1] * 1000000}`
+            seasonDiv.appendChild(episodeInfo);
         }
-
+        viewershipCard.appendChild(seasonDiv);
     }
 }
 
