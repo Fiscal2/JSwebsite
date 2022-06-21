@@ -10,18 +10,18 @@ async function fetchRickAndMortyData(url) {
         return alert(`HTTP-Error: ${responseData.status}`);
     }
 }
+
 // Constructs modals for each season 
 async function episodeModalBuilder() {
     const allEpisodesBySeason = await episodesBySeason();
     const modalDiv = document.getElementById("modalDiv");
-
     const numberOfSeasons = [1, 2, 3, 4, 5]
+
     for (const season of numberOfSeasons) {
         const modalTemplate = document.createElement("template");
         const modalBodyElements = episodeBuilder(allEpisodesBySeason[season]);
         modalTemplate.innerHTML =
-            `
-            <div class="modal fade" id="episodeModal${season}" tabindex="-1" aria-labelledby="locationModal" aria-hidden="true">
+            `<div class="modal fade" id="episodeModal${season}" tabindex="-1" aria-labelledby="locationModal" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
                     <div class="modal-content">
                         <div class="modal-header bg-success">
@@ -33,8 +33,7 @@ async function episodeModalBuilder() {
                         </div>
                     </div>
                 </div>
-            </div>
-            `.trim()
+            </div>`.trim()
 
         modalDiv.appendChild(modalTemplate.content);
     }
@@ -97,7 +96,6 @@ async function episodesBySeason() {
 // crazy function that makes Season card
 function seasonThumbnailBuilder() {
     const seasonContainer = document.getElementById("card-container");
-
     const seasonNumAndImage = {
         1: 'https://upload.wikimedia.org/wikipedia/en/b/b8/Rick_and_Morty_season_1.png',
         2: 'https://upload.wikimedia.org/wikipedia/en/b/b1/Rick_and_Morty_season_2.png',
@@ -115,34 +113,20 @@ function seasonThumbnailBuilder() {
             seasonContainerRow.classList.add("row");
             tempRow = seasonContainerRow
         }
-
         const seasonContainerRow = tempRow
-
-        const seasonContainerCol = document.createElement("div");
-        seasonContainerCol.classList.add("col-md-4");
-
-        const seasonContainerCard = document.createElement("div");
-        seasonContainerCard.classList.add("card", "bg-transparent", "border-0", "text-center");
-        seasonContainerCard.style = "width:16rem"
-
-        const seasonContainerImg = document.createElement("img");
-        seasonContainerImg.classList.add("img-thumbnail", "rounded", "mb-1", "mx-auto", "d-block");
-        seasonContainerImg.setAttribute("style", "width: 250px; height: 350px");
-        seasonContainerImg.setAttribute("src", value);
-
-        const seasonContainerBody = document.createElement("div");
-        seasonContainerBody.classList.add("card-body");
-
-        const seasonContainerBtn = document.createElement("button");
-        seasonContainerBtn.classList.add("btn", "btn-outline-success");
-        seasonContainerBtn.innerHTML = "Episodes";
-        seasonContainerBtn.setAttribute("data-bs-toggle", "modal");
-        seasonContainerBtn.setAttribute("data-bs-target", `#episodeModal${key}`);
-
-        seasonContainerBody.appendChild(seasonContainerBtn);
-        seasonContainerCard.append(seasonContainerImg, seasonContainerBody);
-        seasonContainerCol.appendChild(seasonContainerCard);
-        seasonContainerRow.appendChild(seasonContainerCol);
+        const seasonCardTemplate = document.createElement("template");
+        seasonCardTemplate.innerHTML =
+            `
+            <div class="col-md-4">
+                <div class="card bg-transparent border-0 text-center" style="width: 16rem;">
+                    <img class="img-thumbnail rounded mb-1 mx-auto d-block" src=${value} style="width: 250px; height: 350px;"/>
+                    <div class="card-body">
+                        <button class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#episodeModal${key}">Episodes</button>
+                    </div>
+                </div>
+            </div>
+            `
+        seasonContainerRow.appendChild(seasonCardTemplate.content);
         seasonContainer.appendChild(seasonContainerRow);
     }
 }
