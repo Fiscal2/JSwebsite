@@ -3,49 +3,46 @@
 function CreatorCardInfo() {
     const justinImg = "https://static.wikia.nocookie.net/gravityfalls/images/2/2f/Justin_Roiland.jpg/revision/latest?cb=20200204214613";
     const danImg = "https://m.media-amazon.com/images/M/MV5BMjEzMDY2NzI3MF5BMl5BanBnXkFtZTcwODY5MjI3NA@@._V1_.jpg";
-
     const cardRow = document.getElementById("creatorCard");
 
-    const cardBlockquote = document.createElement('blockquote');
-    cardBlockquote.classList.add("blockquote");
+    const cardImageDan = imageAndColumnBuilder("Dan Harmon", danImg);
+    const cardImageJustin = imageAndColumnBuilder("Justin Roiland", justinImg);
 
-    const cardBlockquoteParagraph = document.createElement('p');
-    cardBlockquoteParagraph.classList.add("text-start");
-    cardBlockquoteParagraph.setAttribute("style", "text-indent: 2em;");
-    cardBlockquoteParagraph.innerHTML =
-        `
-        Rick and Morty is an American adult animated science fiction sitcom created by Justin
-        Roiland and Dan Harmon for Cartoon Network's nighttime programming block Adult Swim.
-        The series follows the misadventures of cynical mad scientist Rick Sanchez
-        and his good-hearted, but fretful grandson Morty Smith,
-        who split their time between domestic life and interdimensional adventures.
-        `
+    const creatorCardTemplate = document.createElement("template");
+    creatorCardTemplate.innerHTML =
+        `<div class="row justify-content-center mb-2">
+            ${cardImageJustin.innerHTML}
+            ${cardImageDan.innerHTML}
+        </div>
+        <blockquote class="blockquote">
+            <p class="text-start" style="text-indent: 2em;">
+            Rick and Morty is an American adult animated science fiction sitcom created by Justin
+            Roiland and Dan Harmon for Cartoon Network's nighttime programming block Adult Swim.
+            The series follows the misadventures of cynical mad scientist Rick Sanchez
+            and his good-hearted, but fretful grandson Morty Smith,
+            who split their time between domestic life and interdimensional adventures.
+            </p>
+        </blockquote>
+        <figcaption class="blockquote-footer">
+            <cite title="Source">
+                <a href="https://en.wikipedia.org/wiki/Rick_and_Morty" target="_blank">Wikipedia</a>
+            </cite>
+        </figcaption>`.trim()
 
-    const cardBlockquoteCaption = document.createElement("figcaption");
-    cardBlockquoteCaption.classList.add("blockquote-footer");
-
-    const blockquoteCitation = document.createElement("cite");
-    blockquoteCitation.setAttribute("title", "Source");
-
-    const blockquoteCitationLink = document.createElement("a");
-    blockquoteCitationLink.setAttribute("href", "https://en.wikipedia.org/wiki/Rick_and_Morty")
-    blockquoteCitationLink.setAttribute("target", "_blank")
-    blockquoteCitationLink.innerHTML = "Wikipedia";
-
-    const cardInnerRow = document.createElement('div');
-    cardInnerRow.classList.add("row", "justify-content-center", "mb-2");
-
-    const cardInnerColDan = imageAndColumnBuilder("Dan Harmon", danImg);
-    const cardInnerColJustin = imageAndColumnBuilder("Justin Roiland", justinImg);
-
-    cardInnerRow.append(cardInnerColJustin, cardInnerColDan);
-    cardBlockquote.appendChild(cardBlockquoteParagraph);
-    blockquoteCitation.appendChild(blockquoteCitationLink);
-    cardBlockquoteCaption.appendChild(blockquoteCitation);
-
-    const card = GenericCardCreator("The Creators", [cardInnerRow, cardBlockquote, cardBlockquoteCaption]);
+    const card = GenericCardCreator("The Creators", creatorCardTemplate);
 
     cardRow.appendChild(card);
+}
+
+
+function imageAndColumnBuilder(creatorName, imageSource) {
+    const creatorImageColumn = document.createElement("template");
+    creatorImageColumn.innerHTML =
+        `<div class="col-sm-4">
+            <img src=${imageSource} class="img-thumbnail" style="width: 200px; height:250px;"/>
+            <p class="card-text text-center">${creatorName}</p>
+        </div>`.trim()
+    return creatorImageColumn;
 }
 
 
@@ -94,17 +91,16 @@ function TableBodyConstructor() {
 
 function TableConstructor() {
     const tableRow = document.getElementById("ratingCard");
-
-    const Table = document.createElement("table");
-    Table.classList.add("table", "table-success", "table-striped", "table-hover");
+    const tableDiv = document.createElement("div");
+    const table = document.createElement("table");
+    table.classList.add("table", "table-success", "table-striped", "table-hover");
 
     const tableHead = TableHeadConstructor();
     const tableBody = TableBodyConstructor();
 
-    Table.append(tableHead, tableBody);
-    tableRow.appendChild(Table);
-
-    const card = GenericCardCreator("Ratings", Table);
+    table.append(tableHead, tableBody);
+    tableDiv.appendChild(table)
+    const card = GenericCardCreator("Ratings", tableDiv);
     tableRow.appendChild(card);
 }
 
@@ -121,7 +117,6 @@ function AccordionConstructor() {
     for (const [key, value] of Object.entries(accordionInfo)) {
         const accordionItem = document.createElement('div');
         accordionItem.classList.add('accordion-item');
-
 
         const accordionHeader = document.createElement('h2');
         accordionHeader.setAttribute("id", `#heading${key}`);
@@ -155,41 +150,16 @@ function AccordionConstructor() {
 }
 
 
-function imageAndColumnBuilder(creatorName, imageSource) {
-    const creatorImageColumn = document.createElement("template");
-    creatorImageColumn.innerHTML =
-        `<div class="col-sm-4">
-            <img src=${imageSource} class="img-thumbnail" style="width: 200px; height:250px;"/>
-            <p class="card-text">${creatorName}</p>
-        </div>`.trim()
-    return creatorImageColumn.content;
-}
-
-
 function GenericCardCreator(cardTitleText, cardBodyData) {
-    const card = document.createElement("div");
-    card.classList.add("card", "bg-light");
-    card.setAttribute("style", "width: 40rem;");
-
-    const cardBody = document.createElement('div');
-    cardBody.classList.add("card-body", "text-center");
-
-    const cardTitle = document.createElement('h2');
-    cardTitle.classList.add("card-title");
-    cardTitle.innerHTML = cardTitleText;
-
-    cardBody.appendChild(cardTitle);
-
-    if (Array.isArray(cardBodyData)) {
-        for (const bodyElement of cardBodyData) {
-            cardBody.append(bodyElement);
-        }
-    } else {
-        cardBody.appendChild(cardBodyData);
-    }
-
-    card.appendChild(cardBody);
-    return card;
+    const cardTemplate = document.createElement("template");
+    cardTemplate.innerHTML =
+        `<div class="card bg-light" style="width: 40rem;">
+            <h2 class="card-title text-center">${cardTitleText}</h2>
+            <div class="card-body">
+                ${cardBodyData.innerHTML}
+            </div>
+        </div>`.trim()
+    return cardTemplate.content;
 }
 
 AccordionConstructor();
