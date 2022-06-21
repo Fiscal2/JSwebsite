@@ -17,63 +17,42 @@ async function episodeModalBuilder() {
 
     const numberOfSeasons = [1, 2, 3, 4, 5]
     for (const season of numberOfSeasons) {
-        const modalContainerDiv = document.createElement('div');
-        modalContainerDiv.classList.add("modal", "fade")
-        const modalContainer = setElementAttributes(modalContainerDiv,
-            {
-                "id": `episodeModal${season}`,
-                "data-bs-keyboard": "false",
-                "tabindex": "-1",
-                "aria-labelledby": "locationModal",
-                "aria-hidden": "true"
-            });
-        const modalDialogDiv = document.createElement('div');
-        modalDialogDiv.classList.add("modal-dialog", "modal-dialog-centered", "modal-dialog-scrollable");
+        const modalTemplate = document.createElement("template");
+        const modalBodyElements = episodeBuilder(allEpisodesBySeason[season]);
+        modalTemplate.innerHTML =
+            `
+            <div class="modal fade" id="episodeModal${season}" tabindex="-1" aria-labelledby="locationModal" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+                    <div class="modal-content">
+                        <div class="modal-header bg-success">
+                            <h4 class="modal-title text-white" style="text-shadow: 2px 2px 3px #000000;">Season ${season}</h4>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            ${modalBodyElements.innerHTML}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            `.trim()
 
-        const modalContentDiv = document.createElement('div');
-        modalContentDiv.classList.add("modal-content");
-
-        const modalHeaderDiv = document.createElement('div');
-        modalHeaderDiv.classList.add("modal-header", "bg-success");
-
-        const modalTitleH4 = document.createElement('h4');
-        modalTitleH4.classList.add("modal-title", "text-white");
-        modalTitleH4.setAttribute("style", "text-shadow: 2px 2px 3px #000000;")
-        modalTitleH4.innerHTML = `Season ${season}`
-
-        const modalCloseButtonElement = document.createElement('button');
-        modalCloseButtonElement.classList.add("btn-close");
-        const modalCloseButton = setElementAttributes(modalCloseButtonElement,
-            {
-                "type": "button",
-                "data-bs-dismiss": "modal",
-                "aria-label": "close"
-            });
-
-        const modalBody = episodeBuilder(allEpisodesBySeason[season]);
-
-        modalHeaderDiv.append(modalTitleH4, modalCloseButton);
-        modalContentDiv.append(modalHeaderDiv, modalBody);
-        modalDialogDiv.appendChild(modalContentDiv);
-        modalContainer.appendChild(modalDialogDiv);
-        modalDiv.appendChild(modalContainer);
-
+        modalDiv.appendChild(modalTemplate.content);
     }
 }
 
-
 function episodeBuilder(allEpisodes) {
-    const modalBodyDiv = document.createElement('div');
-    modalBodyDiv.classList.add("modal-body");
+    const modalBodyElementContainer = document.createElement('div');
 
     for (const episode of allEpisodes) {
-        const episodeTitle = document.createElement('h5');
-        episodeTitle.innerHTML = episode.name
-        const episodeInfo = document.createElement('p');
-        episodeInfo.innerHTML = `Episode: ${episode.id}, Air Date: ${episode.air_date}`
-        modalBodyDiv.append(episodeTitle, episodeInfo)
+        const episodeTemplate = document.createElement("template");
+        episodeTemplate.innerHTML =
+            `
+            <h5>${episode.name}</h5>
+            <p>Episode: ${episode.id}, Air Date: ${episode.air_date}</p>
+            `
+        modalBodyElementContainer.append(episodeTemplate.content)
     }
-    return modalBodyDiv;
+    return modalBodyElementContainer;
 }
 
 // automates multiple set attributes for an html element

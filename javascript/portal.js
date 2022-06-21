@@ -47,6 +47,9 @@ async function paginationCardBuilder(pageNumber = 0) {
         const cardColumns = cardTemplateBuilder(location);
         cardRow.appendChild(cardColumns);
     }
+
+    const loadingSpinner = document.getElementById("loadingSpinner");
+    loadingSpinner.classList.add("d-none");
 }
 
 // makes the cards for the locations in as few lines as possible
@@ -107,9 +110,6 @@ async function modalBuilder() {
         const completedModal = modalBodyBuilder(location.id, characterInfo, location.name);
         modalDiv.appendChild(completedModal);
     }
-
-    const loadingSpinner = document.getElementById("loadingSpinner");
-    loadingSpinner.classList.add("d-none");
 }
 // takes in a location, character object, and location name and makes the majority of the modal
 // on line 130 is logic for 1 character, many characters, or No characters 
