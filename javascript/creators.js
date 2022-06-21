@@ -57,31 +57,23 @@ function imageAndColumnBuilder(creatorName, imageSource) {
 }
 
 async function viewershipCardBuilder() {
-    //const viewershipData = []
     const viewershipData = await fetchLocalFileData('/javascript/viewership.json');
-    //viewershipData.push(viewership.response);
-    // console.log(viewershipData);
-    // console.log(viewershipData["viewership"]);
-    // console.log(viewershipData["viewership"][1]);
     for (const seasonData of viewershipData["viewership"]) {
         const viewershipCard = document.getElementById("viewershipCard");
         console.log(seasonData)
 
-        for(const episode of Object.entries(seasonData["episodes"])) {
-            const viewershipCard = document.getElementById("viewershipCard");
-            let viewershipDiv = document.createElement("div");
+        for (const episode of Object.entries(seasonData["episodes"])) {
+            const viewershipDiv = document.createElement("div");
             viewershipDiv.innerHTML =
-            `
-            <h5>${episode[0]}</h5>
-            <p>Episode: ${episode[0]}, Viewers: ${episode[1] * 1000000}</p>
-            `
-            viewershipDiv = genericCardCreator(viewershipDiv.innerHTML);
+                `
+                <h5>Season ${seasonData["season"]}</h5>
+                <p>Episode: ${episode[0]}, Viewers: ${episode[1] * 1000000}</p>
+                `
+
             viewershipCard.appendChild(viewershipDiv);
-            
-            console.log(episode)
         }
-    
-    } 
+
+    }
 }
 
 viewershipCardBuilder();
