@@ -121,7 +121,7 @@ function AccordionConstructor() {
     for (const [key, value] of Object.entries(accordionInfo)) {
         const accordionItem = document.createElement('div');
         accordionItem.classList.add('accordion-item');
-        accordionItem.setAttribute("id", `collapse${key}`);
+        
 
         const accordionHeader = document.createElement('h2');
         accordionHeader.setAttribute("id", `#heading${key}`);
@@ -137,6 +137,7 @@ function AccordionConstructor() {
         accordionButton.setAttribute("aria-controls", `collapse${key}`);
 
         const accordionHeading = document.createElement('div');
+        accordionHeading.setAttribute("id", `collapse${key}`);
         accordionHeading.classList.add("accordion-collapse", "collapse");
         accordionHeading.setAttribute("aria-labelledby", `heading${key}`);
         accordionHeading.setAttribute("data-bs-parent", "#accordionParent");
