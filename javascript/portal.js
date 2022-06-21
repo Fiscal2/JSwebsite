@@ -210,13 +210,13 @@ function setElementAttributes(element, attributes) {
 
 // Function for search box, does minor sanitization of input, hides/shows cards depending on input
 function cardSearchFilter() {
-    const searchInput = document.getElementById("navsearch").value.replace(/[^a-z0-9]/gi, '').toLowerCase().trim();
+    const searchInput = document.getElementById("navsearch").value.toLowerCase().trim();
     const rowOfCards = document.getElementById("cardrow").children;
-
+    console.log(searchInput)
     for (const card of rowOfCards) {
-        const cardHeaderText = card.querySelector("h5").innerHTML.toLowerCase().trim();
-
-        if (!cardHeaderText.includes(searchInput) && !!searchInput) {
+        const cardHeaderText = card.querySelector("h5").innerHTML.toLowerCase();
+        console.log(cardHeaderText)
+        if ((!cardHeaderText.trim().includes(searchInput) && !!searchInput)) {
             card.classList.add("d-none");
         } else {
             card.classList.remove("d-none");
