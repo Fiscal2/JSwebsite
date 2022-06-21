@@ -57,10 +57,12 @@ function imageAndColumnBuilder(creatorName, imageSource) {
 }
 
 async function viewershipCardBuilder() {
-    const viewershipData = []
-    const viewership = await fetchLocalFileData('/javascript/viewership.json');
-    viewershipData.push(viewership.response);
-    console.log(viewership);
+    //const viewershipData = []
+    const viewershipData = await fetchLocalFileData('/javascript/viewership.json');
+    //viewershipData.push(viewership.response);
+    console.log(viewershipData);
+    console.log(viewershipData["viewership"]);
+    console.log(viewershipData["viewership"][1]);
 }
 
 viewershipCardBuilder();
