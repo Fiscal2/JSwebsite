@@ -60,9 +60,12 @@ async function viewershipCardBuilder() {
     //const viewershipData = []
     const viewershipData = await fetchLocalFileData('/javascript/viewership.json');
     //viewershipData.push(viewership.response);
-    console.log(viewershipData);
-    console.log(viewershipData["viewership"]);
-    console.log(viewershipData["viewership"][1]);
+    // console.log(viewershipData);
+    // console.log(viewershipData["viewership"]);
+    // console.log(viewershipData["viewership"][1]);
+    for (const seasonData of viewershipData["viewership"]) {
+        console.log(seasonData)
+    }
 }
 
 viewershipCardBuilder();
