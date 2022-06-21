@@ -124,6 +124,7 @@ function AccordionConstructor() {
         accordionItem.setAttribute("id", `collapse${key}`);
 
         const accordionHeader = document.createElement('h2');
+        accordionHeader.setAttribute("id", `#heading${key}`);
         accordionHeader.classList.add('accordion-header');
 
         const accordionButton = document.createElement('button');
@@ -142,7 +143,7 @@ function AccordionConstructor() {
 
         const accordionBody = document.createElement("div");
         accordionBody.classList.add("accordion-body");
-        accordionBody.setAttribute("id", "accordionBody")
+        accordionBody.setAttribute("id", "accordionBodyText")
         accordionBody.innerHTML = "test"
 
         accordionHeading.appendChild(accordionBody);
