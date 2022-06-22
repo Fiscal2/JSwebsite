@@ -80,14 +80,14 @@ function accordionConstructor() {
         // accordionHeader.classList.add('accordion-header');
 
 
-        const accordionButton = document.createElement('button');
-        accordionButton.classList.add("accordion-button", "collapsed");
-        accordionButton.innerHTML = value
-        accordionButton.setAttribute("type", "button");
-        accordionButton.setAttribute("data-bs-toggle", "collapse");
-        accordionButton.setAttribute("data-bs-target", `#collapse${key}`);
-        accordionButton.setAttribute("aria-expanded", "false");
-        accordionButton.setAttribute("aria-controls", `collapse${key}`);
+        // const accordionButton = document.createElement('button');
+        // accordionButton.classList.add("accordion-button", "collapsed");
+        // accordionButton.innerHTML = value
+        // accordionButton.setAttribute("type", "button");
+        // accordionButton.setAttribute("data-bs-toggle", "collapse");
+        // accordionButton.setAttribute("data-bs-target", `#collapse${key}`);
+        // accordionButton.setAttribute("aria-expanded", "false");
+        // accordionButton.setAttribute("aria-controls", `collapse${key}`);
 
         const accordionHeading = document.createElement('div');
         accordionHeading.setAttribute("id", `collapse${key}`);
@@ -105,7 +105,8 @@ function accordionConstructor() {
             `
             <div class="accordion-item">
                 <h2 class="accordion-header" id=#heading${key}>
-            
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse${key}" aria-expanded="false" aria-controls="collapse${key}">
+                    ${value}</button>
                 </h2>
             </div>
             `.trim()
