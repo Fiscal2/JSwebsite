@@ -71,7 +71,7 @@ async function accordionConstructor() {
         accordionItemTemplate.innerHTML =
             `<div class="accordion-item">
                     <h2 class="accordion-header" id="#heading${dict["number"]}">
-                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse${dict["number"]}" aria-expanded="false" aria-controls="collapse${dict["number"]}">
+                        <button class="accordion-button collapsed bg-light" type="button" data-bs-toggle="collapse" data-bs-target="#collapse${dict["number"]}" aria-expanded="false" aria-controls="collapse${dict["number"]}">
                         ${dict["title"]}</button>
                     </h2>
                     <div id="collapse${dict["number"]}" class="accordion-collapse collapse" aria-labelledby="heading${dict["number"]}" data-bs-parent="#accordionParent">
