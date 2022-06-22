@@ -87,13 +87,15 @@ function accordionConstructor() {
     }
 }
 
-async function accordionBodyBuilder(){
+async function accordionBodyBuilder() {
     const bodyBuilderData = await fetchRickAndMortyData('/javascript/accordion.json');
-    for(const Item in bodyBuilderData["accordionItem"]) {
-        
+    for (const dict of bodyBuilderData["accordionItem"]) {
+        console.log(dict)
+        // we want a row, with the info inside similar to line 14-23 
     }
 }
 
+accordionBodyBuilder();
 accordionConstructor();
 creatorCardInfo();
 viewershipCardBuilder();
