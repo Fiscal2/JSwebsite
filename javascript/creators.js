@@ -6,17 +6,20 @@ import { genericCardCreator } from "./utilities/genericBuilders.js";
 
 async function creatorCardInfo() {
     const justinImg = "/assets/JustinPhoto.jpg";
-    const danImg = "https://m.media-amazon.com/images/M/MV5BMjEzMDY2NzI3MF5BMl5BanBnXkFtZTcwODY5MjI3NA@@._V1_.jpg";
+    const danImg = "/assets/danPhoto.jpg";
     const cardRow = document.getElementById("creatorCard");
-
-    const cardImageDan = imageAndColumnBuilder("Dan Harmon", danImg);
-    const cardImageJustin = imageAndColumnBuilder("Justin Roiland", justinImg);
 
     const creatorCardTemplate = document.createElement("template");
     creatorCardTemplate.innerHTML =
         `<div class="row justify-content-center mb-2">
-            ${cardImageJustin.innerHTML}
-            ${cardImageDan.innerHTML}
+            <div class="col-sm-4">
+                <img src=${justinImg} class="img-thumbnail" style="width: 200px; height:250px;"/>
+                <p class="card-text text-center"><b>Justin Roiland</b></p>
+            </div>
+                <div class="col-sm-4">
+                <img src=${danImg} class="img-thumbnail" style="width: 200px; height:250px;"/>
+                <p class="card-text text-center"><b>Dan Harmon</b></p>
+            </div>
         </div>
         <blockquote class="blockquote">
             <p class="text-start" style="text-indent: 2em;">
@@ -36,17 +39,6 @@ async function creatorCardInfo() {
     const card = genericCardCreator("The Creators", creatorCardTemplate.innerHTML);
 
     cardRow.appendChild(card);
-}
-
-
-function imageAndColumnBuilder(creatorName, imageSource) {
-    const creatorImageColumn = document.createElement("template");
-    creatorImageColumn.innerHTML =
-        `<div class="col-sm-4">
-            <img src=${imageSource} class="img-thumbnail" style="width: 200px; height:250px;"/>
-            <p class="card-text text-center"><b>${creatorName}</b></p>
-        </div>`.trim()
-    return creatorImageColumn;
 }
 
 
