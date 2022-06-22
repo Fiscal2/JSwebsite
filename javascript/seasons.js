@@ -65,11 +65,11 @@ async function episodesBySeason() {
 function seasonThumbnailBuilder() {
     const seasonContainer = document.getElementById("card-container");
     const seasonNumAndImage = {
-        1: 'https://upload.wikimedia.org/wikipedia/en/b/b8/Rick_and_Morty_season_1.png',
-        2: 'https://upload.wikimedia.org/wikipedia/en/b/b1/Rick_and_Morty_season_2.png',
-        3: 'https://upload.wikimedia.org/wikipedia/en/5/52/Rick_and_Morty_season_3.png',
-        4: 'https://upload.wikimedia.org/wikipedia/en/1/17/Rick_and_Morty_season_4.jpg',
-        5: 'https://upload.wikimedia.org/wikipedia/en/7/7a/Rick_and_Morty_season_5.jpg'
+        1: '../assets/SeasonOne.png',
+        2: '../assets/SeasonTwo.png',
+        3: '../assets/SeasonThree.png',
+        4: '../assets/SeasonFour.jpg',
+        5: '../assets/SeasonFive.jpg'
     }
 
     let tempRow;
