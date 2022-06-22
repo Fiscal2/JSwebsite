@@ -108,6 +108,8 @@ function accordionConstructor() {
                     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse${key}" aria-expanded="false" aria-controls="collapse${key}">
                     ${value}</button>
                 </h2>
+                <div id=collapse${key} class="accordion-collapse collapse" aria-labelledby="heading${key}" data-bs-parent="#accordionParent">
+                </div>
             </div>
             `.trim()
 
