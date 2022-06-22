@@ -9,18 +9,18 @@
             "number": 2, 
             "title": "Social Media",
             "info":{
-                "Instagram":["/assets/instagramLogo", "https://www.instagram.com/rickandmorty/"],
-                "Facebook":["/assets/facebookLogo", "https://www.facebook.com/RickandMorty/"],
-                "Twitter":["/assets/twitterLogo", "https://twitter.com/RickandMorty?ref_src=twsrc%5Egoogle%7Ctwcamp%5Eserp%7Ctwgr%5Eauthor"]
+                "Instagram":["/assets/instagramLogo.png", "https://www.instagram.com/rickandmorty/"],
+                "Facebook":["/assets/facebookLogo.png", "https://www.facebook.com/RickandMorty/"],
+                "Twitter":["/assets/twitterLogo.png", "https://twitter.com/RickandMorty?ref_src=twsrc%5Egoogle%7Ctwcamp%5Eserp%7Ctwgr%5Eauthor"]
             }
         },
         {
             "number": 3,
             "title": "Streaming Services",
             "info":{
-                "Hulu":["/assets/HuluLogo", "https://www.hulu.com/"],
+                "Hulu":["/assets/HuluLogo.png", "https://www.hulu.com/"],
                 "YouTube TV":["/assets/youtubeLogo", "https://tv.youtube.com/welcome/"],
-                "HBO Max":["/assets/hboMaxLogo", "https://www.hbomax.com/"]
+                "HBO Max":["/assets/hboMaxLogo.png", "https://www.hbomax.com/"]
             }
         }
     ]

@@ -66,7 +66,6 @@ async function accordionConstructor() {
     const accordionInfo = await fetchRickAndMortyData('/javascript/accordion.json');
 
     accordionInfo["accordionItem"].forEach(dict => {
-        console.log(dict);
         const accordionBody = accordionBodyBuilder(dict["info"]);
         const accordionItemTemplate = document.createElement("template");
         accordionItemTemplate.innerHTML =
@@ -76,7 +75,7 @@ async function accordionConstructor() {
                         ${dict["title"]}</button>
                     </h2>
                     <div id="collapse${dict["number"]}" class="accordion-collapse collapse" aria-labelledby="heading${dict["number"]}" data-bs-parent="#accordionParent">
-                        <div id="accordionBodyText" class="accordion-body">${accordionBody}</div>
+                        <div id="accordionBodyText" class="accordion-body">${accordionBody.innerHTML}</div>
                     </div>
                 </div>`.trim()
 
@@ -86,26 +85,27 @@ async function accordionConstructor() {
 
 function accordionBodyBuilder(accordionData) {
     if (accordionData) {
-        const infoRow = document.createElement("div")
-        infoRow.classList.add("row", "justify-content-center", "mb-2")
+        const infoContainer = document.createElement("div");
+        const infoRow = document.createElement("div");
+        infoRow.classList.add("row", "justify-content-center", "mb-2");
         for (const [key, value] of Object.entries(accordionData)) {
             const infoTemplate = document.createElement("template");
             infoTemplate.innerHTML =
                 `<div class="col-sm-4">
-                    <a href="${value[1]}"><img src=${value[0]} class="img-thumbnail" style="width: 100px; height:100px;"/></a>
+                    <a href="${value[1]}"><img src=${value[0]} class="img-thumbnail border-0" style="width: 100px; height:100px;"/></a>
                     <p class="card-text text-center"><b>${key}</b></p>
-                </div>`.trim()
+                 </div>`.trim()
+
             infoRow.appendChild(infoTemplate.content);
         }
-        return infoRow.innerHTML;
+        infoContainer.appendChild(infoRow);
+        return infoContainer;
     }
 }
 
-//accordionBodyBuilder();
 accordionConstructor();
 creatorCardInfo();
 viewershipCardBuilder();
-
 
 const tableHeaders = ["Season", "Rotten Tomatoes", "Metacritic"];
 const tableRatingData = [
