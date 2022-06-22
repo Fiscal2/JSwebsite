@@ -71,36 +71,19 @@ function accordionConstructor() {
     }
 
     for (const [key, value] of Object.entries(accordionInfo)) {
-
-        const accordionHeading = document.createElement('div');
-        accordionHeading.setAttribute("id", `collapse${key}`);
-        accordionHeading.classList.add("accordion-collapse", "collapse");
-        accordionHeading.setAttribute("aria-labelledby", `heading${key}`);
-        accordionHeading.setAttribute("data-bs-parent", "#accordionParent");
-
-        const accordionBody = document.createElement("div");
-        accordionBody.classList.add("accordion-body");
-        accordionBody.setAttribute("id", "accordionBodyText")
-        accordionBody.innerHTML = "test"
-
-        const accordionBodyTemplate = document.createElement("template");
-        accordionBodyTemplate.innerHTMl =
-            `
-            <div class="accordion-item">
+        const accordionItemTemplate = document.createElement("template");
+        accordionItemTemplate.innerHTML =
+            `<div class="accordion-item">
                 <h2 class="accordion-header" id="#heading${key}">
                     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse${key}" aria-expanded="false" aria-controls="collapse${key}">
                     ${value}</button>
                 </h2>
                 <div id="collapse${key}" class="accordion-collapse collapse" aria-labelledby="heading${key}" data-bs-parent="#accordionParent">
-                    <div id="accordionBodyText" class="accordion-body"></div>
+                    <div id="accordionBodyText" class="accordion-body">test</div>
                 </div>
-            </div>
-            `.trim()
+            </div>`.trim()
 
-        accordionHeading.appendChild(accordionBody);
-        accordionHeader.appendChild(accordionButton);
-        accordionItem.append(accordionHeader, accordionHeading);
-        accordionParent.appendChild(accordionItem);
+        accordionParent.appendChild(accordionItemTemplate.content);
     }
 }
 
