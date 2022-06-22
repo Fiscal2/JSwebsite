@@ -98,6 +98,9 @@ function accordionConstructor() {
         accordionBody.setAttribute("id", "accordionBodyText")
         accordionBody.innerHTML = "test"
 
+        const accordionBodyTemplate = document.createElement("template");
+        accordionBodyTemplate.innerHTMl = ""
+
         accordionHeading.appendChild(accordionBody);
         accordionHeader.appendChild(accordionButton);
         accordionItem.append(accordionHeader, accordionHeading);
