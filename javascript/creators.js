@@ -71,12 +71,18 @@ function accordionConstructor() {
     }
 
     for (const [key, value] of Object.entries(accordionInfo)) {
-        // const accordionItem = document.createElement('div');
-        // accordionItem.classList.add('accordion-item');
+        const accordionItem = document.createElement('div');
+        accordionItem.classList.add('accordion-item');
+        
 
         const accordionHeader = document.createElement('h2');
-        accordionHeader.setAttribute("id", `#heading${key}`);
-        accordionHeader.classList.add('accordion-header');
+        // accordionHeader.setAttribute("id", `#heading${key}`);
+        // accordionHeader.classList.add('accordion-header');
+        accordionHeader.innerHTML = `
+        <div class="accordion-header" id=#heading${key}>
+        
+        </div>
+        `
 
         const accordionButton = document.createElement('button');
         accordionButton.classList.add("accordion-button", "collapsed");
