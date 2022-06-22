@@ -1,15 +1,6 @@
 "use strict";
 
-// Fetches data from api, returns json response
-async function fetchRickAndMortyData(url) {
-    const responseData = await fetch(url);
-
-    if (responseData.ok) {
-        return await responseData.json();
-    } else {
-        return alert(`HTTP-Error: ${responseData.status}`);
-    }
-}
+import { paginatedFetchEndpoint } from "./utilities/fetch.js";
 
 // Constructs modals for each season 
 async function episodeModalBuilder() {
@@ -54,32 +45,9 @@ function episodeBuilder(allEpisodes) {
     return modalBodyElementContainer;
 }
 
-// automates multiple set attributes for an html element
-function setElementAttributes(element, attributes) {
-    for (const key in attributes) {
-        element.setAttribute(key, attributes[key]);
-    }
-    return element;
-}
-
-// gets all the episodes from the api 
-async function fetchAllEpisodes() {
-    const completeEpisodeList = [];
-    let episodeBaseUrl = "https://rickandmortyapi.com/api/episode";
-    const numberOfPages = 3;
-
-    for (let i = 1; i <= numberOfPages; i++) {
-        const episodesOnEachPage = await fetchRickAndMortyData(episodeBaseUrl);
-        completeEpisodeList.push(episodesOnEachPage.results);
-        episodeBaseUrl = episodesOnEachPage.info.next;
-    }
-
-    return completeEpisodeList.flat(1);
-}
-
 // takes all episodes and groups them by season 
 async function episodesBySeason() {
-    const allEpisodes = await fetchAllEpisodes();
+    const allEpisodes = await paginatedFetchEndpoint({ endpoint: "episode", pageCount: 3 });
     return allEpisodes.reduce(function (seasonObj, episodeObj) {
         const season = episodeObj['episode'].substring(2, 3);
 
