@@ -61,41 +61,54 @@ async function viewershipCardBuilder() {
 }
 
 
-function accordionConstructor() {
+async function accordionConstructor() {
     const accordionParent = document.getElementById("accordionParent");
-    const accordionInfo =
-    {
-        1: "Awards",
-        2: "Streaming Services",
-        3: "Social Media"
-    }
+    const accordionInfo = await fetchRickAndMortyData('/javascript/accordion.json');
 
-    for (const [key, value] of Object.entries(accordionInfo)) {
+    accordionInfo["accordionItem"].forEach(dict => {
+        console.log(dict);
+        const accordionBody = accordionBodyBuilder(dict["info"]);
         const accordionItemTemplate = document.createElement("template");
         accordionItemTemplate.innerHTML =
             `<div class="accordion-item">
-                <h2 class="accordion-header" id="#heading${key}">
-                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse${key}" aria-expanded="false" aria-controls="collapse${key}">
-                    ${value}</button>
-                </h2>
-                <div id="collapse${key}" class="accordion-collapse collapse" aria-labelledby="heading${key}" data-bs-parent="#accordionParent">
-                    <div id="accordionBodyText" class="accordion-body">test</div>
-                </div>
-            </div>`.trim()
+                    <h2 class="accordion-header" id="#heading${dict["number"]}">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse${dict["number"]}" aria-expanded="false" aria-controls="collapse${dict["number"]}">
+                        ${dict["title"]}</button>
+                    </h2>
+                    <div id="collapse${dict["number"]}" class="accordion-collapse collapse" aria-labelledby="heading${dict["number"]}" data-bs-parent="#accordionParent">
+                        <div id="accordionBodyText" class="accordion-body">test</div>
+                    </div>
+                </div>`.trim()
 
         accordionParent.appendChild(accordionItemTemplate.content);
-    }
+    });
+
+
+    // for (const dict of accordionInfo) {
+    //     const accordionItemTemplate = document.createElement("template");
+    //     accordionItemTemplate.innerHTML =
+    //         `<div class="accordion-item">
+    //             <h2 class="accordion-header" id="#heading${key}">
+    //                 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse${key}" aria-expanded="false" aria-controls="collapse${key}">
+    //                 ${value}</button>
+    //             </h2>
+    //             <div id="collapse${key}" class="accordion-collapse collapse" aria-labelledby="heading${key}" data-bs-parent="#accordionParent">
+    //                 <div id="accordionBodyText" class="accordion-body">test</div>
+    //             </div>
+    //         </div>`.trim()
+
+    //     accordionParent.appendChild(accordionItemTemplate.content);
+    // }
 }
 
-async function accordionBodyBuilder() {
-    const bodyBuilderData = await fetchRickAndMortyData('/javascript/accordion.json');
-    for (const dict of bodyBuilderData["accordionItem"]) {
+async function accordionBodyBuilder(accordionData) {
+    for (const dict of accordionData) {
         console.log(dict)
         // we want a row, with the info inside similar to line 14-23 
     }
 }
 
-accordionBodyBuilder();
+//accordionBodyBuilder();
 accordionConstructor();
 creatorCardInfo();
 viewershipCardBuilder();

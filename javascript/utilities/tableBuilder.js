@@ -29,7 +29,7 @@ function tableBodyConstructor(tableBodyData) {
             <td>${bodyInfo[1]}</td>
             <td>${bodyInfo[2]}</td>`.trim()
         tableBody.appendChild(tableDataRow);
-    })
+    });
     return tableBody;
 }
 
