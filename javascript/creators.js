@@ -51,7 +51,7 @@ function imageAndColumnBuilder(creatorName, imageSource) {
     creatorImageColumn.innerHTML =
         `<div class="col-sm-4">
             <img src=${imageSource} class="img-thumbnail" style="width: 200px; height:250px;"/>
-            <p class="card-text text-center">${creatorName}</p>
+            <p class="card-text text-center"><b>${creatorName}</b></p>
         </div>`.trim()
     return creatorImageColumn;
 }
@@ -122,7 +122,7 @@ function tableConstructor() {
     const tableRow = document.getElementById("ratingCard");
     const tableDiv = document.createElement("div");
     const table = document.createElement("table");
-    table.classList.add("table", "table-success", "table-striped", "table-hover");
+    table.classList.add("table", "table-info", "table-striped", "table-hover");
 
     const tableHead = tableHeadConstructor();
     const tableBody = tableBodyConstructor();
@@ -182,9 +182,9 @@ function accordionConstructor() {
 function genericCardCreator(cardTitleText, cardBodyData) {
     const cardTemplate = document.createElement("template");
     cardTemplate.innerHTML =
-        `<div class="card bg-light mt-3 mb-3 my-3 me-3" style="width: 40rem;">
-            <div class="card-body text-center">
-                <h2 class="card-title">${cardTitleText}</h2>
+        `<div class="card bg-info bg-gradient my-3" style="width: 40rem;">
+            <div class="card-body text-center text-white">
+                <h2 class="card-title" style="text-shadow: 2px 2px 2px #000000;">${cardTitleText}</h2>
                 ${cardBodyData}
             </div>
         </div>`.trim()
