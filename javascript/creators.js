@@ -87,6 +87,13 @@ function accordionConstructor() {
     }
 }
 
+async function accordionBodyBuilder(){
+    const bodyBuilderData = await fetchRickAndMortyData('/javascript/accordion.json');
+    for(const Item in bodyBuilderData["accordionItem"]) {
+        
+    }
+}
+
 accordionConstructor();
 creatorCardInfo();
 viewershipCardBuilder();
