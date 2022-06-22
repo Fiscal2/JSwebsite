@@ -1,44 +1,9 @@
 "use strict";
 
-// Fetches data from api, returns json response
-async function fetchRickAndMortyData(url) {
-    const responseData = await fetch(url);
-
-    if (responseData.ok) {
-        return await responseData.json();
-    } else {
-        return alert(`HTTP-Error: ${responseData.status}`);
-    }
-}
-
-
-async function paginatedFetchEndpoint({ endpoint, pageCount, grouped = false, groupSize = 0 }) {
-    const responseArray = [];
-    let baseUrl = `https://rickandmortyapi.com/api/${endpoint}/`;
-
-    for (let i = 1; i <= pageCount; i++) {
-        const pageData = await fetchRickAndMortyData(baseUrl);
-        responseArray.push(pageData.results);
-        baseUrl = pageData.info.next;
-    }
-    if (grouped) {
-        return await locationGroupBuilder(responseArray.flat(1), groupSize)
-    }
-
-    return responseArray.flat(1);
-}
-
-// constructs 6 arrays of 21 locations 
-async function locationGroupBuilder(allLocations, groupSize) {
-    const groupedLocations = [];
-    for (let i = 0; i < allLocations.length; i += groupSize) {
-        groupedLocations.push(allLocations.slice(i, i + groupSize));
-    }
-    return groupedLocations;
-}
+import { fetchRickAndMortyData, paginatedFetchEndpoint } from "./utilities/fetch.js";
 
 // cycles cards depending on page number
-async function paginationCardBuilder(pageNumber = 0) {
+window.paginationCardBuilder = async (pageNumber = 0) => {
     const groupedLocationData = await paginatedFetchEndpoint({ endpoint: "location", pageCount: 7, grouped: true, groupSize: 21 });
     const cardRow = document.getElementById("cardrow");
     cardRow.replaceChildren();
@@ -209,7 +174,7 @@ function setElementAttributes(element, attributes) {
 }
 
 // Function for search box, does minor sanitization of input, hides/shows cards depending on input
-function cardSearchFilter() {
+window.cardSearchFilter = () => {
     const searchInput = document.getElementById("navsearch").value.toLowerCase().trim();
     const rowOfCards = document.getElementById("cardrow").children;
 

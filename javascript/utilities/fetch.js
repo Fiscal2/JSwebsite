@@ -10,7 +10,8 @@ async function fetchRickAndMortyData(url) {
     }
 }
 
-const paginatedFetchEndpoint = async ({ endpoint, pageCount }) => {
+
+async function paginatedFetchEndpoint({ endpoint, pageCount, grouped = false, groupSize = 0 }) {
     const responseArray = [];
     let baseUrl = `https://rickandmortyapi.com/api/${endpoint}/`;
 
@@ -19,8 +20,20 @@ const paginatedFetchEndpoint = async ({ endpoint, pageCount }) => {
         responseArray.push(pageData.results);
         baseUrl = pageData.info.next;
     }
+    if (grouped) {
+        return await fetchGroupBuilder(responseArray.flat(1), groupSize)
+    }
 
     return responseArray.flat(1);
+}
+
+
+async function fetchGroupBuilder(allData, groupSize) {
+    const groupedData = [];
+    for (let i = 0; i < allData.length; i += groupSize) {
+        groupedData.push(allData.slice(i, i + groupSize));
+    }
+    return groupedData;
 }
 
 export {
