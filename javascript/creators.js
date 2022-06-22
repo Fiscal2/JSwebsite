@@ -1,19 +1,8 @@
 "use strict";
 
+import { fetchRickAndMortyData } from "./utilities/fetch.js";
 import { tableConstructor } from "./utilities/tableBuilder.js";
-import { genericCardCreator } from "./genericBuilders.js";
-
-
-async function fetchLocalFileData(filePath) {
-    const responseData = await fetch(filePath);
-
-    if (responseData.ok) {
-        return await responseData.json();
-    } else {
-        return alert(`HTTP-Error: ${responseData.status}`);
-    }
-}
-
+import { genericCardCreator } from "./utilities/genericBuilders.js";
 
 async function creatorCardInfo() {
     const justinImg = "/assets/JustinPhoto.jpg";
@@ -62,7 +51,7 @@ function imageAndColumnBuilder(creatorName, imageSource) {
 
 
 async function viewershipCardBuilder() {
-    const viewershipData = await fetchLocalFileData('/javascript/viewership.json');
+    const viewershipData = await fetchRickAndMortyData('/javascript/viewership.json');
     for (const seasonData of viewershipData["viewership"]) {
         const viewershipCard = document.getElementById("viewershipCard");
         const seasonDiv = document.createElement("div");

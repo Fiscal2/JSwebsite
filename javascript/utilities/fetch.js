@@ -1,6 +1,6 @@
 'use strict';
-// Not able to be used yet..
-const fetchRickAndMortyData = async (url) => {
+
+async function fetchRickAndMortyData(url) {
     const responseData = await fetch(url);
 
     if (responseData.ok) {
