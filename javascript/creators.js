@@ -89,7 +89,7 @@ async function accordionBodyBuilder(accordionData) {
         const infoRow = document.createElement("div")
         infoRow.classList.add("row", "justify-content-center", "mb-2")
         for (const [key, value] of Object.entries(accordionData)) {
-            infoTemplate = document.createElement("template");
+            const infoTemplate = document.createElement("template");
             infoTemplate.innerHTML =
                 `<div class="col-sm-4">
                     <a href="${value[1]}"><img src=${value[0]} class="img-thumbnail" style="width: 100px; height:100px;"/></a>
