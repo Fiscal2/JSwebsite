@@ -92,9 +92,9 @@ async function accordionBodyBuilder(accordionData) {
             infoTemplate = document.createElement("template");
             infoTemplate.innerHTML =
                 `<div class="col-sm-4">
-                <a href="${value[1]}"><img src=${value[0]} class="img-thumbnail" style="width: 100px; height:100px;"/></a>
-                <p class="card-text text-center"><b>${key}</b></p>
-            </div>`.trim()
+                    <a href="${value[1]}"><img src=${value[0]} class="img-thumbnail" style="width: 100px; height:100px;"/></a>
+                    <p class="card-text text-center"><b>${key}</b></p>
+                </div>`.trim()
             infoRow.appendChild(infoTemplate.content);
         }
         return infoRow;
