@@ -1,5 +1,9 @@
 "use strict";
 
+import { tableConstructor } from "./utilities/tableBuilder.js";
+import { genericCardCreator } from "./genericBuilders.js";
+
+
 async function fetchLocalFileData(filePath) {
     const responseData = await fetch(filePath);
 
@@ -56,6 +60,7 @@ function imageAndColumnBuilder(creatorName, imageSource) {
     return creatorImageColumn;
 }
 
+
 async function viewershipCardBuilder() {
     const viewershipData = await fetchLocalFileData('/javascript/viewership.json');
     for (const seasonData of viewershipData["viewership"]) {
@@ -72,66 +77,6 @@ async function viewershipCardBuilder() {
         }
         viewershipCard.appendChild(seasonDiv);
     }
-}
-
-viewershipCardBuilder();
-
-function tableHeadConstructor() {
-    const tableHeaderText = ["Season", "Rotten Tomatoes", "Metacritic"];
-    const tableHead = document.createElement("thead");
-    const tableHeaderRow = document.createElement("tr");
-
-    for (const label of tableHeaderText) {
-        const tableHeaders = document.createElement("th");
-        tableHeaders.setAttribute("scope", "col");
-        tableHeaders.innerHTML = label
-        tableHeaderRow.appendChild(tableHeaders)
-    }
-
-    tableHead.append(tableHeaderRow);
-    return tableHead;
-}
-
-
-function tableBodyConstructor() {
-    const ratingInfo = [
-        { "Season": 1, "Rotten Tomatoes": "96%", "Metacritic": "85" },
-        { "Season": 2, "Rotten Tomatoes": "91%", "Metacritic": "86" },
-        { "Season": 3, "Rotten Tomatoes": "96%", "Metacritic": "88" },
-        { "Season": 4, "Rotten Tomatoes": "94%", "Metacritic": "84" },
-        { "Season": 5, "Rotten Tomatoes": "95%", "Metacritic": "89" }
-    ]
-
-    const tableBody = document.createElement("tbody");
-
-    for (const rating of ratingInfo) {
-        const tableDataRow = document.createElement("tr");
-        tableDataRow.innerHTML =
-            `
-            <th scope="row">${rating["Season"]}</th>
-            <td>${rating["Rotten Tomatoes"]}</td>
-            <td>${rating["Metacritic"]}</td>
-            `
-        tableBody.appendChild(tableDataRow);
-    }
-
-    return tableBody;
-}
-
-
-function tableConstructor() {
-    const tableRow = document.getElementById("ratingCard");
-    const tableDiv = document.createElement("div");
-    const table = document.createElement("table");
-    table.classList.add("table", "table-info", "table-striped", "table-hover");
-
-    const tableHead = tableHeadConstructor();
-    const tableBody = tableBodyConstructor();
-
-    table.append(tableHead, tableBody);
-    tableDiv.appendChild(table)
-    const card = genericCardCreator("Ratings", tableDiv.innerHTML);
-    tableRow.appendChild(card);
 }
 
 
@@ -179,19 +124,18 @@ function accordionConstructor() {
     }
 }
 
-
-function genericCardCreator(cardTitleText, cardBodyData) {
-    const cardTemplate = document.createElement("template");
-    cardTemplate.innerHTML =
-        `<div class="card bg-info bg-gradient my-3" style="width: 40rem;">
-            <div class="card-body text-center text-white">
-                <h2 class="card-title" style="text-shadow: 2px 2px 2px #000000;">${cardTitleText}</h2>
-                ${cardBodyData}
-            </div>
-        </div>`.trim()
-    return cardTemplate.content;
-}
-
 accordionConstructor();
 creatorCardInfo();
-tableConstructor();
+viewershipCardBuilder();
+
+
+const tableHeaders = ["Season", "Rotten Tomatoes", "Metacritic"];
+const tableRatingData = [
+    { "Season": 1, "Rotten Tomatoes": "96%", "Metacritic": "85" },
+    { "Season": 2, "Rotten Tomatoes": "91%", "Metacritic": "86" },
+    { "Season": 3, "Rotten Tomatoes": "96%", "Metacritic": "88" },
+    { "Season": 4, "Rotten Tomatoes": "94%", "Metacritic": "84" },
+    { "Season": 5, "Rotten Tomatoes": "95%", "Metacritic": "89" }
+]
+
+tableConstructor(tableHeaders, tableRatingData);
