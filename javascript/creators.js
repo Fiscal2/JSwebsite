@@ -16,7 +16,7 @@ async function creatorCardInfo() {
                 <img src=${justinImg} class="img-thumbnail" style="width: 200px; height:250px;"/>
                 <p class="card-text text-center"><b>Justin Roiland</b></p>
             </div>
-                <div class="col-sm-4">
+            <div class="col-sm-4">
                 <img src=${danImg} class="img-thumbnail" style="width: 200px; height:250px;"/>
                 <p class="card-text text-center"><b>Dan Harmon</b></p>
             </div>
@@ -71,8 +71,8 @@ function accordionConstructor() {
     }
 
     for (const [key, value] of Object.entries(accordionInfo)) {
-        const accordionItem = document.createElement('div');
-        accordionItem.classList.add('accordion-item');
+        // const accordionItem = document.createElement('div');
+        // accordionItem.classList.add('accordion-item');
 
         const accordionHeader = document.createElement('h2');
         accordionHeader.setAttribute("id", `#heading${key}`);
@@ -99,7 +99,12 @@ function accordionConstructor() {
         accordionBody.innerHTML = "test"
 
         const accordionBodyTemplate = document.createElement("template");
-        accordionBodyTemplate.innerHTMl = ""
+        accordionBodyTemplate.innerHTMl =
+            `
+            <div class="accordion-item">
+            
+            </div>
+            `.trim()
 
         accordionHeading.appendChild(accordionBody);
         accordionHeader.appendChild(accordionButton);
