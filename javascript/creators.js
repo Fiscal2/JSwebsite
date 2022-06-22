@@ -84,7 +84,7 @@ async function accordionConstructor() {
     });
 }
 
-async function accordionBodyBuilder(accordionData) {
+function accordionBodyBuilder(accordionData) {
     if (accordionData) {
         const infoRow = document.createElement("div")
         infoRow.classList.add("row", "justify-content-center", "mb-2")
@@ -97,7 +97,7 @@ async function accordionBodyBuilder(accordionData) {
                 </div>`.trim()
             infoRow.appendChild(infoTemplate.content);
         }
-        return infoRow;
+        return infoRow.innerHTML;
     }
 }
 
