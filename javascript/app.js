@@ -49,7 +49,7 @@ async function dynamicCarouselConstructor() {
 }
 
 // Builds full page of cards, takes in page number to cycle which group of characters is visible 
-async function characterBuilder(pageNumber = 0) {
+window.characterBuilder = async (pageNumber = 0) => {
     const collectionOfCharacters = await paginatedFetchEndpoint({ endpoint: "character", pageCount: 42, grouped: true, groupSize: 59 });
     const cardRow = document.getElementById('cardrow');
     cardRow.replaceChildren();
