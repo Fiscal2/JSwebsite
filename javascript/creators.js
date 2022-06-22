@@ -76,35 +76,28 @@ async function accordionConstructor() {
                         ${dict["title"]}</button>
                     </h2>
                     <div id="collapse${dict["number"]}" class="accordion-collapse collapse" aria-labelledby="heading${dict["number"]}" data-bs-parent="#accordionParent">
-                        <div id="accordionBodyText" class="accordion-body">test</div>
+                        <div id="accordionBodyText" class="accordion-body">${accordionBody}</div>
                     </div>
                 </div>`.trim()
 
         accordionParent.appendChild(accordionItemTemplate.content);
     });
-
-
-    // for (const dict of accordionInfo) {
-    //     const accordionItemTemplate = document.createElement("template");
-    //     accordionItemTemplate.innerHTML =
-    //         `<div class="accordion-item">
-    //             <h2 class="accordion-header" id="#heading${key}">
-    //                 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse${key}" aria-expanded="false" aria-controls="collapse${key}">
-    //                 ${value}</button>
-    //             </h2>
-    //             <div id="collapse${key}" class="accordion-collapse collapse" aria-labelledby="heading${key}" data-bs-parent="#accordionParent">
-    //                 <div id="accordionBodyText" class="accordion-body">test</div>
-    //             </div>
-    //         </div>`.trim()
-
-    //     accordionParent.appendChild(accordionItemTemplate.content);
-    // }
 }
 
 async function accordionBodyBuilder(accordionData) {
-    for (const dict of accordionData) {
-        console.log(dict)
-        // we want a row, with the info inside similar to line 14-23 
+    if (accordionData) {
+        const infoRow = document.createElement("div")
+        infoRow.classList.add("row", "justify-content-center", "mb-2")
+        for (const [key, value] of Object.entries(accordionData)) {
+            infoTemplate = document.createElement("template");
+            infoTemplate.innerHTML =
+                `<div class="col-sm-4">
+                <a href="${value[1]}"><img src=${value[0]} class="img-thumbnail" style="width: 100px; height:100px;"/></a>
+                <p class="card-text text-center"><b>${key}</b></p>
+            </div>`.trim()
+            infoRow.appendChild(infoTemplate.content);
+        }
+        return infoRow;
     }
 }
 
