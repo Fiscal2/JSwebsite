@@ -71,23 +71,6 @@ function accordionConstructor() {
     }
 
     for (const [key, value] of Object.entries(accordionInfo)) {
-        // const accordionItem = document.createElement('div');
-        // accordionItem.classList.add('accordion-item');
-
-
-        // const accordionHeader = document.createElement('h2');
-        // accordionHeader.setAttribute("id", `#heading${key}`);
-        // accordionHeader.classList.add('accordion-header');
-
-
-        // const accordionButton = document.createElement('button');
-        // accordionButton.classList.add("accordion-button", "collapsed");
-        // accordionButton.innerHTML = value
-        // accordionButton.setAttribute("type", "button");
-        // accordionButton.setAttribute("data-bs-toggle", "collapse");
-        // accordionButton.setAttribute("data-bs-target", `#collapse${key}`);
-        // accordionButton.setAttribute("aria-expanded", "false");
-        // accordionButton.setAttribute("aria-controls", `collapse${key}`);
 
         const accordionHeading = document.createElement('div');
         accordionHeading.setAttribute("id", `collapse${key}`);
