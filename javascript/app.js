@@ -1,34 +1,8 @@
 'use strict';
+import { fetchRickAndMortyData, paginatedFetchEndpoint } from "./utilities/fetch.js";
+
 // global current page variable
 let currentPage = 0
-
-// Fetches data from api, returns json response
-async function fetchRickAndMortyData(url) {
-    const responseData = await fetch(url);
-
-    if (responseData.ok) {
-        return await responseData.json();
-    } else {
-        return alert(`HTTP-Error: ${responseData.status}`);
-    }
-}
-
-// Fetches every page of characters(42 pages in all) from the api
-async function paginatedFetchEndpoint({ endpoint, pageCount, grouped = false, groupSize = 0 }) {
-    const responseArray = [];
-    let baseUrl = `https://rickandmortyapi.com/api/${endpoint}/`;
-
-    for (let i = 1; i <= pageCount; i++) {
-        const pageData = await fetchRickAndMortyData(baseUrl);
-        responseArray.push(pageData.results);
-        baseUrl = pageData.info.next;
-    }
-    if (grouped) {
-        return await characterGroupBuilder(responseArray.flat(1), groupSize)
-    }
-
-    return responseArray.flat(1);
-}
 
 // Randomly picks 3 characters for the carousel to use
 function randomUrlConstructor(length) {
@@ -115,17 +89,8 @@ function characterCardBuilder(characterInfo) {
     return card.content;
 }
 
-// Gets all 826 characters and makes 14 arrays of 59 characters
-async function characterGroupBuilder(allCharacters, groupSize) {
-    const groupedCharacters = [];
-    for (let i = 0; i < allCharacters.length; i += groupSize) {
-        groupedCharacters.push(allCharacters.slice(i, i + groupSize));
-    }
-    return groupedCharacters;
-}
-
 // Next & Previous buttons in pagination use this to cycle character cards
-function pageChanger(operation) {
+window.pageChanger = (operation) => {
     if (currentPage > 0 || currentPage < 13) {
         characterBuilder((currentPage + operation));
         pageButtonGroupSwapper();
@@ -207,7 +172,7 @@ function paginationCollectionBuilder(paginationListChildren) {
 }
 
 // Function for search box, does minor sanitization of input, hides/shows cards depending on input
-function cardSearchFilter() {
+window.cardSearchFilter = () => {
     const searchInput = document.getElementById("navsearch").value.toLowerCase().trim();
     const rowOfCards = document.getElementById("cardrow").children;
 
