@@ -61,12 +61,13 @@ async function viewershipCardBuilder() {
     for (const seasonData of viewershipData["viewership"]) {
         const viewershipCard = document.getElementById("viewershipCard");
         const seasonDiv = document.createElement("div");
-        seasonDiv.innerHTML = `<h4>Season ${seasonData["season"]}</h4>`
+        seasonDiv.innerHTML = `<h4 style="text-shadow: 2px 2px 2px #000000;">Season ${seasonData["season"]}</h4>`
 
         for (const episode of Object.entries(seasonData["episodes"])) {
             const episodeInfo = document.createElement("p");
+            episodeInfo.setAttribute("style", "text-indent: 2em;")
             const views = episode[1] * 1000000;
-            episodeInfo.innerHTML = `Episode: ${episode[0]}, Viewers: ${views.toLocaleString('en-US')}`
+            episodeInfo.innerHTML = `<b>Episode:</b> ${episode[0]}, <b>Views:</b> ${views.toLocaleString('en-US')}`
             seasonDiv.appendChild(episodeInfo);
         }
         viewershipCard.appendChild(seasonDiv);
