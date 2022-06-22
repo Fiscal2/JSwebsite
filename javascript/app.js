@@ -59,6 +59,9 @@ async function characterBuilder(pageNumber = 0) {
         cardRow.appendChild(card);
     }
 
+    const loadingSpinner = document.getElementById("loadingSpinner");
+    loadingSpinner.classList.add("d-none");
+
     currentPage = pageNumber;
     paginatonButtonDisabler();
     pageButtonGroupSwapper();
@@ -185,45 +188,6 @@ window.cardSearchFilter = () => {
             card.classList.remove("d-none");
         }
     }
-}
-
-async function cardSearchFilterNumTwo() {
-    const searchInput = document.getElementById("navsearch").value.replace(/[^a-z0-9]/gi, '').toLowerCase().trim();
-    //const startIndex = await fetchAllCharacters();
-    const endIndex = startIndex.filter(character => character.name.toLowerCase().trim().includes(searchInput));
-    for (const character of endIndex) {
-
-        if (character.id < 59) {
-            page = characterBuilder(1)
-        } else if (59 < character.id && character.id < 118) {
-            page = characterBuilder(2)
-        } else if (118 < character.id && character.id < 177) {
-            page = characterBuilder(3)
-        } else if (177 < character.id && character.id < 236) {
-            page = characterBuilder(4)
-        } else if (236 < character.id && character.id < 295) {
-            page = characterBuilder(5)
-        } else if (295 < character.id && character.id < 354) {
-            page = characterBuilder(6)
-        } else if (354 < character.id && character.id < 413) {
-            page = characterBuilder(7)
-        } else if (413 < character.id && character.id < 472) {
-            page = characterBuilder(8)
-        } else if (472 < character.id && character.id < 531) {
-            page = characterBuilder(9)
-        } else if (531 < character.id && character.id < 590) {
-            page = characterBuilder(10)
-        } else if (590 < character.id && character.id < 649) {
-            page = characterBuilder(11)
-        } else if (649 < character.id && character.id < 708) {
-            page = characterBuilder(12)
-        } else if (708 < character.id && character.id < 767) {
-            page = characterBuilder(13)
-        } else if (767 < character.id && character.id < 826) {
-            page = characterBuilder(14)
-        }
-    }
-    console.log(endIndex);
 }
 
 
