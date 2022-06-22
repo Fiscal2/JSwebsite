@@ -5,7 +5,8 @@
             "title": "Awards",
             "info":{
                 "Critic Choice Television Award":["/assets/AwardOne.png", "https://www.imdb.com/list/ls044759491/"],
-                "Shorty Award for Best TV Show":["/assets/AwardTwo.png", "https://shortyawards.com/category/11th/tv-show"]
+                "Shorty Award for Best TV Show":["/assets/AwardTwo.png", "https://shortyawards.com/category/11th/tv-show"],
+                "Eddie Awards":["/assets/AwardThree.png", "https://americancinemaeditors.org/2022-eddie-awards-winners/"]
 
             }
         },
