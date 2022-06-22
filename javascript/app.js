@@ -70,8 +70,8 @@ window.characterBuilder = async (pageNumber = 0) => {
 // Constructs the cards for the characters giving all styles etc 
 function characterCardBuilder(characterInfo) {
     const card = document.createElement('template');
-    card.innerHTML = `
-        <div class="card bg-info bg-opacity-75 text-black mb-3 shadow ms-3 p-1" style="max-width: 540px;">
+    card.innerHTML =
+        `<div class="card bg-info bg-opacity-75 text-black mb-3 shadow ms-3 p-1" style="max-width: 540px;">
             <div class="row g-0">
                 <div class="col-md-4">
                     <img class="img-thumbnail rounded-start" src="${characterInfo.image}"/>
@@ -86,8 +86,7 @@ function characterCardBuilder(characterInfo) {
                     </div>
                 </div>
             </div>
-        </div>
-    `.trim()
+        </div>`.trim()
 
     return card.content;
 }
@@ -151,12 +150,10 @@ function paginationListBuilder() {
 
     for (let i = 1; i <= 14; i++) {
         const pageButton = document.createElement("template");
-        const templateHTML =
+        pageButton.innerHTML =
             `<li class="page-item">
                 <a class="page-link" onclick="characterBuilder(${i - 1})">${i}</a>
             </li>`.trim();
-
-        pageButton.innerHTML = templateHTML;
         paginationListContainer.appendChild(pageButton.content);
     }
 
@@ -167,6 +164,7 @@ function paginationListBuilder() {
 function paginationCollectionBuilder(paginationListChildren) {
     const groupedPaginationButtons = [];
     const paginationListArray = Array.from(paginationListChildren);
+
     for (let i = 0; i < paginationListChildren.length; i += 7) {
         groupedPaginationButtons.push(paginationListArray.slice(i, i + 7));
     }

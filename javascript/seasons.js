@@ -74,7 +74,6 @@ function seasonThumbnailBuilder() {
     let tempRow;
 
     for (const [key, value] of Object.entries(seasonNumAndImage)) {
-
         if (key % 2 != 0) {
             const seasonContainerRow = document.createElement("div");
             seasonContainerRow.classList.add("row");
