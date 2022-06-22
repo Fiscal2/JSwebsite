@@ -19,7 +19,7 @@
             "title": "Streaming Services",
             "info":{
                 "Hulu":["/assets/HuluLogo.png", "https://www.hulu.com/"],
-                "YouTube TV":["/assets/youtubeLogo", "https://tv.youtube.com/welcome/"],
+                "YouTube TV":["/assets/YoutubeLogo.png", "https://tv.youtube.com/welcome/"],
                 "HBO Max":["/assets/hboMaxLogo.png", "https://www.hbomax.com/"]
             }
         }
