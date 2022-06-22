@@ -21,8 +21,7 @@ window.paginationCardBuilder = async (pageNumber = 0) => {
 function cardTemplateBuilder(locationInfo) {
     const card = document.createElement('template');
     card.innerHTML =
-        `
-        <div class="col-sm-4">
+        `<div class="col-sm-4">
             <div class="card my-2 bg-transparent text-white">
                 <h5 class="card-header bg-success" style="text-shadow: 2px 2px 2px #000000;">${locationInfo.name}</h5>
                 <div class="card-body bg-success bg-opacity-75">
@@ -34,8 +33,7 @@ function cardTemplateBuilder(locationInfo) {
                     </button>
                 </div>
             </div>
-        </div>
-    `.trim()
+        </div>`.trim()
 
     return card.content;
 }
@@ -44,8 +42,7 @@ function cardTemplateBuilder(locationInfo) {
 function placeHolderBuilder() {
     const placeholder = document.createElement("template");
     placeholder.innerHTML =
-        `
-        <div class="row">
+        `<div class="row">
         <div class="col-sm-4">
             <div class="card my-2 bg-transparent text-white " aria-hidden="true">
                 <h5 class="card-header bg-success"><span class="placeholder col-6"></span></h5>
@@ -59,8 +56,7 @@ function placeHolderBuilder() {
                     <button tabindex="-1" class="btn btn-dark disabled placeholder col-6 w-25"></button>
                 </div>
             </div>
-        </div>
-        `.trim()
+        </div>`.trim()
 
     return placeholder.content;
 }
