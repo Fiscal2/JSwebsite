@@ -36,10 +36,9 @@ function episodeBuilder(allEpisodes) {
     for (const episode of allEpisodes) {
         const episodeTemplate = document.createElement("template");
         episodeTemplate.innerHTML =
-            `
-            <h5>${episode.name}</h5>
+            `<h5>${episode.name}</h5>
             <p>Episode: ${episode.id}, Air Date: ${episode.air_date}</p>
-            `
+            `.trim()
         modalBodyElementContainer.append(episodeTemplate.content)
     }
     return modalBodyElementContainer;
@@ -84,21 +83,18 @@ function seasonThumbnailBuilder() {
         const seasonContainerRow = tempRow
         const seasonCardTemplate = document.createElement("template");
         seasonCardTemplate.innerHTML =
-            `
-            <div class="col-md-4">
+            `<div class="col-md-4">
                 <div class="card bg-transparent border-0 text-center" style="width: 16rem;">
                     <img class="img-thumbnail rounded mb-1 mx-auto d-block" src=${value} style="width: 250px; height: 350px;"/>
                     <div class="card-body">
                         <button class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#episodeModal${key}">Episodes</button>
                     </div>
                 </div>
-            </div>
-            `
+            </div>`.trim()
         seasonContainerRow.appendChild(seasonCardTemplate.content);
         seasonContainer.appendChild(seasonContainerRow);
     }
 }
-
 
 seasonThumbnailBuilder();
 episodeModalBuilder();
