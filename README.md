@@ -1,4 +1,6 @@
-# JSwebsite: Microsoft JS Lesson!
+# Rick & Morty JS Site
+
+## Made using the [Rick & Morty API]("https://rickandmortyapi.com/")
 
 ## Good JS resources:
 - [W3](https://www.w3schools.com/js/default.asp)
