@@ -67,7 +67,9 @@ async function viewershipCardBuilder() {
 
 
 async function accordionBuilder() {
+    const accordionCard = document.getElementById("accordionCard");
     const accordionParent = document.getElementById("accordionParent");
+    const accordionParentDiv = document.createElement("div");
     const accordionInfo = await fetchRickAndMortyData('/javascript/json/accordion.json');
 
     accordionInfo["accordionItem"].forEach(dict => {
@@ -86,6 +88,9 @@ async function accordionBuilder() {
 
         accordionParent.appendChild(accordionItemTemplate.content);
     });
+    accordionParentDiv.appendChild(accordionParent);
+    const card = cardBuilder("Information", accordionParentDiv.innerHTML);
+    accordionCard.appendChild(card);
 }
 
 
