@@ -37,29 +37,6 @@ function cardTemplateBuilder(locationInfo) {
 
     return card.content;
 }
-
-
-function placeHolderBuilder() {
-    const placeholder = document.createElement("template");
-    placeholder.innerHTML =
-        `<div class="row">
-        <div class="col-sm-4">
-            <div class="card my-2 bg-transparent text-white " aria-hidden="true">
-                <h5 class="card-header bg-success"><span class="placeholder col-6"></span></h5>
-                <div class="card-body bg-success bg-opacity-75">
-                    <p class="card-text placeholder-glow">
-                        <span class="placeholder col-4"></span>
-                        <span class="placeholder col-4"></span>
-                        <span class="placeholder col-6"></span>
-                        <span class="placeholder col-8"></span>
-                    </p>
-                    <button tabindex="-1" class="btn btn-dark disabled placeholder col-6 w-25"></button>
-                </div>
-            </div>
-        </div>`.trim()
-
-    return placeholder.content;
-}
 // builds the finished modals for each location 
 // also lets loading wheel spin while the for loop is going then hides it
 async function modalBuilder() {
