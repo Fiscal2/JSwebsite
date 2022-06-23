@@ -124,9 +124,9 @@ function paginationButtonGroupBuilder(buttonGroup = 0) {
     const paginationListArray = Array.from(paginationList.children);
 
     if (paginationList.childElementCount > 2) {
-        paginationListArray.splice(1, 7, ...groupedButtonList[buttonGroup])
+        paginationListArray.splice(1, 7, ...groupedButtonList[buttonGroup]);
     } else {
-        paginationListArray.splice(1, 0, ...groupedButtonList[buttonGroup])
+        paginationListArray.splice(1, 0, ...groupedButtonList[buttonGroup]);
     }
 
     paginationList.replaceChildren();

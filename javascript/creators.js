@@ -54,7 +54,7 @@ async function viewershipCardBuilder() {
         for (const episode of Object.entries(seasonData["episodes"])) {
             const episodeInfo = document.createElement("p");
             episodeInfo.classList.add("text-start");
-            episodeInfo.setAttribute("style", "text-indent: 2em;")
+            episodeInfo.setAttribute("style", "text-indent: 2em;");
             const views = episode[1] * 1000000;
             episodeInfo.innerHTML = `<b>Episode:</b> ${episode[0]}, <b>Views:</b> ${views.toLocaleString('en-US')}`
             seasonDiv.appendChild(episodeInfo);

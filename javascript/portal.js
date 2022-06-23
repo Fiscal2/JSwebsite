@@ -95,8 +95,6 @@ function modalBodyBuilder(locationId, characterDetails, modalTitle) {
         </div>`.trim()
     return modalBodyTemplate.content;
 }
-
-
 // Need to work on this logic...
 // takes in character object, array of objects or string and returns the modal body elements
 function modalBodyElements(character) {
@@ -121,7 +119,6 @@ function modalBodyElements(character) {
         return character;
     }
 }
-
 // gets all character urls from locations and makes 1 query with an array of all the numbers
 // parsing the urls to just get the numbers off the ends with .match()
 async function residentsToCharacterObjects(locationResidents) {

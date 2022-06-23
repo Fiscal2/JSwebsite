@@ -22,7 +22,7 @@ function tableBodyConstructor(tableBodyData) {
     const tableBody = document.createElement("tbody");
 
     tableBodyData.forEach(dict => {
-        const bodyInfo = Object.values(dict)
+        const bodyInfo = Object.values(dict);
         const tableDataRow = document.createElement("tr");
         tableDataRow.innerHTML =
             `<th scope="row">${bodyInfo[0]}</th>
@@ -44,7 +44,7 @@ function tableConstructor(tableHeaderData, tableBodyData) {
     const tableBody = tableBodyConstructor(tableBodyData);
 
     table.append(tableHead, tableBody);
-    tableDiv.appendChild(table)
+    tableDiv.appendChild(table);
     const card = cardBuilder("Ratings", tableDiv.innerHTML);
     tableRow.appendChild(card);
 }
