@@ -44,20 +44,26 @@ async function creatorCardInfo() {
 
 async function viewershipCardBuilder() {
     const viewershipData = await fetchRickAndMortyData('/javascript/json/viewership.json');
+    const viewershipCard = document.getElementById("viewershipCard");
+    const viewershipCardDiv = document.createElement("div");
+
+
     for (const seasonData of viewershipData["viewership"]) {
-        const viewershipCard = document.getElementById("viewershipCard");
         const seasonDiv = document.createElement("div");
-        seasonDiv.innerHTML = `<h4 style="text-shadow: 2px 2px 2px #000000;">Season ${seasonData["season"]}</h4>`
+        seasonDiv.innerHTML = `<h4 class="text-start" style="text-shadow: 2px 2px 2px #000000;">Season ${seasonData["season"]}</h4>`
 
         for (const episode of Object.entries(seasonData["episodes"])) {
             const episodeInfo = document.createElement("p");
+            episodeInfo.classList.add("text-start");
             episodeInfo.setAttribute("style", "text-indent: 2em;")
             const views = episode[1] * 1000000;
             episodeInfo.innerHTML = `<b>Episode:</b> ${episode[0]}, <b>Views:</b> ${views.toLocaleString('en-US')}`
             seasonDiv.appendChild(episodeInfo);
         }
-        viewershipCard.appendChild(seasonDiv);
+        viewershipCardDiv.appendChild(seasonDiv);
     }
+    const card = cardBuilder("Viewership", viewershipCardDiv.innerHTML);
+    viewershipCard.appendChild(card);
 }
 
 
