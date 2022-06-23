@@ -1,6 +1,6 @@
 'use strict'
 
-function genericCardCreator(cardTitleText, cardBodyData) {
+function cardBuilder(cardTitleText, cardBodyData) {
     const cardTemplate = document.createElement("template");
     cardTemplate.innerHTML =
         `<div class="card bg-info bg-gradient my-3" style="width: 40rem;">
@@ -13,5 +13,5 @@ function genericCardCreator(cardTitleText, cardBodyData) {
 }
 
 export {
-    genericCardCreator
+    cardBuilder
 }

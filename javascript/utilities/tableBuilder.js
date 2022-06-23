@@ -1,6 +1,6 @@
 'use strict'
 
-import { genericCardCreator } from "./genericBuilders.js";
+import { cardBuilder } from "./cardBuilder.js";
 
 
 function tableHeadConstructor(tableHeaders) {
@@ -45,7 +45,7 @@ function tableConstructor(tableHeaderData, tableBodyData) {
 
     table.append(tableHead, tableBody);
     tableDiv.appendChild(table)
-    const card = genericCardCreator("Ratings", tableDiv.innerHTML);
+    const card = cardBuilder("Ratings", tableDiv.innerHTML);
     tableRow.appendChild(card);
 }
 

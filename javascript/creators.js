@@ -2,7 +2,7 @@
 
 import { fetchRickAndMortyData } from "./utilities/fetch.js";
 import { tableConstructor } from "./utilities/tableBuilder.js";
-import { genericCardCreator } from "./utilities/genericBuilders.js";
+import { cardBuilder } from "./utilities/cardBuilder.js";
 
 async function creatorCardInfo() {
     const justinImg = "/assets/JustinPhoto.jpg";
@@ -36,14 +36,14 @@ async function creatorCardInfo() {
             </cite>
         </figcaption>`.trim()
 
-    const card = genericCardCreator("The Creators", creatorCardTemplate.innerHTML);
+    const card = cardBuilder("The Creators", creatorCardTemplate.innerHTML);
 
     cardRow.appendChild(card);
 }
 
 
 async function viewershipCardBuilder() {
-    const viewershipData = await fetchRickAndMortyData('/javascript/viewership.json');
+    const viewershipData = await fetchRickAndMortyData('/javascript/json/viewership.json');
     for (const seasonData of viewershipData["viewership"]) {
         const viewershipCard = document.getElementById("viewershipCard");
         const seasonDiv = document.createElement("div");
@@ -63,7 +63,7 @@ async function viewershipCardBuilder() {
 
 async function accordionConstructor() {
     const accordionParent = document.getElementById("accordionParent");
-    const accordionInfo = await fetchRickAndMortyData('/javascript/accordion.json');
+    const accordionInfo = await fetchRickAndMortyData('/javascript/json/accordion.json');
 
     accordionInfo["accordionItem"].forEach(dict => {
         const accordionBody = accordionBodyBuilder(dict["info"]);
