@@ -39,7 +39,7 @@ function episodeBuilder(allEpisodes) {
             `<h5>${episode.name}</h5>
             <p>Episode: ${episode.id}, Air Date: ${episode.air_date}</p>
             `.trim()
-        modalBodyElementContainer.append(episodeTemplate.content)
+        modalBodyElementContainer.append(episodeTemplate.content);
     }
     return modalBodyElementContainer;
 }
@@ -79,7 +79,7 @@ function seasonThumbnailBuilder() {
             seasonContainerRow.classList.add("row");
             tempRow = seasonContainerRow
         }
-        const seasonContainerRow = tempRow
+        const seasonContainerRow = tempRow;
         const seasonCardTemplate = document.createElement("template");
         seasonCardTemplate.innerHTML =
             `<div class="col-md-4">

@@ -2,12 +2,12 @@
 import { fetchRickAndMortyData, paginatedFetchEndpoint } from "./utilities/fetch.js";
 
 // global current page variable
-let currentPage = 0
+let currentPage = 0;
 
 // Randomly picks 3 characters for the carousel to use
 function randomUrlConstructor(length) {
     const randomNumArray = Array.from({ length: length }, () => Math.floor(Math.random() * 826) + 1);
-    return `https://rickandmortyapi.com/api/character/${randomNumArray}`
+    return `https://rickandmortyapi.com/api/character/${randomNumArray}`;
 }
 
 // Function that builds the Carousel 
@@ -29,7 +29,7 @@ async function dynamicCarouselConstructor() {
         captionTitle.innerHTML = character.name
 
         const carouselContainer = document.createElement('div');
-        carouselContainer.classList.add("container")
+        carouselContainer.classList.add("container");
         carouselContainer.appendChild(captionTitle);
 
         carouselCaption.appendChild(carouselContainer);
@@ -130,7 +130,7 @@ function paginationButtonGroupBuilder(buttonGroup = 0) {
     }
 
     paginationList.replaceChildren();
-    paginationList.append(...paginationListArray)
+    paginationList.append(...paginationListArray);
 }
 
 // Changes button group from 1-7 to 8-14 and reverse
