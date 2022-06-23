@@ -4,7 +4,8 @@ import { fetchRickAndMortyData } from "./utilities/fetch.js";
 import { tableConstructor } from "./utilities/tableBuilder.js";
 import { cardBuilder } from "./utilities/cardBuilder.js";
 
-async function creatorCardInfo() {
+
+async function creatorCardBuilder() {
     const justinImg = "/assets/JustinPhoto.jpg";
     const danImg = "/assets/danPhoto.jpg";
     const cardRow = document.getElementById("creatorCard");
@@ -65,7 +66,7 @@ async function viewershipCardBuilder() {
 }
 
 
-async function accordionConstructor() {
+async function accordionBuilder() {
     const accordionParent = document.getElementById("accordionParent");
     const accordionInfo = await fetchRickAndMortyData('/javascript/json/accordion.json');
 
@@ -87,6 +88,7 @@ async function accordionConstructor() {
     });
 }
 
+
 function accordionBodyBuilder(accordionData) {
     if (accordionData) {
         const infoContainer = document.createElement("div");
@@ -107,8 +109,8 @@ function accordionBodyBuilder(accordionData) {
     }
 }
 
-accordionConstructor();
-creatorCardInfo();
+accordionBuilder();
+creatorCardBuilder();
 viewershipCardBuilder();
 
 const tableHeaders = ["Season", "Rotten Tomatoes", "Metacritic"];
