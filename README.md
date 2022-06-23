@@ -1,5 +1,8 @@
 # Rick & Morty JS Site
 
+## Summary:
+- My first website made using Javascript, HTML5, and Bootstrap CSS Library!! 
+
 ## Good JS resources:
 - [W3](https://www.w3schools.com/js/default.asp)
 - [JavaScript.com](https://www.javascript.com/resources)
