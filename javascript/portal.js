@@ -75,51 +75,28 @@ async function modalBuilder() {
 // takes in a location, character object, and location name and makes the majority of the modal
 // on line 130 is logic for 1 character, many characters, or No characters 
 function modalBodyBuilder(locationId, characterDetails, modalTitle) {
-    const modalContainerDiv = document.createElement('div');
-    modalContainerDiv.classList.add("modal", "fade");
-
-    const modalContainer = setElementAttributes(modalContainerDiv,
-        {
-            "id": `locationModal${locationId}`,
-            "data-bs-keyboard": "false",
-            "tabindex": "-1",
-            "aria-labelledby": "locationModal",
-            "aria-hidden": "true"
-        });
-    const modalDialogDiv = document.createElement('div');
-    modalDialogDiv.classList.add("modal-dialog", "modal-dialog-centered", "modal-dialog-scrollable");
-
-    const modalContentDiv = document.createElement('div');
-    modalContentDiv.classList.add("modal-content");
-
-    const modalHeaderDiv = document.createElement('div');
-    modalHeaderDiv.classList.add("modal-header");
-
-    const modalTitleH5 = document.createElement('h5');
-    modalTitleH5.classList.add("modal-title");
-    modalTitleH5.innerHTML = modalTitle;
-
-    const modalCloseButtonElement = document.createElement('button');
-    modalCloseButtonElement.classList.add("btn-close");
-    const modalCloseButton = setElementAttributes(modalCloseButtonElement,
-        {
-            "type": "button",
-            "data-bs-dismiss": "modal",
-            "aria-label": "close"
-        });
-
-    const modalBodyDiv = document.createElement('div');
-    modalBodyDiv.classList.add("modal-body");
-
     const modalBodyInfo = modalBodyElements(characterDetails);
-
-    modalBodyDiv.append(modalBodyInfo);
-    modalHeaderDiv.append(modalTitleH5, modalCloseButton);
-    modalContentDiv.append(modalHeaderDiv, modalBodyDiv);
-    modalDialogDiv.appendChild(modalContentDiv);
-    modalContainer.appendChild(modalDialogDiv);
-    return modalContainer;
+    const bodyDiv = document.createElement("div");
+    bodyDiv.appendChild(modalBodyInfo);
+    const modalBodyTemplate = document.createElement("template");
+    modalBodyTemplate.innerHTML =
+        `<div id="locationModal${locationId}" data-bs-keyboard="false" tabindex="-1" aria-labelledby="locationModal" aria-hidden="true" class="modal fade">
+            <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">${modalTitle}</h5>
+                        <button class="btn-close" type="button" data-bs-dismiss="modal" aria-label=close></button>
+                    </div>
+                    <div class="modal-body">
+                        ${bodyDiv.innerHTML}
+                    </div>
+                </div>
+            </div>
+        </div>`.trim()
+    return modalBodyTemplate.content;
 }
+
+
 // Need to work on this logic...
 // takes in character object, array of objects or string and returns the modal body elements
 function modalBodyElements(character) {
