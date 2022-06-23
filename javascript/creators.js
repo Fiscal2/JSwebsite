@@ -37,7 +37,6 @@ async function creatorCardInfo() {
         </figcaption>`.trim()
 
     const card = cardBuilder("The Creators", creatorCardTemplate.innerHTML);
-
     cardRow.appendChild(card);
 }
 
@@ -46,7 +45,6 @@ async function viewershipCardBuilder() {
     const viewershipData = await fetchRickAndMortyData('/javascript/json/viewership.json');
     const viewershipCard = document.getElementById("viewershipCard");
     const viewershipCardDiv = document.createElement("div");
-
 
     for (const seasonData of viewershipData["viewership"]) {
         const seasonDiv = document.createElement("div");
