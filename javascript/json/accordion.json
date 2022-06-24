@@ -4,8 +4,8 @@
             "number": 1,
             "title": "Awards",
             "info":{
-                "Critic Choice Television Award":["/assets/AwardOne.png", "https://www.imdb.com/list/ls044759491/"],
-                "Shorty Award for Best TV Show":["/assets/AwardTwo.png", "https://shortyawards.com/category/11th/tv-show"],
+                "Critic Choice Television Award":["/JSwebsite/assets/AwardOne.png", "https://www.imdb.com/list/ls044759491/"],
+                "Shorty Award for Best TV Show":["/JSwebsite/assets/AwardTwo.png", "https://shortyawards.com/category/11th/tv-show"],
                 "Eddie Awards":["/assets/AwardThree.png", "https://americancinemaeditors.org/2022-eddie-awards-winners/"]
 
             }
@@ -14,18 +14,18 @@
             "number": 2, 
             "title": "Social Media",
             "info":{
-                "Instagram":["/assets/instagramLogo.png", "https://www.instagram.com/rickandmorty/"],
-                "Facebook":["/assets/facebookLogo.png", "https://www.facebook.com/RickandMorty/"],
-                "Twitter":["/assets/twitterLogo.png", "https://twitter.com/RickandMorty?ref_src=twsrc%5Egoogle%7Ctwcamp%5Eserp%7Ctwgr%5Eauthor"]
+                "Instagram":["/JSwebsite/assets/instagramLogo.png", "https://www.instagram.com/rickandmorty/"],
+                "Facebook":["/JSwebsite/assets/facebookLogo.png", "https://www.facebook.com/RickandMorty/"],
+                "Twitter":["/JSwebsite/assets/twitterLogo.png", "https://twitter.com/RickandMorty?ref_src=twsrc%5Egoogle%7Ctwcamp%5Eserp%7Ctwgr%5Eauthor"]
             }
         },
         {
             "number": 3,
             "title": "Streaming Services",
             "info":{
-                "Hulu":["/assets/HuluLogo.png", "https://www.hulu.com/"],
-                "YouTube TV":["/assets/YoutubeLogo.png", "https://tv.youtube.com/welcome/"],
-                "HBO Max":["/assets/hboMaxLogo.png", "https://www.hbomax.com/"]
+                "Hulu":["/JSwebsite/assets/HuluLogo.png", "https://www.hulu.com/"],
+                "YouTube TV":["/JSwebsite/assets/YoutubeLogo.png", "https://tv.youtube.com/welcome/"],
+                "HBO Max":["/JSwebsite/assets/hboMaxLogo.png", "https://www.hbomax.com/"]
             }
         }
     ]
