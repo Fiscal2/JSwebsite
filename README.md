@@ -12,5 +12,6 @@
 - Add features to light/dark button on home page.
 - Placeholder loading...
 - Possibly use [Intersection Observer API](https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API)
+- Active button for page selection
 
 ## Made using the [Rick & Morty API](https://rickandmortyapi.com/)
